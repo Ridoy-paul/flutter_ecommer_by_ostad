@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommer_by_ostad/presentation/ui/utility/app_colors.dart';
 import 'presentation/ui/screens/splash_screen.dart';
 
 class ShoppersMart extends StatelessWidget {
@@ -6,7 +7,10 @@ class ShoppersMart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return  MaterialApp(
+      theme: ThemeData(
+        primarySwatch: MaterialColor(AppColors.primaryColor.value, AppColors.colorSwatch),
+      ),
       home: SplashScreen(),
     );
   }
