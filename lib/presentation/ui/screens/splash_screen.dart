@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'verify_email_screen.dart';
 import 'package:get/get.dart';
-import '../utility/assets_path.dart';
 import '../widgets/app_logo.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -12,7 +11,6 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-
 
   @override
   void initState() {
@@ -27,17 +25,17 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: Center(
         child: Column(
           children: [
-            const Spacer(),
-            const AppLogoWidget(),
-            const Spacer(),
-            const CircularProgressIndicator(),
-            const SizedBox(height: 8,),
-            const Text("Version 1.0"),
-            const SizedBox(height: 25,),
+            Spacer(),
+            AppLogoWidget(),
+            Spacer(),
+            CircularProgressIndicator(),
+            SizedBox(height: 8,),
+            Text("Version 1.0"),
+            SizedBox(height: 25,),
           ],
         ),
       ),
