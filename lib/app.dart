@@ -9,7 +9,10 @@ class ShoppersMart extends StatelessWidget {
   Widget build(BuildContext context) {
     return  MaterialApp(
       theme: ThemeData(
-        // primarySwatch: MaterialColor(AppColors.primaryColor.value, AppColors.colorSwatch),
+        //primarySwatch: MaterialColor(AppColors.primaryColor.value, AppColors.colorSwatch),
+        progressIndicatorTheme: const ProgressIndicatorThemeData(
+          color: AppColors.primaryColor,
+        )
       ),
       home: SplashScreen(),
     );
