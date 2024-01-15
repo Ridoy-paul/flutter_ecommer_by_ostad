@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../utility/assets_path.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -12,8 +13,13 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: CircularProgressIndicator(
-
+        child: Column(
+          children: [
+            const Spacer(),
+            Image.asset(AssetsPath.logo),
+            const CircularProgressIndicator(),
+            const SizedBox(height: 10,),
+          ],
         ),
       ),
     );
