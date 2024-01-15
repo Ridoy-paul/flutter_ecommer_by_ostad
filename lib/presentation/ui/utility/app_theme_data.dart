@@ -47,8 +47,24 @@ ThemeData lightThemeData = ThemeData(
     ),
     bodySmall: TextStyle(
       fontSize: 12,
-      fontWeight: FontWeight.w500,
+      fontWeight: FontWeight.w400,
       color: AppColors.lightGray,
     )
+  ),
+
+  ///Elevated Button theme
+  elevatedButtonTheme: ElevatedButtonThemeData(
+    style: ElevatedButton.styleFrom(
+      backgroundColor: AppColors.primaryColor,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8),
+      ),
+      padding: const EdgeInsets.symmetric(vertical: 14),
+      textStyle: const TextStyle(
+        fontSize: 16,
+        letterSpacing: 0.5,
+      ),
+      foregroundColor: Colors.white,
+    ),
   )
 );
