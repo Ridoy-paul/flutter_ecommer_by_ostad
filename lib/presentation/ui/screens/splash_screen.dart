@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommer_by_ostad/presentation/ui/screens/verify_email_screen.dart';
+import 'verify_email_screen.dart';
 import 'package:get/get.dart';
 import '../utility/assets_path.dart';
+import '../widgets/app_logo.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -31,7 +32,7 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Column(
           children: [
             const Spacer(),
-            Image.asset(AssetsPath.logo, width: 110,),
+            const AppLogoWidget(),
             const Spacer(),
             const CircularProgressIndicator(),
             const SizedBox(height: 8,),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommer_by_ostad/presentation/ui/widgets/app_logo.dart';
 import 'package:get/get.dart';
 import '../utility/assets_path.dart';
 
@@ -18,7 +19,7 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
           child: Column(
             children: [
               SizedBox(height: Get.height * .15,),
-              Image.asset(AssetsPath.logo, width: 110,),
+              const AppLogoWidget(),
             ],
           ),
         ),
