@@ -16,7 +16,8 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Column(
           children: [
             const Spacer(),
-            Image.asset(AssetsPath.logo),
+            Image.asset(AssetsPath.logo, width: 110,),
+            const Spacer(),
             const CircularProgressIndicator(),
             const SizedBox(height: 10,),
           ],
