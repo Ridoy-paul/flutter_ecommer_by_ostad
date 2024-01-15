@@ -15,12 +15,20 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Center(
-          child: Column(
-            children: [
-              SizedBox(height: Get.height * .15,),
-              const AppLogoWidget(),
-            ],
+        child: Padding(
+          padding: const EdgeInsets.all(24.0),
+          child: Center(
+            child: Column(
+              children: [
+                SizedBox(height: Get.height * .15,),
+                const AppLogoWidget(),
+                TextField(
+                  decoration: InputDecoration(
+                    hintText: 'Email',
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),
