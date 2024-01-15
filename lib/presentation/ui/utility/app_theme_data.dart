@@ -12,6 +12,10 @@ ThemeData lightThemeData = ThemeData(
     ///Input Decoration Theme Style
     inputDecorationTheme: InputDecorationTheme(
       contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      hintStyle: const TextStyle(
+        color: AppColors.lightGray,
+        fontWeight: FontWeight.w400,
+      ),
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(8),
         borderSide: const BorderSide(
