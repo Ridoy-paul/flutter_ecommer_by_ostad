@@ -19,9 +19,12 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
           child: Center(
             child: Column(
               children: [
-                SizedBox(height: Get.height * .15,),
+                SizedBox(height: Get.height * .1,),
                 const AppLogoWidget(),
                 const SizedBox(height: 16,),
+                Text("Welcome back", style: Theme.of(context).textTheme.titleLarge,),
+                Text("Please Enter Your Email Address", style: Theme.of(context).textTheme.bodySmall,),
+                const SizedBox(height: 8,),
                 TextField(
                   decoration: InputDecoration(
                     hintText: 'Email',
