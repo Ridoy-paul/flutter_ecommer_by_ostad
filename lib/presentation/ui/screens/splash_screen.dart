@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommer_by_ostad/presentation/ui/screens/verify_email_screen.dart';
+import 'package:get/get.dart';
 import '../utility/assets_path.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -9,6 +11,19 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+
+
+  @override
+  void initState() {
+    super.initState();
+    moveToNextScreen();
+  }
+
+  void moveToNextScreen() async {
+    await Future.delayed(const Duration(seconds: 2));
+    Get.offAll(const VerifyEmailScreen());
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

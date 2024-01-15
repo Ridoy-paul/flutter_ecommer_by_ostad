@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'presentation/ui/utility/app_colors.dart';
 import 'presentation/ui/screens/splash_screen.dart';
 
@@ -7,7 +8,7 @@ class ShoppersMart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
+    return  GetMaterialApp(
       theme: ThemeData(
         //primarySwatch: MaterialColor(AppColors.primaryColor.value, AppColors.colorSwatch),
         progressIndicatorTheme: const ProgressIndicatorThemeData(
