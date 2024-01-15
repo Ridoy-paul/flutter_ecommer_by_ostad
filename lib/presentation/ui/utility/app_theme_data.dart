@@ -3,6 +3,7 @@ import 'app_colors.dart';
 
 ThemeData lightThemeData = ThemeData(
   //primarySwatch: MaterialColor(AppColors.primaryColor.value, AppColors.colorSwatch),
+
     progressIndicatorTheme: const ProgressIndicatorThemeData(
       color: AppColors.primaryColor,
     ),

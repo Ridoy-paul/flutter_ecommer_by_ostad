@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommer_by_ostad/presentation/ui/widgets/app_logo.dart';
+import '../widgets/app_logo.dart';
 import 'package:get/get.dart';
-import '../utility/assets_path.dart';
 
 class VerifyEmailScreen extends StatefulWidget {
   const VerifyEmailScreen({super.key});
@@ -22,6 +21,7 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
               children: [
                 SizedBox(height: Get.height * .15,),
                 const AppLogoWidget(),
+                const SizedBox(height: 16,),
                 TextField(
                   decoration: InputDecoration(
                     hintText: 'Email',
