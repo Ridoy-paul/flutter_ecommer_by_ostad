@@ -35,7 +35,7 @@ class _VerifyOTPScreenState extends State<VerifyOTPScreen> {
                     length: 4,
                     obscureText: false,
                     animationType: AnimationType.fade,
-                    backgroundColor: Colors.transparent,
+                    backgroundColor: AppColors.transparentColor,
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     pinTheme: PinTheme(
                       shape: PinCodeFieldShape.box,
@@ -43,8 +43,8 @@ class _VerifyOTPScreenState extends State<VerifyOTPScreen> {
                       fieldHeight: 50,
                       fieldWidth: 50,
                       activeFillColor: Colors.white,
-                      selectedFillColor: AppColors.primaryColor,
-                      inactiveFillColor: Colors.transparent,
+                      selectedFillColor: AppColors.transparentColor,
+                      inactiveFillColor: AppColors.transparentColor,
                       inactiveColor: AppColors.primaryColor,
                     ),
                     animationDuration: const Duration(milliseconds: 300),
@@ -71,7 +71,29 @@ class _VerifyOTPScreenState extends State<VerifyOTPScreen> {
                       },
                       child: const Text("Next"),
                     ),
-                  )
+                  ),
+                  const SizedBox(height: 36,),
+                  Center(
+                    child: RichText(
+                      text: TextSpan(
+                        text: 'This code will expire in ',
+                        style: const TextStyle(
+                          fontSize: 16.0,
+                          color: AppColors.gray,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        children: <TextSpan>[
+                          TextSpan(
+                            text: "120s",
+                            style: const TextStyle(
+                              color: AppColors.primaryColor,
+                              fontSize: 16.0,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
