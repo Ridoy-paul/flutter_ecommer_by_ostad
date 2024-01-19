@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommer_by_ostad/presentation/ui/screens/complete_profile_screen.dart';
 import 'package:flutter_ecommer_by_ostad/presentation/ui/utility/app_colors.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import '../widgets/app_logo.dart';
@@ -37,6 +38,7 @@ class _VerifyOTPScreenState extends State<VerifyOTPScreen> {
                     animationType: AnimationType.fade,
                     backgroundColor: AppColors.transparentColor,
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    keyboardType: TextInputType.number,
                     pinTheme: PinTheme(
                       shape: PinCodeFieldShape.box,
                       borderRadius: BorderRadius.circular(5),
@@ -46,6 +48,7 @@ class _VerifyOTPScreenState extends State<VerifyOTPScreen> {
                       selectedFillColor: AppColors.transparentColor,
                       inactiveFillColor: AppColors.transparentColor,
                       inactiveColor: AppColors.primaryColor,
+                      selectedColor: Colors.deepPurple,
                     ),
                     animationDuration: const Duration(milliseconds: 300),
                     enableActiveFill: true,
@@ -67,7 +70,7 @@ class _VerifyOTPScreenState extends State<VerifyOTPScreen> {
                     width: double.infinity,
                     child: ElevatedButton(
                       onPressed: () {
-          
+                        Get.to(() => const CompleteProfileScreen());
                       },
                       child: const Text("Next"),
                     ),
