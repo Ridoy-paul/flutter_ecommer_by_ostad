@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommer_by_ostad/presentation/ui/screens/verify_otp_screen.dart';
-import '../widgets/app_logo.dart';
+import 'verify_otp_screen.dart';
+import '../../widgets/app_logo.dart';
 import 'package:get/get.dart';
 
 class CompleteProfileScreen extends StatefulWidget {

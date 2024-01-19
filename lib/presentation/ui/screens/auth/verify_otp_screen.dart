@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommer_by_ostad/presentation/ui/screens/complete_profile_screen.dart';
-import 'package:flutter_ecommer_by_ostad/presentation/ui/utility/app_colors.dart';
+import '../../utility/app_colors.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
-import '../widgets/app_logo.dart';
 import 'package:get/get.dart';
+import '../../widgets/app_logo.dart';
+import 'complete_profile_screen.dart';
 
 class VerifyOTPScreen extends StatefulWidget {
   const VerifyOTPScreen({super.key});

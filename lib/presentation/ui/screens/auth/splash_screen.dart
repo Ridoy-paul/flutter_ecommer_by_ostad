@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'verify_email_screen.dart';
 import 'package:get/get.dart';
-import '../widgets/app_logo.dart';
+import '../../widgets/app_logo.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
