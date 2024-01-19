@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommer_by_ostad/presentation/ui/screens/verify_otp_screen.dart';
 import '../widgets/app_logo.dart';
 import 'package:get/get.dart';
 
-class VerifyEmailScreen extends StatefulWidget {
-  const VerifyEmailScreen({super.key});
+class VerifyOTPScreen extends StatefulWidget {
+  const VerifyOTPScreen({super.key});
 
   @override
-  State<VerifyEmailScreen> createState() => _VerifyEmailScreenState();
+  State<VerifyOTPScreen> createState() => _VerifyOTPScreenState();
 }
 
-class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
+class _VerifyOTPScreenState extends State<VerifyOTPScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,9 +23,9 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
                   SizedBox(height: Get.height * .1,),
                   const AppLogoWidget(),
                   const SizedBox(height: 16,),
-                  Text("Welcome back", style: Theme.of(context).textTheme.titleLarge,),
+                  Text("Enter OTP Code", style: Theme.of(context).textTheme.titleLarge,),
                   const SizedBox(height: 5,),
-                  Text("Please Enter Your Email Address", style: Theme.of(context).textTheme.bodySmall,),
+                  Text("A 4 digit code has been sent", style: Theme.of(context).textTheme.bodyLarge,),
                   const SizedBox(height: 16,),
                   TextField(
                     decoration: InputDecoration(
@@ -38,7 +37,7 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
                     width: double.infinity,
                     child: ElevatedButton(
                       onPressed: () {
-                        Get.to(() => const VerifyOTPScreen());
+          
                       },
                       child: const Text("Next"),
                     ),

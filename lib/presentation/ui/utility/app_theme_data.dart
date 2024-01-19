@@ -53,7 +53,19 @@ ThemeData lightThemeData = ThemeData(
         fontSize: 12,
         fontWeight: FontWeight.w400,
         color: AppColors.lightGray,
-      )
+      ),
+      bodyLarge: TextStyle(
+        //fontSize: 12,
+        fontWeight: FontWeight.w400,
+        color: AppColors.lightGray,
+      ),
+      bodyMedium: TextStyle(
+        //fontSize: 12,
+        fontWeight: FontWeight.w400,
+        color: AppColors.lightGray,
+      ),
+
+
     ),
 
     ///Elevated Button theme
