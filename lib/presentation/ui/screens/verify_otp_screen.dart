@@ -28,13 +28,15 @@ class _VerifyOTPScreenState extends State<VerifyOTPScreen> {
                   Text("Enter OTP Code", style: Theme.of(context).textTheme.titleLarge,),
                   const SizedBox(height: 5,),
                   Text("A 4 digit code has been sent", style: Theme.of(context).textTheme.bodyLarge,),
-                  const SizedBox(height: 16,),
+                  const SizedBox(height: 26,),
                   PinCodeTextField(
                     //controller: ,
                     //validator: (value) => inputValidate(value, "Enter 6 digit verification code!"),
                     length: 4,
                     obscureText: false,
                     animationType: AnimationType.fade,
+                    backgroundColor: Colors.transparent,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     pinTheme: PinTheme(
                       shape: PinCodeFieldShape.box,
                       borderRadius: BorderRadius.circular(5),
@@ -42,7 +44,8 @@ class _VerifyOTPScreenState extends State<VerifyOTPScreen> {
                       fieldWidth: 50,
                       activeFillColor: Colors.white,
                       selectedFillColor: AppColors.primaryColor,
-                      inactiveFillColor: Colors.white,
+                      inactiveFillColor: Colors.transparent,
+                      inactiveColor: AppColors.primaryColor,
                     ),
                     animationDuration: const Duration(milliseconds: 300),
                     enableActiveFill: true,
@@ -55,9 +58,6 @@ class _VerifyOTPScreenState extends State<VerifyOTPScreen> {
 
                     },
                     beforeTextPaste: (text) {
-                      //print("Allowing to paste $text");
-                      //if you return true then it will show the paste confirmation dialog. Otherwise if false, then nothing will happen.
-                      //but you can show anything you want here, like your pop up saying wrong paste format or etc
                       return true;
                     },
                     appContext: context,
