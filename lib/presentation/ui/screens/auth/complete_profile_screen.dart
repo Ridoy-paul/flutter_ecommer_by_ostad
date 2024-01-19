@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommer_by_ostad/presentation/ui/screens/main_bottom_nav_screen.dart';
 import 'verify_otp_screen.dart';
 import '../../widgets/app_logo.dart';
 import 'package:get/get.dart';
@@ -67,7 +68,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                     width: double.infinity,
                     child: ElevatedButton(
                       onPressed: () {
-                        Get.to(() => const VerifyOTPScreen());
+                        Get.offAll(() => const MainBottomNavScreen());
                       },
                       child: const Text("Next"),
                     ),
