@@ -21,19 +21,45 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
             child: Center(
               child: Column(
                 children: [
-                  SizedBox(height: Get.height * .1,),
+                  SizedBox(height: Get.height * .02,),
                   const AppLogoWidget(),
                   const SizedBox(height: 16,),
-                  Text("Welcome back", style: Theme.of(context).textTheme.titleLarge,),
+                  Text("Complete Profile", style: Theme.of(context).textTheme.titleLarge,),
                   const SizedBox(height: 5,),
-                  Text("Please Enter Your Email Address", style: Theme.of(context).textTheme.bodySmall,),
+                  Text("Get started with us with your details", style: Theme.of(context).textTheme.bodyLarge,),
                   const SizedBox(height: 16,),
                   TextField(
                     decoration: InputDecoration(
-                      hintText: 'Email',
+                      hintText: 'First Name',
                     ),
                   ),
-                  const SizedBox(height: 16,),
+                  const SizedBox(height: 8,),
+                  TextField(
+                    decoration: InputDecoration(
+                      hintText: 'Last Name',
+                    ),
+                  ),
+                  const SizedBox(height: 8,),
+                  TextField(
+                    decoration: InputDecoration(
+                      hintText: 'Mobile',
+                    ),
+                  ),
+                  const SizedBox(height: 8,),
+                  TextField(
+                    decoration: InputDecoration(
+                      hintText: 'City',
+                    ),
+                  ),
+                  const SizedBox(height: 8,),
+                  TextField(
+                    decoration: InputDecoration(
+                      hintText: 'Shipping Address',
+                    ),
+                  ),
+                  const SizedBox(height: 8,),
+
+
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
