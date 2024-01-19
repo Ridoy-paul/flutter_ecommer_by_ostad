@@ -44,6 +44,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                     decoration: InputDecoration(
                       hintText: 'Mobile',
                     ),
+                    keyboardType: TextInputType.number,
                   ),
                   const SizedBox(height: 8,),
                   TextField(
@@ -56,6 +57,8 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                     decoration: InputDecoration(
                       hintText: 'Shipping Address',
                     ),
+                    keyboardType: TextInputType.multiline,
+                    maxLines: 3,
                   ),
                   const SizedBox(height: 8,),
 
