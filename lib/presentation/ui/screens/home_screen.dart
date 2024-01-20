@@ -20,7 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
             onTap: () {
               print("hello");
             },
-            iconData: Icons.card_giftcard,
+            iconData: Icons.person_outline,
           ),
           const SizedBox(
             width: 4,
