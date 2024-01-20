@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommer_by_ostad/presentation/ui/utility/app_colors.dart';
-import 'package:get/get.dart';
 import '../utility/assets_path.dart';
 import '../widgets/home/circle_icon_button_widget.dart';
 import '../widgets/home/image_carosel_widget.dart';
+import '../widgets/section_title_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -27,7 +27,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 searchTextFormField,
                 const SizedBox(height: 16,),
                 HomeImageCarouselWidget(),
-                SectionTitleWidget(title: "All Categories", onTapSeeAll: () {},)
+                SectionTitleWidget(title: "All Categories", onTapSeeAll: () {},),
+                CategoryItemWidget()
+
 
 
               ],
@@ -102,21 +104,24 @@ class _HomeScreenState extends State<HomeScreen> {
 
 }
 
-class SectionTitleWidget extends StatelessWidget {
-  const SectionTitleWidget({
-    super.key, required this.title, required this.onTapSeeAll,
+class CategoryItemWidget extends StatelessWidget {
+  const CategoryItemWidget({
+    super.key,
   });
-
-  final String title;
-  final VoidCallback onTapSeeAll;
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return Column(
       children: [
-        Text(title.toString(), style: const TextStyle(fontSize: 20, color: Colors.black54, fontWeight: FontWeight.w500),),
-        TextButton(onPressed: onTapSeeAll, child: const Text("See All", style: TextStyle(color: AppColors.primaryColor),),)
+        Card(
+          elevation: 0,
+          color: AppColors.primaryColor.withOpacity(.2),
+          child: Padding(
+            padding: EdgeInsets.all(24),
+            child: Icon(Icons.computer, size: 32, color: AppColors.primaryColor,),
+          ),
+        ),
+        Text("Electronics", style: TextStyle(color: AppColors.primaryColor, fontSize: 16, fontWeight: FontWeight.w500),)
       ],
     );
   }
