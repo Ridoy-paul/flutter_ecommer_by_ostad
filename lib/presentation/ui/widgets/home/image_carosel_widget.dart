@@ -48,7 +48,7 @@ class _HomeImageCarouselWidgetState extends State<HomeImageCarouselWidget> {
                     width: MediaQuery.of(context).size.width,
                     margin: const EdgeInsets.symmetric(horizontal: 5.0),
                     decoration: BoxDecoration(
-                      color: Colors.amber,
+                      color: AppColors.primaryColor,
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Text('text $i', style: const TextStyle(fontSize: 16.0),)
