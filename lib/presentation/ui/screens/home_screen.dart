@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../utility/assets_path.dart';
 import '../widgets/home/circle_icon_button_widget.dart';
-import '../widgets/image_carosel_widget.dart';
+import '../widgets/home/image_carosel_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -24,8 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 const SizedBox(height: 8,),
                 searchTextFormField,
                 const SizedBox(height: 16,),
-
-                ImageCaroselWidget()
+                HomeImageCarouselWidget(),
 
 
               ],

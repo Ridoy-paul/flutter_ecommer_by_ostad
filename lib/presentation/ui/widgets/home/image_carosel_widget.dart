@@ -1,20 +1,20 @@
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommer_by_ostad/presentation/ui/utility/app_colors.dart';
+import '../../utility/app_colors.dart';
 
-class ImageCaroselWidget extends StatefulWidget {
-  const ImageCaroselWidget({
+class HomeImageCarouselWidget extends StatefulWidget {
+  const HomeImageCarouselWidget({
     super.key, this.height,
   });
 
   final double? height;
 
   @override
-  State<ImageCaroselWidget> createState() => _ImageCaroselWidgetState();
+  State<HomeImageCarouselWidget> createState() => _HomeImageCarouselWidgetState();
 }
 
-class _ImageCaroselWidgetState extends State<ImageCaroselWidget> {
+class _HomeImageCarouselWidgetState extends State<HomeImageCarouselWidget> {
 
   final ValueNotifier<int> _currentIndex = ValueNotifier(0);
 
@@ -46,12 +46,12 @@ class _ImageCaroselWidgetState extends State<ImageCaroselWidget> {
               builder: (BuildContext context) {
                 return Container(
                     width: MediaQuery.of(context).size.width,
-                    margin: EdgeInsets.symmetric(horizontal: 5.0),
+                    margin: const EdgeInsets.symmetric(horizontal: 5.0),
                     decoration: BoxDecoration(
                       color: Colors.amber,
                       borderRadius: BorderRadius.circular(8),
                     ),
-                    child: Text('text $i', style: TextStyle(fontSize: 16.0),)
+                    child: Text('text $i', style: const TextStyle(fontSize: 16.0),)
                 );
               },
             );
