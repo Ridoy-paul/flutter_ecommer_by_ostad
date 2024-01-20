@@ -9,13 +9,24 @@ class MainBottomNavScreen extends StatefulWidget {
 }
 
 class _MainBottomNavScreenState extends State<MainBottomNavScreen> {
+  int _selectedIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _selectedIndex,
         selectedItemColor: AppColors.primaryColor,
         unselectedItemColor: AppColors.lightGray,
         showUnselectedLabels: true,
+        onTap: (index) {
+          _selectedIndex = index;
+          if(mounted) {
+            setState(() {
+
+            });
+          }
+        },
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home_outlined), label: "Home"),
           BottomNavigationBarItem(icon: Icon(Icons.dashboard), label: "Categories"),
