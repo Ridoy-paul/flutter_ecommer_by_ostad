@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommer_by_ostad/presentation/ui/utility/app_colors.dart';
+import 'package:get/get.dart';
 import '../utility/assets_path.dart';
 import '../widgets/home/circle_icon_button_widget.dart';
 import '../widgets/home/image_carosel_widget.dart';
@@ -28,10 +29,21 @@ class _HomeScreenState extends State<HomeScreen> {
                 const SizedBox(height: 16,),
                 HomeImageCarouselWidget(),
                 SectionTitleWidget(title: "All Categories", onTapSeeAll: () {},),
-                CategoryItemWidget()
+                SizedBox(
+                  height: Get.width * .8,
+                  child: ListView.separated(
+                    itemCount: 10,
+                    primary: false,
+                    shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) {
+                      return CategoryItemWidget(
+                        categoryName: 'Electronics',
+                      );
 
-
-
+                    }, separatorBuilder: (BuildContext context, int index) { return const SizedBox(width: 8,); },
+                  ),
+                ),
               ],
             ),
           ),
@@ -106,8 +118,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
 class CategoryItemWidget extends StatelessWidget {
   const CategoryItemWidget({
-    super.key,
+    super.key, required this.categoryName,
   });
+
+  final String categoryName;
 
   @override
   Widget build(BuildContext context) {
@@ -116,12 +130,12 @@ class CategoryItemWidget extends StatelessWidget {
         Card(
           elevation: 0,
           color: AppColors.primaryColor.withOpacity(.2),
-          child: Padding(
+          child: const Padding(
             padding: EdgeInsets.all(24),
             child: Icon(Icons.computer, size: 32, color: AppColors.primaryColor,),
           ),
         ),
-        Text("Electronics", style: TextStyle(color: AppColors.primaryColor, fontSize: 16, fontWeight: FontWeight.w500),)
+        Text(categoryName.toString(), style: const TextStyle(color: AppColors.primaryColor, fontSize: 16, fontWeight: FontWeight.w500),)
       ],
     );
   }
