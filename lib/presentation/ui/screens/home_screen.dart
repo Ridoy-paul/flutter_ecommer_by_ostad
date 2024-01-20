@@ -29,22 +29,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 const SizedBox(height: 16,),
                 const HomeImageCarouselWidget(),
                 SectionTitleWidget(title: "All Categories", onTapSeeAll: () {},),
-                SizedBox(
-                  height: Get.height * .15,
-                  child: ListView.separated(
-                    itemCount: 10,
-                    primary: false,
-                    shrinkWrap: true,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) {
-                      return const CategoryItemWidget(
-                        categoryName: 'Electronics',
-                      );
-
-                    }, separatorBuilder: (_, __) { return const SizedBox(width: 8,); },
-                  ),
-                ),
+                getCategoryLists,
                 SectionTitleWidget(title: "Popular", onTapSeeAll: () {},),
+                getProductsLists,
               ],
             ),
           ),
@@ -52,6 +39,52 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
+
+  SizedBox get getCategoryLists {
+    return SizedBox(
+      height: Get.height * .15,
+      child: ListView.separated(
+        itemCount: 10,
+        primary: false,
+        shrinkWrap: true,
+        scrollDirection: Axis.horizontal,
+        itemBuilder: (context, index) {
+          return const CategoryItemWidget(
+            categoryName: 'Electronics',
+          );
+        },
+        separatorBuilder: (_, __) {
+          return const SizedBox(
+            width: 8,
+          );
+        },
+      ),
+    );
+  }
+
+  SizedBox get getProductsLists {
+    return SizedBox(
+      height: Get.height * .15,
+      child: ListView.separated(
+        itemCount: 10,
+        primary: false,
+        shrinkWrap: true,
+        scrollDirection: Axis.horizontal,
+        itemBuilder: (context, index) {
+          return const CategoryItemWidget(
+            categoryName: 'Electronics',
+          );
+        },
+        separatorBuilder: (_, __) {
+          return const SizedBox(
+            width: 8,
+          );
+        },
+      ),
+    );
+  }
+
+
 
   TextFormField get searchTextFormField {
     return TextFormField(
