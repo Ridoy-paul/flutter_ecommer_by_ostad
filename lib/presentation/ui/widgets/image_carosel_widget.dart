@@ -16,17 +16,7 @@ class ImageCaroselWidget extends StatefulWidget {
 
 class _ImageCaroselWidgetState extends State<ImageCaroselWidget> {
 
-  final ValueNotifier<int> _index = ValueNotifier(0);
-
-  int _currentIndex = 0;
-
-  final List<String> images = [
-    'assets/image1.jpg',
-    'assets/image2.jpg',
-    'assets/image3.jpg',
-    // Add more image paths as needed
-  ];
-
+  final ValueNotifier<int> _currentIndex = ValueNotifier(0);
 
   @override
   Widget build(BuildContext context) {
@@ -35,19 +25,19 @@ class _ImageCaroselWidgetState extends State<ImageCaroselWidget> {
         CarouselSlider(
           options: CarouselOptions(
             height: widget.height ?? 180,
-            aspectRatio: 16/2,
-            viewportFraction: 0.8,
+            aspectRatio: 16/9,
+            viewportFraction: 1,
             initialPage: 0,
             enableInfiniteScroll: true,
             reverse: false,
             autoPlay: true,
-            autoPlayInterval: Duration(seconds: 3),
-            autoPlayAnimationDuration: Duration(milliseconds: 800),
+            autoPlayInterval: const Duration(seconds: 3),
+            autoPlayAnimationDuration: const Duration(milliseconds: 800),
             autoPlayCurve: Curves.fastOutSlowIn,
             enlargeCenterPage: true,
             enlargeFactor: 0.3,
             onPageChanged: (index, reason) {
-
+              _currentIndex.value = index;
             },
             scrollDirection: Axis.horizontal,
           ),
@@ -67,23 +57,28 @@ class _ImageCaroselWidgetState extends State<ImageCaroselWidget> {
             );
           }).toList(),
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            for(int i = 0; i < 5; i++)
-              Container(
-                width: 16.0,
-                height: 16.0,
-                margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: i == _index.value ? AppColors.primaryColor : Colors.white,
-                  border: Border.all(
-                    color: i == _index.value ? AppColors.primaryColor : Colors.grey,
+        ValueListenableBuilder(
+          valueListenable: _currentIndex,
+          builder: (context, index, __) {
+            return Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                for(int i = 0; i < 5; i++)
+                  Container(
+                    width: 16.0,
+                    height: 16.0,
+                    margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: i == index ? AppColors.primaryColor : Colors.white,
+                      border: Border.all(
+                        color: i == index ? AppColors.primaryColor : Colors.grey,
+                      )
+                    ),
                   )
-                ),
-              )
-          ],
+              ],
+            );
+          }
         ),
 
       ],
