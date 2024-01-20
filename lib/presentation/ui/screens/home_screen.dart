@@ -22,35 +22,40 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Column(
               children: [
                 const SizedBox(height: 8,),
-                TextFormField(
-                  decoration: InputDecoration(
-                    hintText: "Search",
-                    filled: true,
-                    prefixIcon: const Icon(Icons.search),
-                    fillColor: Colors.grey.shade200,
-                    border: OutlineInputBorder(
-                      borderSide: BorderSide.none,
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide.none,
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide.none,
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    errorBorder: OutlineInputBorder(
-                      borderSide: BorderSide.none,
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                  ),
-                ),
-
+                searchTextFormField,
+                const SizedBox(height: 16,),
+                
 
               ],
             ),
           ),
+        ),
+      ),
+    );
+  }
+
+  TextFormField get searchTextFormField {
+    return TextFormField(
+      decoration: InputDecoration(
+        hintText: "Search",
+        filled: true,
+        prefixIcon: const Icon(Icons.search),
+        fillColor: Colors.grey.shade200,
+        border: OutlineInputBorder(
+          borderSide: BorderSide.none,
+          borderRadius: BorderRadius.circular(8),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderSide: BorderSide.none,
+          borderRadius: BorderRadius.circular(8),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide.none,
+          borderRadius: BorderRadius.circular(8),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderSide: BorderSide.none,
+          borderRadius: BorderRadius.circular(8),
         ),
       ),
     );
