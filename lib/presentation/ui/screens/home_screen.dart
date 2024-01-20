@@ -1,8 +1,7 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommer_by_ostad/presentation/ui/utility/app_colors.dart';
 import '../utility/assets_path.dart';
 import '../widgets/home/circle_icon_button_widget.dart';
+import '../widgets/image_carosel_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -26,38 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 searchTextFormField,
                 const SizedBox(height: 16,),
 
-                CarouselSlider(
-                  options: CarouselOptions(
-                    height: 200,
-                    aspectRatio: 16/2,
-                    viewportFraction: 0.8,
-                    initialPage: 0,
-                    enableInfiniteScroll: true,
-                    reverse: false,
-                    autoPlay: true,
-                    autoPlayInterval: Duration(seconds: 3),
-                    autoPlayAnimationDuration: Duration(milliseconds: 800),
-                    autoPlayCurve: Curves.fastOutSlowIn,
-                    enlargeCenterPage: true,
-                    enlargeFactor: 0.3,
-                    //onPageChanged: callbackFunction,
-                    scrollDirection: Axis.horizontal,
-                  ),
-                  items: [1,2,3,4,5].map((i) {
-                    return Builder(
-                      builder: (BuildContext context) {
-                        return Container(
-                            width: MediaQuery.of(context).size.width,
-                            margin: EdgeInsets.symmetric(horizontal: 5.0),
-                            decoration: BoxDecoration(
-                                color: Colors.amber
-                            ),
-                            child: Text('text $i', style: TextStyle(fontSize: 16.0),)
-                        );
-                      },
-                    );
-                  }).toList(),
-                )
+                ImageCaroselWidget()
 
 
               ],
