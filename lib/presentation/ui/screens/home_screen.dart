@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommer_by_ostad/presentation/ui/utility/app_colors.dart';
-import 'package:flutter_ecommer_by_ostad/presentation/ui/utility/assets_path.dart';
+import '../utility/assets_path.dart';
+import '../widgets/home/circle_icon_button_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -23,7 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
             iconData: Icons.person_outline,
           ),
           const SizedBox(
-            width: 4,
+            width: 8,
           ),
           CircleIconButton(
             onTap: () {
@@ -32,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
             iconData: Icons.call_outlined,
           ),
           const SizedBox(
-            width: 4,
+            width: 8,
           ),
           CircleIconButton(
             onTap: () {
@@ -41,31 +41,9 @@ class _HomeScreenState extends State<HomeScreen> {
             iconData: Icons.notification_important_outlined,
           ),
           const SizedBox(
-            width: 4,
+            width: 8,
           ),
         ],
-      ),
-    );
-  }
-}
-
-class CircleIconButton extends StatelessWidget {
-  const CircleIconButton({
-    super.key, required this.onTap, required this.iconData,
-  });
-
-  final VoidCallback onTap;
-  final IconData iconData;
-
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      borderRadius: BorderRadius.circular(30),
-      child: CircleAvatar(
-        backgroundColor: Colors.black12,
-        foregroundColor: AppColors.primaryColor,
-        child: Icon(iconData),
       ),
     );
   }
