@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommer_by_ostad/presentation/ui/utility/app_colors.dart';
 import 'package:get/get.dart';
 import '../utility/assets_path.dart';
+import '../widgets/category_item_widget.dart';
 import '../widgets/home/circle_icon_button_widget.dart';
 import '../widgets/home/image_carosel_widget.dart';
 import '../widgets/section_title_widget.dart';
@@ -27,23 +27,24 @@ class _HomeScreenState extends State<HomeScreen> {
                 const SizedBox(height: 8,),
                 searchTextFormField,
                 const SizedBox(height: 16,),
-                HomeImageCarouselWidget(),
+                const HomeImageCarouselWidget(),
                 SectionTitleWidget(title: "All Categories", onTapSeeAll: () {},),
                 SizedBox(
-                  height: Get.width * .8,
+                  height: Get.height * .15,
                   child: ListView.separated(
                     itemCount: 10,
                     primary: false,
                     shrinkWrap: true,
                     scrollDirection: Axis.horizontal,
                     itemBuilder: (context, index) {
-                      return CategoryItemWidget(
+                      return const CategoryItemWidget(
                         categoryName: 'Electronics',
                       );
 
-                    }, separatorBuilder: (BuildContext context, int index) { return const SizedBox(width: 8,); },
+                    }, separatorBuilder: (_, __) { return const SizedBox(width: 8,); },
                   ),
                 ),
+                SectionTitleWidget(title: "Popular", onTapSeeAll: () {},),
               ],
             ),
           ),
@@ -114,29 +115,4 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-}
-
-class CategoryItemWidget extends StatelessWidget {
-  const CategoryItemWidget({
-    super.key, required this.categoryName,
-  });
-
-  final String categoryName;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Card(
-          elevation: 0,
-          color: AppColors.primaryColor.withOpacity(.2),
-          child: const Padding(
-            padding: EdgeInsets.all(24),
-            child: Icon(Icons.computer, size: 32, color: AppColors.primaryColor,),
-          ),
-        ),
-        Text(categoryName.toString(), style: const TextStyle(color: AppColors.primaryColor, fontSize: 16, fontWeight: FontWeight.w500),)
-      ],
-    );
-  }
 }
