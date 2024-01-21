@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'presentation/state_holders/main_bottom_nav_controller.dart';
+import 'controller_binder.dart';
 import 'presentation/ui/utility/app_theme_data.dart';
 import 'package:get/get.dart';
 import 'presentation/ui/screens/auth/splash_screen.dart';
@@ -12,13 +12,8 @@ class ShoppersMart extends StatelessWidget {
     return  GetMaterialApp(
       theme: lightThemeData,
       home: const SplashScreen(),
-    );
-  }
-}
+      initialBinding: ControllerBinder(),
 
-class ControllerBinder extends Bindings {
-  @override
-  void dependencies() {
-    Get.put(MainBottomNavController());
+    );
   }
 }
