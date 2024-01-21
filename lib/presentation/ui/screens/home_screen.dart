@@ -65,7 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   SizedBox get getPopularProductsLists {
     return SizedBox(
-      height: Get.height * .3,
+      height: Get.height * .24,
       child: ListView.separated(
         itemCount: 10,
         primary: false,
@@ -97,14 +97,41 @@ class _HomeScreenState extends State<HomeScreen> {
                         "New year special shoe 30",
                         style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
                       ),
+                      const SizedBox(height: 4,),
                       Row(
                         children: [
-                          Text("\$120", style: TextStyle(
-                            fontSize: 12,
+                          Text(
+                            "\$120",
+                            style: TextStyle(
+                              fontSize: 12,
+                              color: AppColors.primaryColor,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          const SizedBox(width: 5,),
+                          Wrap(
+                            crossAxisAlignment: WrapCrossAlignment.center,
+                            children: [
+                              Icon(Icons.star, size: 12, color: Colors.amber,),
+                              Text(
+                                "4.8",
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              )
+                            ],
+                          ),
+                          Card(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5),
+                            ),
                             color: AppColors.primaryColor,
-                            fontWeight: FontWeight.w600,
-                            
-                          ),)
+                            child: Padding(
+                              padding: const EdgeInsets.all(4.0),
+                              child: Icon(Icons.favorite_outline, size: 12, color: Colors.white,),
+                            ),
+                          )
                         ],
                       )
                     ],
