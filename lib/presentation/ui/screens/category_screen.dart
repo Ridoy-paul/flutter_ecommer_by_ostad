@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommer_by_ostad/presentation/ui/widgets/category_item_widget.dart';
+import '../../state_holders/main_bottom_nav_controller.dart';
+import '../widgets/category_item_widget.dart';
+import 'package:get/get.dart';
 
 class CategoryScreen extends StatefulWidget {
   const CategoryScreen({super.key});
@@ -15,7 +17,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         leading: IconButton(
-          onPressed: () {},
+          onPressed: ()=> Get.find<MainBottomNavController>().backToHome(),
           icon: Icon(Icons.arrow_back_ios),
         ),
         title: Text(

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommer_by_ostad/presentation/state_holders/main_bottom_nav_controller.dart';
+import '../../state_holders/main_bottom_nav_controller.dart';
 import 'package:get/get.dart';
 import '../utility/assets_path.dart';
 import '../widgets/category_item_widget.dart';
@@ -32,9 +32,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 const HomeImageCarouselWidget(),
                 SectionTitleWidget(
                   title: "All Categories",
-                  onTapSeeAll: () {
-                    Get.find<MainBottomNavController>().changeIndex(1);
-                  },
+                  onTapSeeAll: ()=> Get.find<MainBottomNavController>().changeIndex(1)
+                  ,
                 ),
                 getCategoryLists,
                 SectionTitleWidget(title: "Popular", onTapSeeAll: () {},),
