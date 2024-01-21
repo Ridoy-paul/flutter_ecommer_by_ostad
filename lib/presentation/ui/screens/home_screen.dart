@@ -65,79 +65,84 @@ class _HomeScreenState extends State<HomeScreen> {
 
   SizedBox get getPopularProductsLists {
     return SizedBox(
-      height: Get.height * .24,
+      height: Get.height * .25,
       child: ListView.separated(
         itemCount: 10,
         primary: false,
         shrinkWrap: true,
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
-          return Card(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(16),
-            ),
-            child: Column(
-              children: [
-                ClipRRect(
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(16),
-                    topRight: Radius.circular(16),
+          return SizedBox(
+            width: Get.width * .3,
+            child: Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: Column(
+                children: [
+                  ClipRRect(
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(16),
+                      topRight: Radius.circular(16),
+                    ),
+                    child: Image.asset(
+                      'assets/images/shoe.png',
+                      width: 120,
+                      fit: BoxFit.cover,
+                    ),
                   ),
-                  child: Image.asset(
-                    'assets/images/shoe.png',
-                    width: 120,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "New year special shoe 30",
-                        style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
-                      ),
-                      const SizedBox(height: 4,),
-                      Row(
-                        children: [
-                          Text(
-                            "\$120",
-                            style: TextStyle(
-                              fontSize: 12,
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "New year special shoe 30",
+                          style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
+                        ),
+                        const SizedBox(height: 4,),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "\$120",
+                              style: TextStyle(
+                                fontSize: 12,
+                                color: AppColors.primaryColor,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            //const SizedBox(width: 5,),
+                            Wrap(
+                              crossAxisAlignment: WrapCrossAlignment.center,
+                              children: [
+                                Icon(Icons.star, size: 12, color: Colors.amber,),
+                                Text(
+                                  "4.8",
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                )
+                              ],
+                            ),
+                            Card(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(5),
+                              ),
                               color: AppColors.primaryColor,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                          const SizedBox(width: 5,),
-                          Wrap(
-                            crossAxisAlignment: WrapCrossAlignment.center,
-                            children: [
-                              Icon(Icons.star, size: 12, color: Colors.amber,),
-                              Text(
-                                "4.8",
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w600,
-                                ),
-                              )
-                            ],
-                          ),
-                          Card(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5),
-                            ),
-                            color: AppColors.primaryColor,
-                            child: Padding(
-                              padding: const EdgeInsets.all(4.0),
-                              child: Icon(Icons.favorite_outline, size: 12, color: Colors.white,),
-                            ),
-                          )
-                        ],
-                      )
-                    ],
+                              child: Padding(
+                                padding: const EdgeInsets.all(4.0),
+                                child: Icon(Icons.favorite_outline, size: 12, color: Colors.white,),
+                              ),
+                            )
+                          ],
+                        )
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           );
         },
