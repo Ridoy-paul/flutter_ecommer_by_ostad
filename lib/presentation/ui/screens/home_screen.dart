@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommer_by_ostad/presentation/ui/utility/app_colors.dart';
 import 'package:get/get.dart';
 import '../utility/assets_path.dart';
 import '../widgets/category_item_widget.dart';
 import '../widgets/home/circle_icon_button_widget.dart';
 import '../widgets/home/image_carosel_widget.dart';
+import '../widgets/product_card_item.dart';
 import '../widgets/section_title_widget.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -32,7 +32,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 SectionTitleWidget(title: "All Categories", onTapSeeAll: () {},),
                 getCategoryLists,
                 SectionTitleWidget(title: "Popular", onTapSeeAll: () {},),
-                getPopularProductsLists,
+                getProductsLists,
+                SectionTitleWidget(title: "Special", onTapSeeAll: () {},),
+                getProductsLists,
+                SectionTitleWidget(title: "New", onTapSeeAll: () {},),
+                getProductsLists,
+                const SizedBox(height: 10,),
+
               ],
             ),
           ),
@@ -63,88 +69,16 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  SizedBox get getPopularProductsLists {
+  SizedBox get getProductsLists {
     return SizedBox(
-      height: Get.height * .25,
+      height: Get.height * .24,
       child: ListView.separated(
         itemCount: 10,
         primary: false,
         shrinkWrap: true,
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
-          return SizedBox(
-            width: Get.width * .3,
-            child: Card(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16),
-              ),
-              child: Column(
-                children: [
-                  ClipRRect(
-                    borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(16),
-                      topRight: Radius.circular(16),
-                    ),
-                    child: Image.asset(
-                      'assets/images/shoe.png',
-                      width: 120,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "New year special shoe 30",
-                          style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
-                        ),
-                        const SizedBox(height: 4,),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              "\$120",
-                              style: TextStyle(
-                                fontSize: 12,
-                                color: AppColors.primaryColor,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                            //const SizedBox(width: 5,),
-                            Wrap(
-                              crossAxisAlignment: WrapCrossAlignment.center,
-                              children: [
-                                Icon(Icons.star, size: 12, color: Colors.amber,),
-                                Text(
-                                  "4.8",
-                                  style: TextStyle(
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                )
-                              ],
-                            ),
-                            Card(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(5),
-                              ),
-                              color: AppColors.primaryColor,
-                              child: Padding(
-                                padding: const EdgeInsets.all(4.0),
-                                child: Icon(Icons.favorite_outline, size: 12, color: Colors.white,),
-                              ),
-                            )
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          );
+          return ProductCardItem();
         },
         separatorBuilder: (_, __) {
           return const SizedBox(
