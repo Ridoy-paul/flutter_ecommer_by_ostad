@@ -31,7 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 SectionTitleWidget(title: "All Categories", onTapSeeAll: () {},),
                 getCategoryLists,
                 SectionTitleWidget(title: "Popular", onTapSeeAll: () {},),
-                getProductsLists,
+                getPopularProductsLists,
               ],
             ),
           ),
@@ -62,17 +62,24 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  SizedBox get getProductsLists {
+  SizedBox get getPopularProductsLists {
     return SizedBox(
-      height: Get.height * .15,
+      height: Get.height * .2,
       child: ListView.separated(
         itemCount: 10,
         primary: false,
         shrinkWrap: true,
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) {
-          return const CategoryItemWidget(
-            categoryName: 'Electronics',
+          return Card(
+            child: Column(
+              children: [
+                Image.asset('assets/images/shoe.png', width: 120,),
+                Text("New year special shoe 30"),
+
+
+              ],
+            ),
           );
         },
         separatorBuilder: (_, __) {
