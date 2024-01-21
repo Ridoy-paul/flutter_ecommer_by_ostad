@@ -15,7 +15,7 @@ class ProductCardItem extends StatelessWidget {
       width: Get.width * .3,
       child: Card(
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(12),
         ),
         child: Column(
           children: [
