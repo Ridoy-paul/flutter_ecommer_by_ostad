@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommer_by_ostad/presentation/ui/widgets/product_card_item.dart';
+import 'package:get/get.dart';
+import '../../state_holders/main_bottom_nav_controller.dart';
 
 class WishlistScreen extends StatefulWidget {
   const WishlistScreen({super.key});
@@ -9,7 +12,43 @@ class WishlistScreen extends StatefulWidget {
 
 class _WishlistScreenState extends State<WishlistScreen> {
   @override
+  @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return PopScope(
+      canPop: false,
+      onPopInvoked: (value) {
+        Get.find<MainBottomNavController>().backToHome();
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          leading: IconButton(
+            onPressed: ()=> Get.find<MainBottomNavController>().backToHome(),
+            icon: Icon(Icons.arrow_back_ios),
+          ),
+          title: Text(
+            "Wish List",
+            style: TextStyle(fontSize: 18),
+          ),
+          elevation: 4,
+        ),
+        body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+            child: GridView.builder(
+                itemCount: 10,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3,
+                    childAspectRatio: .7,
+                    // mainAxisSpacing: 1,
+                    // crossAxisSpacing: 4
+                ),
+                itemBuilder: (context, index) {
+                  return FittedBox(child: ProductCardItem());
+                }),
+          ),
+        ),
+      ),
+    );
   }
 }
