@@ -42,37 +42,49 @@ class _CartScreenState extends State<CartScreen> {
                   ],
                 ),
               ),
-              Container(
-                decoration: BoxDecoration(
-                  color: AppColors.primaryColor.withOpacity(0.2),
-                  borderRadius: const BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20)),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text("Total Price", style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),),
-                          Text("\$10000.00", style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500, color: AppColors.primaryColor)),
-                        ],
-                      ),
-                      SizedBox(
-                        width: 120,
-                        child: ElevatedButton(
-                          onPressed: () {},
-                          child: const Text("Checkout"),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              )
+              totalPriceAndCheckoutSection
             ],
           ),
+        ),
+      ),
+    );
+  }
+
+  Container get totalPriceAndCheckoutSection {
+    return Container(
+      decoration: BoxDecoration(
+        color: AppColors.primaryColor.withOpacity(0.16),
+        borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(20), topRight: Radius.circular(20)),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  "Total Price",
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+                ),
+                Text("\$10000.00",
+                    style: TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.w500,
+                        color: AppColors.primaryColor)),
+              ],
+            ),
+            SizedBox(
+              width: 120,
+              child: ElevatedButton(
+                onPressed: () {},
+                child: const Text("Checkout"),
+              ),
+            ),
+          ],
         ),
       ),
     );
