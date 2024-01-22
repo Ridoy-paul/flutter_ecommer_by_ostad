@@ -36,7 +36,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   ,
                 ),
                 getCategoryLists,
-                SectionTitleWidget(title: "Popular", onTapSeeAll: () {},),
+                SectionTitleWidget(title: "Popular", onTapSeeAll: () {
+                  //Get.to(()=> )
+                },),
                 getProductsLists,
                 SectionTitleWidget(title: "Special", onTapSeeAll: () {},),
                 getProductsLists,
