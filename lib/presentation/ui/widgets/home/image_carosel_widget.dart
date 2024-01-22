@@ -1,6 +1,7 @@
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import '../../utility/app_colors.dart';
 
 class HomeImageCarouselWidget extends StatefulWidget {
@@ -51,7 +52,50 @@ class _HomeImageCarouselWidgetState extends State<HomeImageCarouselWidget> {
                       color: AppColors.primaryColor,
                       borderRadius: BorderRadius.circular(8),
                     ),
-                    child: Text('text $i', style: const TextStyle(fontSize: 16.0),)
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Image.asset('assets/images/shoe.png', width: Get.width * .45,),
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.only(top: 5, right: 8),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "Happy New Year Special Deal Save 30%",
+                                  maxLines: 3,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                ElevatedButton(
+                                  onPressed: () {},
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.white,
+                                    fixedSize: const Size(130, 25),
+                                    padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                                  ),
+                                  child: const FittedBox(
+                                    child: Text(
+                                      "Buy Now",
+                                      style: TextStyle(
+                                          color: AppColors.primaryColor,
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        )
+
+                      ],
+                    )
                 );
               },
             );
