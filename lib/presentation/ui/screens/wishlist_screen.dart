@@ -39,7 +39,7 @@ class _WishlistScreenState extends State<WishlistScreen> {
                 itemCount: 10,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 3,
-                    childAspectRatio: .7,
+                    childAspectRatio: .8,
                     mainAxisSpacing: 8,
                     crossAxisSpacing: 4
                 ),

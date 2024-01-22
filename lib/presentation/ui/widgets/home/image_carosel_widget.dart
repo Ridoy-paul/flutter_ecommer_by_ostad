@@ -63,12 +63,12 @@ class _HomeImageCarouselWidgetState extends State<HomeImageCarouselWidget> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text(
+                                const Text(
                                   "Happy New Year Special Deal Save 30%",
                                   maxLines: 3,
                                   overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
-                                      fontSize: 20,
+                                      fontSize: 22,
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold,
                                   ),

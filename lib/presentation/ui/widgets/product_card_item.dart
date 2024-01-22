@@ -11,8 +11,8 @@ class ProductCardItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: Get.width * .40,
-      height: Get.height * .24,
+      width: Get.width * .35,
+     // height: Get.height * .24,
       child: Card(
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),
