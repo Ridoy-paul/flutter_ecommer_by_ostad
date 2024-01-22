@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommer_by_ostad/presentation/ui/widgets/product_card_item.dart';
+import '../widgets/product_card_item.dart';
 import 'package:get/get.dart';
 import '../../state_holders/main_bottom_nav_controller.dart';
 
@@ -24,9 +24,9 @@ class _WishlistScreenState extends State<WishlistScreen> {
           backgroundColor: Colors.white,
           leading: IconButton(
             onPressed: ()=> Get.find<MainBottomNavController>().backToHome(),
-            icon: Icon(Icons.arrow_back_ios),
+            icon: const Icon(Icons.arrow_back_ios),
           ),
-          title: Text(
+          title: const Text(
             "Wish List",
             style: TextStyle(fontSize: 18),
           ),
