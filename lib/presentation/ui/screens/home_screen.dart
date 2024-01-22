@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommer_by_ostad/presentation/ui/screens/create_product_review_screen.dart';
 import '../../state_holders/main_bottom_nav_controller.dart';
 import 'package:get/get.dart';
 import '../utility/assets_path.dart';
@@ -37,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 getCategoryLists,
                 SectionTitleWidget(title: "Popular", onTapSeeAll: () {
-                  //Get.to(()=> )
+                  Get.to(()=> CreateProductReviewScreen());
                 },),
                 getProductsLists,
                 SectionTitleWidget(title: "Special", onTapSeeAll: () {},),
