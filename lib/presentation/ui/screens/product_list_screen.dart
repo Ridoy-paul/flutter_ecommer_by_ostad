@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../widgets/product_card_item.dart';
 import '../../state_holders/main_bottom_nav_controller.dart';
-import '../widgets/category_item_widget.dart';
 import 'package:get/get.dart';
 
 class ProductListScreen extends StatefulWidget {
@@ -46,7 +45,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
                     crossAxisSpacing: 2
                 ),
                 itemBuilder: (context, index) {
-                  return FittedBox(child: ProductCardItem());
+                  return const FittedBox(child: ProductCardItem());
                 }),
           ),
         ),

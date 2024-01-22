@@ -23,9 +23,9 @@ class _CategoryScreenState extends State<CategoryScreen> {
           backgroundColor: Colors.white,
           leading: IconButton(
             onPressed: ()=> Get.find<MainBottomNavController>().backToHome(),
-            icon: Icon(Icons.arrow_back_ios),
+            icon: const Icon(Icons.arrow_back_ios),
           ),
-          title: Text(
+          title: const Text(
             "Categories",
             style: TextStyle(fontSize: 18),
           ),

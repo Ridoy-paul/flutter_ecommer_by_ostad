@@ -25,7 +25,7 @@ class _CartScreenState extends State<CartScreen> {
           backgroundColor: Colors.white,
           leading: IconButton(
             onPressed: ()=> Get.find<MainBottomNavController>().backToHome(),
-            icon: Icon(Icons.arrow_back_ios),
+            icon: const Icon(Icons.arrow_back_ios),
           ),
           title: const Text(
             "Cart",
