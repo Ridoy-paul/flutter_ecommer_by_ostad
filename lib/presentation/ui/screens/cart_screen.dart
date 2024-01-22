@@ -37,10 +37,17 @@ class _CartScreenState extends State<CartScreen> {
           child: Column(
             children: [
               Expanded(
-                child: Column(
-                  children: [
-                    CartProductItem(),
-                  ],
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ListView.separated(
+                    itemCount: 10,
+                    itemBuilder: (context, index) {
+                      return CartProductItem();
+                    },
+                    separatorBuilder: (_, __) => const SizedBox(
+                      height: 5,
+                    ),
+                  ),
                 ),
               ),
               totalPriceAndCheckoutSection

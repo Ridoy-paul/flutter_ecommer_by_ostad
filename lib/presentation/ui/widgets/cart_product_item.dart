@@ -49,7 +49,7 @@ class _CartProductItemState extends State<CartProductItem> {
                         ],
                       ),
                     ),
-                    IconButton(onPressed: (){}, icon: Icon(Icons.delete, color: Colors.black54,))
+                    IconButton(onPressed: (){}, icon: const Icon(Icons.delete_outlined, color: Colors.black54,))
                   ],
                 ),
                 Row(
