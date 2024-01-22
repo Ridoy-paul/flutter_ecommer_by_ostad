@@ -13,6 +13,7 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreen> {
+
   @override
   Widget build(BuildContext context) {
     return PopScope(
@@ -39,61 +40,7 @@ class _CartScreenState extends State<CartScreen> {
               Expanded(
                 child: Column(
                   children: [
-                    Card(
-                      color: Colors.white,
-                      elevation: 2,
-                      child: Row(
-                        children: [
-                          Image.asset(
-                            'assets/images/shoe.png',
-                            width: 120,
-                          ),
-                          Expanded(
-                            child: Column(
-                              children: [
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Text("New Year Special Shoe", style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500, color: AppColors.gray),),
-                                        Text("Color: Red, Size: x"),
-
-                                      ],
-                                    ),
-                                    IconButton(onPressed: (){}, icon: Icon(Icons.delete, color: Colors.black54,))
-                                  ],
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Column(
-                                      children: [
-                                        Text("\$1000", style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500, color: AppColors.primaryColor),),
-                                      ],
-                                    ),
-                                    ItemCount(
-                                      initialValue: 0,
-                                      minValue: 0,
-                                      maxValue: 10,
-                                      decimalPlaces: 0,
-                                      onChanged: (value) {
-                                        // Handle counter value changes
-                                        print('Selected value: $value');
-                                      },
-                                    ),
-                                  ],
-                                ),
-
-
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    )
-
+                    CartProductItem(),
                   ],
                 ),
               ),
@@ -145,3 +92,79 @@ class _CartScreenState extends State<CartScreen> {
     );
   }
 }
+
+
+class CartProductItem extends StatefulWidget {
+  const CartProductItem({super.key});
+
+  @override
+  State<CartProductItem> createState() => _CartProductItemState();
+}
+
+class _CartProductItemState extends State<CartProductItem> {
+  ValueNotifier<int> noOfItem = ValueNotifier(1);
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      color: Colors.white,
+      elevation: 2,
+      child: Row(
+        children: [
+          Image.asset(
+            'assets/images/shoe.png',
+            width: 120,
+          ),
+          Expanded(
+            child: Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text("New Year Special Shoe", style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500, color: AppColors.gray),),
+                        Text("Color: Red, Size: x"),
+
+                      ],
+                    ),
+                    IconButton(onPressed: (){}, icon: Icon(Icons.delete, color: Colors.black54,))
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      children: [
+                        Text("\$1000", style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500, color: AppColors.primaryColor),),
+                      ],
+                    ),
+                    ValueListenableBuilder(
+                        valueListenable: noOfItem,
+                        builder: (context, value, _) {
+                          return ItemCount(
+                            color: AppColors.primaryColor,
+                            initialValue: value,
+                            minValue: 1,
+                            maxValue: 100,
+                            decimalPlaces: 0,
+                            onChanged: (v) {
+                              noOfItem.value = v.toInt();
+                            },
+                          );
+                        }
+                    ),
+                  ],
+                ),
+
+
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
