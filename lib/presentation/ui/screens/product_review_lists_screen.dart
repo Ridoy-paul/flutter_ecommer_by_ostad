@@ -39,7 +39,7 @@ class _ProductReviewListsScreenState extends State<ProductReviewListsScreen> {
             children: [
               Expanded(
                 child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
                   child: ListView.separated(
                     itemCount: 10,
                     itemBuilder: (context, index) {
