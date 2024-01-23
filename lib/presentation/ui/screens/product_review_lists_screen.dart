@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import '../widgets/home/circle_icon_button_widget.dart';
 import 'create_product_review_screen.dart';
 import '../utility/app_colors.dart';
 import 'package:get/get.dart';
 import '../../state_holders/main_bottom_nav_controller.dart';
-import '../widgets/cart_product_item.dart';
 
 class ProductReviewListsScreen extends StatefulWidget {
   const ProductReviewListsScreen({super.key});
@@ -43,7 +43,31 @@ class _ProductReviewListsScreenState extends State<ProductReviewListsScreen> {
                   child: ListView.separated(
                     itemCount: 10,
                     itemBuilder: (context, index) {
-                      return CartProductItem();
+                      return Card(
+                        color: Colors.white,
+                        elevation: 4,
+                        child: Padding(
+                          padding: EdgeInsets.all(16),
+                          child: Column(
+                            children: [
+                              Row(
+                                children: [
+                                  CircleIconButton(
+                                    onTap: () {
+                                      print("hello");
+                                    },
+                                    iconData: Icons.person_outline,
+                                  ),
+                                  const SizedBox(width: 8,),
+                                  Expanded(child: Text("Ridoy Paul", style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500,),),),
+                                ],
+                              ),
+                              const SizedBox(height: 8,),
+                              Text("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer")
+                            ],
+                          ),
+                        ),
+                      );
                     },
                     separatorBuilder: (_, __) => const SizedBox(
                       height: 5,
