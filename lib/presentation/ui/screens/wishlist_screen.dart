@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../widgets/product_card_item.dart';
+import '../widgets/products/product_card_item.dart';
 import 'package:get/get.dart';
 import '../../state_holders/main_bottom_nav_controller.dart';
 

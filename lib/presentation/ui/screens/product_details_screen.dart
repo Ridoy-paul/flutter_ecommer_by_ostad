@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
-import '../widgets/products/product_card_item.dart';
+import '../widgets/products/product_image_carosel_widget.dart';
 import '../../state_holders/main_bottom_nav_controller.dart';
 import 'package:get/get.dart';
 
-class ProductListScreen extends StatefulWidget {
-  const ProductListScreen({super.key, this.categoryTitle});
-
-  final String? categoryTitle;
+class ProductDetailsScreen extends StatefulWidget {
+  const ProductDetailsScreen({super.key});
 
   @override
-  State<ProductListScreen> createState() => _ProductListScreenState();
+  State<ProductDetailsScreen> createState() => _ProductDetailsScreenState();
 }
 
-class _ProductListScreenState extends State<ProductListScreen> {
+class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return PopScope(
@@ -28,7 +26,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
             icon: const Icon(Icons.arrow_back_ios),
           ),
           title: Text(
-            widget.categoryTitle ?? 'Products',
+            'Product Details',
             style: const TextStyle(fontSize: 18),
           ),
           elevation: 4,
@@ -36,17 +34,11 @@ class _ProductListScreenState extends State<ProductListScreen> {
         body: SafeArea(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-            child: GridView.builder(
-                itemCount: 10,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3,
-                    childAspectRatio: 0.70,
-                    mainAxisSpacing: 2,
-                    crossAxisSpacing: 2
-                ),
-                itemBuilder: (context, index) {
-                  return const FittedBox(child: ProductCardItem());
-                }),
+            child: Column(
+              children: [
+                ProductImageCarouselWidget(),
+              ],
+            ),
           ),
         ),
       ),

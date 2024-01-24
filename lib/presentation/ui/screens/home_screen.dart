@@ -7,7 +7,7 @@ import '../utility/assets_path.dart';
 import '../widgets/category_item_widget.dart';
 import '../widgets/home/circle_icon_button_widget.dart';
 import '../widgets/home/image_carosel_widget.dart';
-import '../widgets/product_card_item.dart';
+import '../widgets/products/product_card_item.dart';
 import '../widgets/section_title_widget.dart';
 
 class HomeScreen extends StatefulWidget {
