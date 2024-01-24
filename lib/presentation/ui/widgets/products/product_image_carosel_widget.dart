@@ -21,11 +21,11 @@ class _ProductImageCarouselWidgetState extends State<ProductImageCarouselWidget>
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return Stack(
       children: [
         CarouselSlider(
           options: CarouselOptions(
-            height: widget.height ?? 180,
+            height: widget.height ?? 220,
             aspectRatio: 16/9,
             viewportFraction: 1,
             initialPage: 0,
@@ -47,13 +47,13 @@ class _ProductImageCarouselWidgetState extends State<ProductImageCarouselWidget>
               builder: (BuildContext context) {
                 return Container(
                     width: MediaQuery.of(context).size.width,
-                    decoration: BoxDecoration(
-                      color: AppColors.gray,
+                    decoration: const BoxDecoration(
+                      color: AppColors.lightGray,
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        Image.asset('assets/images/shoe.png', width: Get.width * .45,),
+                        Image.asset('assets/images/shoe.png', width: Get.width * .65,),
 
                       ],
                     )
@@ -62,28 +62,33 @@ class _ProductImageCarouselWidgetState extends State<ProductImageCarouselWidget>
             );
           }).toList(),
         ),
-        ValueListenableBuilder(
-          valueListenable: _currentIndex,
-          builder: (context, index, __) {
-            return Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                for(int i = 0; i < 5; i++)
-                  Container(
-                    width: 16.0,
-                    height: 16.0,
-                    margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: i == index ? AppColors.primaryColor : Colors.white,
-                      border: Border.all(
-                        color: i == index ? AppColors.primaryColor : Colors.grey,
-                      )
-                    ),
-                  )
-              ],
-            );
-          }
+        Positioned(
+          left: 0,
+          right: 0,
+          bottom: 5,
+          child: ValueListenableBuilder(
+            valueListenable: _currentIndex,
+            builder: (context, index, __) {
+              return Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  for(int i = 0; i < 5; i++)
+                    Container(
+                      width: 16.0,
+                      height: 16.0,
+                      margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: i == index ? AppColors.primaryColor : Colors.white,
+                        border: Border.all(
+                          color: i == index ? AppColors.primaryColor : Colors.grey,
+                        )
+                      ),
+                    )
+                ],
+              );
+            }
+          ),
         ),
 
       ],
