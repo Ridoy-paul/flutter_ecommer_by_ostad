@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'product_review_lists_screen.dart';
 import 'package:item_count_number_button/item_count_number_button.dart';
 import '../utility/app_colors.dart';
 import '../widgets/products/product_image_carosel_widget.dart';
@@ -63,6 +64,50 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                   //noOfItem.value = v.toInt();
                                 },
                               )
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Wrap(
+                                crossAxisAlignment: WrapCrossAlignment.center,
+                                children: [
+                                  Icon(Icons.star, size: 12, color: Colors.amber,),
+                                  Text(
+                                    "4.8",
+                                    style: TextStyle(
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  )
+                                ],
+                              ),
+
+                              TextButton(
+                                onPressed: () {
+                                  Get.to(()=> ProductReviewListsScreen());
+                                },
+                                child: const Text(
+                                  "Reviews",
+                                  style: TextStyle(
+                                    fontSize: 12,
+                                    color: AppColors.primaryColor,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ),
+
+                              Card(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(5),
+                                ),
+                                color: AppColors.primaryColor,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(4.0),
+                                  child: Icon(Icons.favorite_outline, size: 12, color: Colors.white,),
+                                ),
+                              ),
+                              const SizedBox(width: 5,),
                             ],
                           )
                         ],
