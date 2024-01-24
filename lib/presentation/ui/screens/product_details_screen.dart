@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../widgets/products/color_selector_for_product_details_widget.dart';
 import 'product_review_lists_screen.dart';
 import 'package:item_count_number_button/item_count_number_button.dart';
 import '../utility/app_colors.dart';
@@ -52,7 +53,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
               Expanded(
                 child: Column(
                   children: [
-                    ProductImageCarouselWidget(),
+                    const ProductImageCarouselWidget(),
                     Padding(
                       padding: const EdgeInsets.only(top: 8, left: 8, right: 8),
                       child: Column(
@@ -180,56 +181,6 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
           ],
         ),
       ),
-    );
-  }
-}
-
-class ColorSelector extends StatefulWidget {
-  const ColorSelector({super.key, required this.colors, required this.onchange});
-
-  final List<Color> colors;
-  final Function(Color) onchange;
-
-  @override
-  State<ColorSelector> createState() => _ColorSelectorState();
-}
-
-class _ColorSelectorState extends State<ColorSelector> {
-  late Color _selectedColor;
-
-  @override
-  void initState() {
-    super.initState();
-    _selectedColor = widget.colors.first;
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return  Row(
-      children: widget.colors
-          .map((c) => InkWell(
-        onTap: () {
-          _selectedColor = c;
-          widget.onchange(c);
-          if(mounted) {
-            setState(() {});
-          }
-        },
-        borderRadius: BorderRadius.circular(16),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(
-            vertical: 2,
-            horizontal: 3,
-          ),
-          child: CircleAvatar(
-            radius: 16,
-            backgroundColor: c,
-            child: _selectedColor == c ? const Icon(Icons.done, color: Colors.white,) : null,
-
-          ),
-        ),
-      ),
-      ).toList(),
     );
   }
 }
