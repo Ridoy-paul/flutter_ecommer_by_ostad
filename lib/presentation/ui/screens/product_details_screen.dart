@@ -24,6 +24,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
     Color(0xFFE3D509),
   ];
 
+  Color _selectedColor = Colors.black54;
+
   @override
   Widget build(BuildContext context) {
     return PopScope(
@@ -126,7 +128,12 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           Row(
                             children: colors
                                 .map((c) => InkWell(
-                                    onTap: () {},
+                                    onTap: () {
+                                      _selectedColor = c;
+                                      if(mounted) {
+                                        setState(() {});
+                                      }
+                                    },
                                     borderRadius: BorderRadius.circular(16),
                                     child: Padding(
                                       padding: const EdgeInsets.symmetric(
@@ -136,6 +143,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                       child: CircleAvatar(
                                         radius: 16,
                                         backgroundColor: c,
+                                        child: _selectedColor == c ? Icon(Icons.done, color: Colors.white,) : null,
+
                                       ),
                                     ),
                                   ),
