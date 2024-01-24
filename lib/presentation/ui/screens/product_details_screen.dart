@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:item_count_number_button/item_count_number_button.dart';
 import '../utility/app_colors.dart';
 import '../widgets/products/product_image_carosel_widget.dart';
 import '../../state_holders/main_bottom_nav_controller.dart';
@@ -39,7 +40,34 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                 child: Column(
                   children: [
                     ProductImageCarouselWidget(),
-                    Container(),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8, left: 8, right: 8),
+                      child: Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  "Happy New Year Special Deal Save 30% test product",
+                                  style: Theme.of(context).textTheme.titleMedium,
+                                ),
+                              ),
+                              ItemCount(
+                                color: AppColors.primaryColor,
+                                initialValue: 2,
+                                minValue: 1,
+                                maxValue: 100,
+                                decimalPlaces: 0,
+                                onChanged: (v) {
+                                  //noOfItem.value = v.toInt();
+                                },
+                              )
+                            ],
+                          )
+                        ],
+                      ),
+                    )
                   ],
                 ),
               ),
