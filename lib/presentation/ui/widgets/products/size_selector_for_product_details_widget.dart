@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommer_by_ostad/presentation/ui/utility/app_colors.dart';
+import '../../utility/app_colors.dart';
 
 class SizeSelector extends StatefulWidget {
   const SizeSelector({super.key, required this.size, required this.onchange});
