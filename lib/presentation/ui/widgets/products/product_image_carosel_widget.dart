@@ -47,52 +47,13 @@ class _ProductImageCarouselWidgetState extends State<ProductImageCarouselWidget>
               builder: (BuildContext context) {
                 return Container(
                     width: MediaQuery.of(context).size.width,
-                    margin: const EdgeInsets.symmetric(horizontal: 5.0),
                     decoration: BoxDecoration(
-                      color: AppColors.primaryColor,
-                      borderRadius: BorderRadius.circular(8),
+                      color: AppColors.gray,
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Image.asset('assets/images/shoe.png', width: Get.width * .45,),
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.only(top: 5, right: 8),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                const Text(
-                                  "Happy New Year Special Deal Save 30%",
-                                  maxLines: 3,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: TextStyle(
-                                      fontSize: 22,
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                ElevatedButton(
-                                  onPressed: () {},
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: Colors.white,
-                                    fixedSize: const Size(130, 25),
-                                    padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-                                  ),
-                                  child: const FittedBox(
-                                    child: Text(
-                                      "Buy Now",
-                                      style: TextStyle(
-                                          color: AppColors.primaryColor,
-                                      ),
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                        )
 
                       ],
                     )

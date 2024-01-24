@@ -32,13 +32,10 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
           elevation: 4,
         ),
         body: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-            child: Column(
-              children: [
-                ProductImageCarouselWidget(),
-              ],
-            ),
+          child: Column(
+            children: [
+              ProductImageCarouselWidget(),
+            ],
           ),
         ),
       ),
