@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommer_by_ostad/presentation/ui/widgets/products/size_selector_for_product_details_widget.dart';
 import '../widgets/products/color_selector_for_product_details_widget.dart';
 import 'product_review_lists_screen.dart';
 import 'package:item_count_number_button/item_count_number_button.dart';
@@ -25,7 +26,17 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
     Color(0xFFE3D509),
   ];
 
+  List<String> size = [
+    "S",
+    "M",
+    "L",
+    "2L",
+    "XL",
+  ];
+
   Color _selectedColor = Colors.black54;
+  String _selectedSize = '';
+
 
   @override
   Widget build(BuildContext context) {
@@ -127,6 +138,10 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           const SizedBox(height: 8,),
                           const Text("Color", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16),),
                           ColorSelector(colors: colors, onchange: (selectedColor) { _selectedColor = selectedColor; }, ),
+                          const SizedBox(height: 8,),
+                          const Text("Size", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16),),
+                          SizeSelector(size: size, onchange: (selectedSize) { _selectedSize = selectedSize; }, ),
+
                         ],
                       ),
                     )
