@@ -14,6 +14,16 @@ class ProductDetailsScreen extends StatefulWidget {
 }
 
 class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
+
+  List<Color> colors = [
+    Color(0xFF343541),
+    Color(0xFFBF0D4C),
+    Color(0xFF0524EA),
+    Color(0xFF99F50C),
+    Color(0xFFDC09A0),
+    Color(0xFFE3D509),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return PopScope(
@@ -44,6 +54,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                     Padding(
                       padding: const EdgeInsets.only(top: 8, left: 8, right: 8),
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -72,11 +83,11 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                               Wrap(
                                 crossAxisAlignment: WrapCrossAlignment.center,
                                 children: [
-                                  Icon(Icons.star, size: 12, color: Colors.amber,),
+                                  Icon(Icons.star, size: 16, color: Colors.amber,),
                                   Text(
                                     "4.8",
                                     style: TextStyle(
-                                      fontSize: 12,
+                                      fontSize: 16,
                                       fontWeight: FontWeight.w600,
                                     ),
                                   )
@@ -90,7 +101,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                 child: const Text(
                                   "Reviews",
                                   style: TextStyle(
-                                    fontSize: 12,
+                                    fontSize: 16,
                                     color: AppColors.primaryColor,
                                     fontWeight: FontWeight.w600,
                                   ),
@@ -103,12 +114,32 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                                 ),
                                 color: AppColors.primaryColor,
                                 child: Padding(
-                                  padding: const EdgeInsets.all(4.0),
-                                  child: Icon(Icons.favorite_outline, size: 12, color: Colors.white,),
+                                  padding: const EdgeInsets.all(6.0),
+                                  child: Icon(Icons.favorite_outline, size: 16, color: Colors.white,),
                                 ),
                               ),
                               const SizedBox(width: 5,),
                             ],
+                          ),
+                          const SizedBox(height: 8,),
+                          const Text("Color", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16),),
+                          Row(
+                            children: colors
+                                .map((c) => InkWell(
+                                    onTap: () {},
+                                    borderRadius: BorderRadius.circular(16),
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                        vertical: 2,
+                                        horizontal: 3,
+                                      ),
+                                      child: CircleAvatar(
+                                        radius: 16,
+                                        backgroundColor: c,
+                                      ),
+                                    ),
+                                  ),
+                                ).toList(),
                           )
                         ],
                       ),
