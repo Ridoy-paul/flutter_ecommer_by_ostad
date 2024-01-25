@@ -39,15 +39,21 @@ class _SizeSelectorState extends State<SizeSelector> {
               vertical: 2,
               horizontal: 3,
             ),
-            child: CircleAvatar(
-              radius: 16,
-              backgroundColor: _selectedSize == s ? AppColors.primaryColor : Colors.white,
+            child: Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                border: Border.all(),
+                borderRadius: BorderRadius.circular(30),
+                color: _selectedSize == s ? AppColors.primaryColor : null,
+
+              ),
+
+              //backgroundColor: _selectedSize == s ? AppColors.primaryColor : Colors.white,
               child: Text(s, style: TextStyle(color: _selectedSize == s ? Colors.white : Colors.grey),),
             ),
           ),
         ),
-      )
-          .toList(),
+      ).toList(),
     );
   }
 }
