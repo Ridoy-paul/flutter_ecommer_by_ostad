@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommer_by_ostad/presentation/ui/widgets/products/size_selector_for_product_details_widget.dart';
+import '../widgets/products/size_selector_for_product_details_widget.dart';
 import '../widgets/products/color_selector_for_product_details_widget.dart';
 import 'product_review_lists_screen.dart';
 import 'package:item_count_number_button/item_count_number_button.dart';
@@ -66,90 +66,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                   child: Column(
                     children: [
                       const ProductImageCarouselWidget(),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 8, left: 8, right: 8),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Expanded(
-                                  child: Text(
-                                    "Happy New Year Special Deal Save 30% test product",
-                                    style: Theme.of(context).textTheme.titleMedium,
-                                  ),
-                                ),
-                                ItemCount(
-                                  color: AppColors.primaryColor,
-                                  initialValue: 2,
-                                  minValue: 1,
-                                  maxValue: 100,
-                                  decimalPlaces: 0,
-                                  onChanged: (v) {
-                                    //noOfItem.value = v.toInt();
-                                  },
-                                )
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Wrap(
-                                  crossAxisAlignment: WrapCrossAlignment.center,
-                                  children: [
-                                    Icon(Icons.star, size: 16, color: Colors.amber,),
-                                    Text(
-                                      "4.8",
-                                      style: TextStyle(
-                                        fontSize: 16,
-                                        fontWeight: FontWeight.w600,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                  
-                                TextButton(
-                                  onPressed: () {
-                                    Get.to(()=> ProductReviewListsScreen());
-                                  },
-                                  child: const Text(
-                                    "Reviews",
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      color: AppColors.primaryColor,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                ),
-                  
-                                Card(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(5),
-                                  ),
-                                  color: AppColors.primaryColor,
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(6.0),
-                                    child: Icon(Icons.favorite_outline, size: 16, color: Colors.white,),
-                                  ),
-                                ),
-                                const SizedBox(width: 5,),
-                              ],
-                            ),
-                            const SizedBox(height: 8,),
-                            const Text("Color", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16),),
-                            ColorSelector(colors: colors, onchange: (selectedColor) { _selectedColor = selectedColor; }, ),
-                            const SizedBox(height: 8,),
-                            const Text("Size", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16),),
-                            SizeSelector(size: size, onchange: (selectedSize) { _selectedSize = selectedSize; }, ),
-                            const SizedBox(height: 12,),
-                            const Text("Description", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18),),
-                            const SizedBox(height: 8,),
-                            Text("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer"),
-                            const SizedBox(height: 8,),
-                          ],
-                        ),
-                      )
+                      productDetailsBody(context)
                     ],
                   ),
                 ),
@@ -158,6 +75,131 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Padding productDetailsBody(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 8, left: 8, right: 8),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Expanded(
+                child: Text(
+                  "Happy New Year Special Deal Save 30% test product",
+                  style: Theme.of(context).textTheme.titleMedium,
+                ),
+              ),
+              ItemCount(
+                color: AppColors.primaryColor,
+                initialValue: 2,
+                minValue: 1,
+                maxValue: 100,
+                decimalPlaces: 0,
+                onChanged: (v) {
+                  //noOfItem.value = v.toInt();
+                },
+              )
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Wrap(
+                crossAxisAlignment: WrapCrossAlignment.center,
+                children: [
+                  Icon(
+                    Icons.star,
+                    size: 16,
+                    color: Colors.amber,
+                  ),
+                  Text(
+                    "4.8",
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                    ),
+                  )
+                ],
+              ),
+              TextButton(
+                onPressed: () {
+                  Get.to(() => ProductReviewListsScreen());
+                },
+                child: const Text(
+                  "Reviews",
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: AppColors.primaryColor,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+              Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(5),
+                ),
+                color: AppColors.primaryColor,
+                child: Padding(
+                  padding: const EdgeInsets.all(6.0),
+                  child: Icon(
+                    Icons.favorite_outline,
+                    size: 16,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+              const SizedBox(
+                width: 5,
+              ),
+            ],
+          ),
+          const SizedBox(
+            height: 8,
+          ),
+          const Text(
+            "Color",
+            style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
+          ),
+          ColorSelector(
+            colors: colors,
+            onchange: (selectedColor) {
+              _selectedColor = selectedColor;
+            },
+          ),
+          const SizedBox(
+            height: 8,
+          ),
+          const Text(
+            "Size",
+            style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
+          ),
+          SizeSelector(
+            size: size,
+            onchange: (selectedSize) {
+              _selectedSize = selectedSize;
+            },
+          ),
+          const SizedBox(
+            height: 12,
+          ),
+          const Text(
+            "Description",
+            style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18),
+          ),
+          const SizedBox(
+            height: 8,
+          ),
+          Text(
+              "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer"),
+          const SizedBox(
+            height: 8,
+          ),
+        ],
       ),
     );
   }
