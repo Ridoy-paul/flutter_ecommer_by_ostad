@@ -141,6 +141,10 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                           const SizedBox(height: 8,),
                           const Text("Size", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16),),
                           SizeSelector(size: size, onchange: (selectedSize) { _selectedSize = selectedSize; }, ),
+                          const SizedBox(height: 12,),
+                          const Text("Description", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 18),),
+                          const SizedBox(height: 8,),
+                          Text("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer"),
 
                         ],
                       ),

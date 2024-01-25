@@ -40,9 +40,9 @@ class _SizeSelectorState extends State<SizeSelector> {
               horizontal: 3,
             ),
             child: Container(
-              padding: const EdgeInsets.all(8),
+              padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 8),
               decoration: BoxDecoration(
-                border: Border.all(),
+                border: _selectedSize != s ? Border.all() : null,
                 borderRadius: BorderRadius.circular(30),
                 color: _selectedSize == s ? AppColors.primaryColor : null,
 
