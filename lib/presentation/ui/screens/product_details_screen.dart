@@ -66,7 +66,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                   child: Column(
                     children: [
                       const ProductImageCarouselWidget(),
-                      productDetailsBody(context)
+                      productDetailsBody,
                     ],
                   ),
                 ),
@@ -79,7 +79,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
     );
   }
 
-  Padding productDetailsBody(BuildContext context) {
+  Padding get productDetailsBody {
     return Padding(
       padding: const EdgeInsets.only(top: 8, left: 8, right: 8),
       child: Column(
@@ -106,58 +106,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
               )
             ],
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Wrap(
-                crossAxisAlignment: WrapCrossAlignment.center,
-                children: [
-                  Icon(
-                    Icons.star,
-                    size: 16,
-                    color: Colors.amber,
-                  ),
-                  Text(
-                    "4.8",
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  )
-                ],
-              ),
-              TextButton(
-                onPressed: () {
-                  Get.to(() => ProductReviewListsScreen());
-                },
-                child: const Text(
-                  "Reviews",
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: AppColors.primaryColor,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ),
-              Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(5),
-                ),
-                color: AppColors.primaryColor,
-                child: Padding(
-                  padding: const EdgeInsets.all(6.0),
-                  child: Icon(
-                    Icons.favorite_outline,
-                    size: 16,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-              const SizedBox(
-                width: 5,
-              ),
-            ],
-          ),
+          reviewAndRating,
           const SizedBox(
             height: 8,
           ),
@@ -201,6 +150,61 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
           ),
         ],
       ),
+    );
+  }
+
+  Row get reviewAndRating {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        Wrap(
+          crossAxisAlignment: WrapCrossAlignment.center,
+          children: [
+            Icon(
+              Icons.star,
+              size: 16,
+              color: Colors.amber,
+            ),
+            Text(
+              "4.8",
+              style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+              ),
+            )
+          ],
+        ),
+        TextButton(
+          onPressed: () {
+            Get.to(() => ProductReviewListsScreen());
+          },
+          child: const Text(
+            "Reviews",
+            style: TextStyle(
+              fontSize: 16,
+              color: AppColors.primaryColor,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+        ),
+        Card(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(5),
+          ),
+          color: AppColors.primaryColor,
+          child: Padding(
+            padding: const EdgeInsets.all(6.0),
+            child: Icon(
+              Icons.favorite_outline,
+              size: 16,
+              color: Colors.white,
+            ),
+          ),
+        ),
+        const SizedBox(
+          width: 5,
+        ),
+      ],
     );
   }
 
