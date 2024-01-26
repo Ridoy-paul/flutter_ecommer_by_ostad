@@ -1,5 +1,7 @@
+import 'response_data.dart';
+
 class NetworkCaller  {
-  Future<dynamic> getRequest(String url) async {
+  Future<ResponseData> getRequest(String url) async {
 
   }
 }
