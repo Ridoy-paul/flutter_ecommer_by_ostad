@@ -9,7 +9,12 @@ class NetworkCaller  {
     if(response.statusCode == 200) {
       final decodedResponse = jsonDecode(response.body);
       if(decodedResponse['msg'] == 'success') {
-        return ResponseData(isSuccess: true, statusCode: response.statusCode, responseData: decodedResponse);
+        return ResponseData(
+          isSuccess: true,
+          statusCode: response.statusCode,
+          responseData: decodedResponse,
+          errorMessage: decodedResponse['data'] ?? "Something went wrong",
+        );
       }
       else {
         return ResponseData(isSuccess: false, statusCode: response.statusCode, responseData: decodedResponse);
@@ -25,7 +30,12 @@ class NetworkCaller  {
     if(response.statusCode == 200) {
       final decodedResponse = jsonDecode(response.body);
       if(decodedResponse['msg'] == 'success') {
-        return ResponseData(isSuccess: true, statusCode: response.statusCode, responseData: decodedResponse);
+        return ResponseData(
+          isSuccess: true,
+          statusCode: response.statusCode,
+          responseData: decodedResponse,
+          errorMessage: decodedResponse['data'] ?? "Something went wrong",
+        );
       }
       else {
         return ResponseData(isSuccess: false, statusCode: response.statusCode, responseData: decodedResponse);

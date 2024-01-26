@@ -17,12 +17,18 @@ class SendEmailOTPController extends GetxController {
     update();
 
     final ResponseData response = await NetworkCaller().getRequest(Urls.userLoginEmailVerification(email));
+    _inProgress = false;
 
     if(response.isSuccess) {
-
+      update();
+      return true;
     }
     else {
+      _message = response.errorMessage!;
+      _isSuccess = false;
+      update();
 
+      return false;
     }
 
 
