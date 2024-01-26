@@ -16,6 +16,7 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
 
   final TextEditingController _emailTEController = TextEditingController();
   final GlobalKey<FormState> _emailValidationFormKey = GlobalKey<FormState>();
+  final _sendEmailOTPController = Get.find<SendEmailOTPController>();
 
   @override
   Widget build(BuildContext context) {
@@ -87,4 +88,21 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
       ),
     );
   }
+
+  Future<void> _emailValidationConfirm() async {
+    if(!_emailValidationFormKey.currentState!.validate()) {
+      return;
+    }
+
+    final response = await _sendEmailOTPController.sendEmailOTP(_emailTEController.text.trim());
+
+
+  }
+
+  @override
+  void dispose() {
+    _emailTEController.dispose();
+    super.dispose();
+  }
+  
 }
