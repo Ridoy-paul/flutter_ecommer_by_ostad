@@ -13,7 +13,9 @@ class NetworkCaller  {
       else {
         return ResponseData(isSuccess: false, statusCode: response.statusCode, responseData: decodedResponse);
       }
-
+    }
+    else {
+      return ResponseData(isSuccess: false, statusCode: response.statusCode, responseData: '');
     }
   }
 }
