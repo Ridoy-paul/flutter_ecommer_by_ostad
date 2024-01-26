@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../../data/utility/helpers.dart';
 import '../../utility/app_colors.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:get/get.dart';
@@ -6,13 +7,18 @@ import '../../widgets/app_logo.dart';
 import 'complete_profile_screen.dart';
 
 class VerifyOTPScreen extends StatefulWidget {
-  const VerifyOTPScreen({super.key});
+  const VerifyOTPScreen({super.key, required this.email});
+
+  final String email;
 
   @override
   State<VerifyOTPScreen> createState() => _VerifyOTPScreenState();
 }
 
 class _VerifyOTPScreenState extends State<VerifyOTPScreen> {
+  TextEditingController _otpTEController = TextEditingController();
+  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,8 +37,8 @@ class _VerifyOTPScreenState extends State<VerifyOTPScreen> {
                   Text("A 4 digit code has been sent", style: Theme.of(context).textTheme.bodyLarge,),
                   const SizedBox(height: 26,),
                   PinCodeTextField(
-                    //controller: ,
-                    //validator: (value) => inputValidate(value, "Enter 6 digit verification code!"),
+                    controller: _otpTEController,
+                    validator: (value) => inputValidate(value, "Enter 4 digit verification code!"),
                     length: 4,
                     obscureText: false,
                     animationType: AnimationType.fade,

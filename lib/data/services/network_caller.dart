@@ -1,11 +1,16 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'package:http/http.dart';
 import 'response_data.dart';
 
 class NetworkCaller  {
 
   Future<ResponseData> getRequest(String url) async {
+    log(url);
     final Response response = await get(Uri.parse(url));
+    log(response.statusCode.toString());
+    log(response.body.toString());
+
     if(response.statusCode == 200) {
       final decodedResponse = jsonDecode(response.body);
       if(decodedResponse['msg'] == 'success') {
@@ -26,7 +31,11 @@ class NetworkCaller  {
   }
 
   Future<ResponseData> postRequest(String url, {Map<String, dynamic>? body}) async {
+    log(url);
     final Response response = await post(Uri.parse(url), body: jsonEncode(body));
+    log(response.statusCode.toString());
+    log(response.body.toString());
+
     if(response.statusCode == 200) {
       final decodedResponse = jsonDecode(response.body);
       if(decodedResponse['msg'] == 'success') {

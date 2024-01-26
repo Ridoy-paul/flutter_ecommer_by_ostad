@@ -92,7 +92,7 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
 
     final responseResult = await _sendEmailOTPController.sendEmailOTP(_emailTEController.text.trim());
     if(responseResult) {
-
+      Get.to(() => VerifyOTPScreen(email: _emailTEController.text.trim()));
     }
     else {
       showSnackMessage(_sendEmailOTPController.message, _sendEmailOTPController.isSuccess);
