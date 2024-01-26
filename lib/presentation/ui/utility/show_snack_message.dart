@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommer_by_ostad/presentation/ui/utility/app_colors.dart';
+import 'app_colors.dart';
 import 'package:get/get.dart';
 
 void showSnackMessage(String message, [bool successStatus = true]) {

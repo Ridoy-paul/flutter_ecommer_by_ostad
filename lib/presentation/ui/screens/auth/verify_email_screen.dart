@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommer_by_ostad/data/utility/helpers.dart';
+import 'package:flutter_ecommer_by_ostad/presentation/state_holders/send_email_otp_controller.dart';
 import 'verify_otp_screen.dart';
 import '../../widgets/app_logo.dart';
 import 'package:get/get.dart';
@@ -31,9 +32,15 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
                     SizedBox(height: Get.height * .1,),
                     const AppLogoWidget(),
                     const SizedBox(height: 16,),
-                    Text("Welcome back", style: Theme.of(context).textTheme.titleLarge,),
+                    Text("Welcome back", style: Theme
+                        .of(context)
+                        .textTheme
+                        .titleLarge,),
                     const SizedBox(height: 5,),
-                    Text("Please Enter Your Email Address", style: Theme.of(context).textTheme.bodySmall,),
+                    Text("Please Enter Your Email Address", style: Theme
+                        .of(context)
+                        .textTheme
+                        .bodySmall,),
                     const SizedBox(height: 16,),
                     TextFormField(
                       controller: _emailTEController,
@@ -42,29 +49,35 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
                         hintText: 'Email',
                       ),
                       //validator: (value) => inputValidate(value, "Enter your email!"),
-                      validator: (value){
-                        if(value!.trim().isEmpty ?? true) {
+                      validator: (value) {
+                        if (value!.trim().isEmpty ?? true) {
                           return "Enter your email!";
                         }
-                        if(!value.isEmail) {
+                        if (!value.isEmail) {
                           return "Please Enter Valid Email!";
                         }
                         return null;
                       },
                     ),
                     const SizedBox(height: 16,),
-                    SizedBox(
-                      width: double.infinity,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          if(_emailValidationFormKey.currentState!.validate()) {
-                            Get.to(() => const VerifyOTPScreen());
-                          }
-
-                        },
-                        child: const Text("Next"),
-                      ),
-                    )
+                    GetBuilder<SendEmailOTPController>(builder: (controller) {
+                      return SizedBox(
+                        width: double.infinity,
+                        child: Visibility(
+                          visible: !controller.inProgressStatus,
+                          replacement: circleProgressIndicatorShow(),
+                          child: ElevatedButton(
+                            onPressed: () {
+                              if (_emailValidationFormKey.currentState!
+                                  .validate()) {
+                                Get.to(() => const VerifyOTPScreen());
+                              }
+                            },
+                            child: const Text("Next"),
+                          ),
+                        ),
+                      );
+                    })
                   ],
                 ),
               ),
