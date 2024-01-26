@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommer_by_ostad/data/utility/helpers.dart';
 import 'verify_otp_screen.dart';
 import '../../widgets/app_logo.dart';
 import 'package:get/get.dart';
@@ -11,6 +12,9 @@ class VerifyEmailScreen extends StatefulWidget {
 }
 
 class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
+
+  final TextEditingController _emailTEController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,10 +32,12 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
                   const SizedBox(height: 5,),
                   Text("Please Enter Your Email Address", style: Theme.of(context).textTheme.bodySmall,),
                   const SizedBox(height: 16,),
-                  TextField(
+                  TextFormField(
+                    controller: _emailTEController,
                     decoration: InputDecoration(
                       hintText: 'Email',
                     ),
+                    validator: (value) => inputValidate(value, "Email is required!"),
                   ),
                   const SizedBox(height: 16,),
                   SizedBox(
