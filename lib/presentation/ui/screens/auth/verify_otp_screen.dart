@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommer_by_ostad/presentation/state_holders/verify_otp_screen_resend_otp_controller.dart';
+import 'package:flutter_ecommer_by_ostad/presentation/state_holders/send_email_otp_controller.dart';
+import '../../../state_holders/verify_otp_screen_resend_otp_controller.dart';
 import '../../../../data/utility/helpers.dart';
 import '../../utility/app_colors.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:get/get.dart';
+import '../../utility/show_snack_message.dart';
 import '../../widgets/app_logo.dart';
 import 'complete_profile_screen.dart';
 
@@ -18,6 +20,7 @@ class VerifyOTPScreen extends StatefulWidget {
 
 class _VerifyOTPScreenState extends State<VerifyOTPScreen> {
   final VerifyOTPScreenResendOTPController _verifyOTPScreenResendOTPController = Get.find<VerifyOTPScreenResendOTPController>();
+  final SendEmailOTPController _sendEmailOTPController = Get.find<SendEmailOTPController>();
   TextEditingController _otpTEController = TextEditingController();
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -40,13 +43,21 @@ class _VerifyOTPScreenState extends State<VerifyOTPScreen> {
                   SizedBox(height: Get.height * .1,),
                   const AppLogoWidget(),
                   const SizedBox(height: 16,),
-                  Text("Enter OTP Code", style: Theme.of(context).textTheme.titleLarge,),
+                  Text("Enter OTP Code", style: Theme
+                      .of(context)
+                      .textTheme
+                      .titleLarge,),
                   const SizedBox(height: 5,),
-                  Text("A 4 digit code has been sent", style: Theme.of(context).textTheme.bodyLarge,),
+                  Text("A 4 digit code has been sent", style: Theme
+                      .of(context)
+                      .textTheme
+                      .bodyLarge,),
                   const SizedBox(height: 26,),
                   PinCodeTextField(
                     controller: _otpTEController,
-                    validator: (value) => inputValidate(value, "Enter 4 digit verification code!"),
+                    validator: (value) =>
+                        inputValidate(
+                            value, "Enter 4 digit verification code!"),
                     length: 4,
                     obscureText: false,
                     animationType: AnimationType.fade,
@@ -90,56 +101,65 @@ class _VerifyOTPScreenState extends State<VerifyOTPScreen> {
                     ),
                   ),
                   const SizedBox(height: 36,),
-                  GetBuilder<VerifyOTPScreenResendOTPController>(builder: (verifyOTPScreenResendOTPController) {
-                    return verifyOTPScreenResendOTPController.countTime != 0 ? Center(
-                      child: RichText(
-                        text: TextSpan(
-                          text: 'This code will expire in ',
-                          style: const TextStyle(
-                            color: AppColors.lightGray,
-                            fontSize: 16.0,
-                            fontWeight: FontWeight.bold,
-                          ),
-                          children: <TextSpan>[
-                            TextSpan(
-                              text: "${verifyOTPScreenResendOTPController.countTime.toString()}s",
+                  GetBuilder<VerifyOTPScreenResendOTPController>(
+                      builder: (verifyOTPScreenResendOTPController) {
+                        return verifyOTPScreenResendOTPController.countTime != 0
+                            ? Center(
+                          child: RichText(
+                            text: TextSpan(
+                              text: 'This code will expire in ',
                               style: const TextStyle(
-                                color: AppColors.primaryColor,
+                                color: AppColors.lightGray,
                                 fontSize: 16.0,
+                                fontWeight: FontWeight.bold,
                               ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ) : Center(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Text(
-                            "Did\'n get code?",
-                            style: TextStyle(
-                              color: AppColors.lightGray,
-                              fontSize: 16.0,
-                              fontWeight: FontWeight.bold,
+                              children: <TextSpan>[
+                                TextSpan(
+                                  text: "${verifyOTPScreenResendOTPController
+                                      .countTime.toString()}s",
+                                  style: const TextStyle(
+                                    color: AppColors.primaryColor,
+                                    fontSize: 16.0,
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
-                          TextButton(
-                            onPressed: () {
-                              verifyOTPScreenResendOTPController.countTime = 120;
-                              verifyOTPScreenResendOTPController.startTimer();
-                            },
-                            child: const Text(
-                              "Resend",
-                              style: TextStyle(
-                                color: AppColors.primaryColor,
-                                fontSize: 16.0,
+                        )
+                            : Center(
+                          child: GetBuilder<SendEmailOTPController>(builder: (sendEmailOTPController) {
+                            return Visibility(
+                              visible: !sendEmailOTPController.inProgressStatus,
+                              replacement: circleProgressIndicatorShow(),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  const Text(
+                                    "Did\'n get code?",
+                                    style: TextStyle(
+                                      color: AppColors.lightGray,
+                                      fontSize: 16.0,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  TextButton(
+                                    onPressed: () {
+                                      _emailValidationResendConfirm();
+                                    },
+                                    child: const Text(
+                                      "Resend",
+                                      style: TextStyle(
+                                        color: AppColors.primaryColor,
+                                        fontSize: 16.0,
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    );
-                  }),
+                            );
+                          }),
+                        );
+                      }),
                 ],
               ),
             ),
@@ -149,6 +169,18 @@ class _VerifyOTPScreenState extends State<VerifyOTPScreen> {
     );
   }
 
+  Future<void> _emailValidationResendConfirm() async {
+    final responseResult = await _sendEmailOTPController.sendEmailOTP(
+        widget.email);
+    if (responseResult) {
+      _verifyOTPScreenResendOTPController.countTime = 120;
+      _verifyOTPScreenResendOTPController.startTimer();
+    }
+    else {
+      showSnackMessage(
+          _sendEmailOTPController.message, _sendEmailOTPController.isSuccess);
+    }
+  }
 
 
 }

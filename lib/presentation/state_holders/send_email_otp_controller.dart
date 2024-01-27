@@ -20,6 +20,7 @@ class SendEmailOTPController extends GetxController {
     _inProgress = false;
 
     if(response.isSuccess) {
+      _message = "A 4 digit code sent your email.";
       update();
       return true;
     }
