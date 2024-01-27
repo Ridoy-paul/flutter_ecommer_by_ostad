@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'package:get/get.dart';
 import '../../data/services/network_caller.dart';
 import '../../data/services/response_data.dart';
@@ -20,6 +21,7 @@ class VerifyOTPController extends GetxController {
     _inProgress = false;
 
     if(response.isSuccess) {
+      _message = "Verification Success.";
       update();
       return true;
     }
