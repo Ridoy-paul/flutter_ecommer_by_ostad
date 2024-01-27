@@ -1,4 +1,6 @@
 import 'dart:developer';
+import 'package:flutter_ecommer_by_ostad/presentation/state_holders/read_profile_data_controller.dart';
+
 import 'auth_controller.dart';
 import 'package:get/get.dart';
 import '../../data/services/network_caller.dart';
@@ -24,6 +26,8 @@ class VerifyOTPController extends GetxController {
     if(response.isSuccess) {
       final token = response.responseData['data'];
       await Get.find<AuthController>().saveAuthToken(token);
+      await Get.find<ReadProfileDataController>().readProfileInfo();
+      //final profileData
       _message = "Verification Success.";
       update();
       return true;

@@ -9,16 +9,17 @@ class UserProfileModel {
   String? createdAt;
   String? updatedAt;
 
-  UserProfileModel(
-      {this.id,
-        this.firstName,
-        this.lastName,
-        this.mobile,
-        this.city,
-        this.shippingAddress,
-        this.email,
-        this.createdAt,
-        this.updatedAt});
+  UserProfileModel({
+    this.id,
+    this.firstName,
+    this.lastName,
+    this.mobile,
+    this.city,
+    this.shippingAddress,
+    this.email,
+    this.createdAt,
+    this.updatedAt,
+  });
 
   UserProfileModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -33,7 +34,7 @@ class UserProfileModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data =  <String, dynamic>{};
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['firstName'] = firstName;
     data['lastName'] = lastName;

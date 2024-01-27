@@ -1,3 +1,4 @@
+import 'package:flutter_ecommer_by_ostad/data/models/user_profile_model.dart';
 import 'package:get/get.dart';
 import '../../data/services/network_caller.dart';
 import '../../data/services/response_data.dart';
@@ -12,11 +13,11 @@ class ReadProfileDataController extends GetxController  {
   String get message => _message;
   bool get isSuccess => _isSuccess;
 
-  Future<bool> readProfileInfo(String token) async {
+  Future<bool> readProfileInfo() async {
     _inProgress = true;
     update();
 
-    final ResponseData response = await NetworkCaller().getRequest(Urls.userReadProfileInfo, token: token);
+    final ResponseData response = await NetworkCaller().getRequest(Urls.userReadProfileInfo);
     _inProgress = false;
 
     if(response.isSuccess) {
@@ -25,7 +26,8 @@ class ReadProfileDataController extends GetxController  {
         update();
         return false;
       }
-      _message = "Verification Success.";
+      
+      UserProfileModel profileModel = UserProfileModel.fromJson(profileData[0]);
       update();
       return true;
     }

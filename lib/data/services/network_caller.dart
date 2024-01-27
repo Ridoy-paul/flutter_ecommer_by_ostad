@@ -1,44 +1,64 @@
 import 'dart:convert';
 import 'dart:developer';
+import '../../presentation/state_holders/auth_controller.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart';
 import 'response_data.dart';
 
 class NetworkCaller  {
 
-  Future<ResponseData> getRequest(String url, {String? token}) async {
-    log(url);
-    final Response response = await get(
-      Uri.parse(url),
-      headers: {
-        'token': token.toString(),
-        'Context-type': 'application/json'
-      },
-    );
-    log(response.statusCode.toString());
-    log(response.body.toString());
+  String token = Get.find<AuthController>().token.toString();
 
-    if(response.statusCode == 200) {
-      final decodedResponse = jsonDecode(response.body);
-      if(decodedResponse['msg'] == 'success') {
+  Future<ResponseData> getRequest(String url) async {
+    log(url);
+    try {
+      final response = await get(
+        Uri.parse(url),
+        headers: {
+          'token': token,
+          'Content-Type': 'application/json', // Corrected header field name
+        },
+      );
+      log(response.statusCode.toString());
+      log(response.body.toString());
+
+      if (response.statusCode == 200) {
+        final decodedResponse = jsonDecode(response.body);
+        if (decodedResponse['msg'] == 'success') {
+          return ResponseData(
+            isSuccess: true,
+            statusCode: response.statusCode,
+            responseData: decodedResponse,
+            errorMessage: decodedResponse['data'] ?? "Something went wrong",
+          );
+        } else {
+          return ResponseData(
+            isSuccess: false,
+            statusCode: response.statusCode,
+            responseData: decodedResponse,
+          );
+        }
+      } else {
         return ResponseData(
-          isSuccess: true,
+          isSuccess: false,
           statusCode: response.statusCode,
-          responseData: decodedResponse,
-          errorMessage: decodedResponse['data'] ?? "Something went wrong",
+          responseData: '',
         );
       }
-      else {
-        return ResponseData(isSuccess: false, statusCode: response.statusCode, responseData: decodedResponse);
-      }
-    }
-    else {
-      return ResponseData(isSuccess: false, statusCode: response.statusCode, responseData: '');
+    } catch (e) {
+      log('Exception occurred: $e');
+      return ResponseData(
+        isSuccess: false,
+        statusCode: 501,
+        responseData: '',
+        errorMessage: 'An error occurred: $e',
+      );
     }
   }
 
   Future<ResponseData> postRequest(String url, {Map<String, dynamic>? body}) async {
     log(url);
-    final Response response = await post(Uri.parse(url), body: jsonEncode(body));
+    final response = await post(Uri.parse(url), body: jsonEncode(body));
     log(response.statusCode.toString());
     log(response.body.toString());
 
