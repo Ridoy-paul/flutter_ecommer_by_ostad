@@ -8,11 +8,14 @@ class ReadProfileDataController extends GetxController  {
   bool _inProgress = false;
   String _message = '';
   bool _isSuccess = true;
+  bool _isProfileCompleted = false;
 
   bool get inProgressStatus => _inProgress;
   String get message => _message;
   bool get isSuccess => _isSuccess;
+  bool get isProfileCompleted => _isProfileCompleted;
 
+  
   Future<bool> readProfileInfo() async {
     _inProgress = true;
     update();
@@ -23,11 +26,12 @@ class ReadProfileDataController extends GetxController  {
     if(response.isSuccess) {
       final profileData = response.responseData['data'];
       if(profileData == null) {
-        update();
-        return false;
+        _isProfileCompleted = false;
       }
-
-      UserProfileModel profileModel = UserProfileModel.fromJson(profileData[0]);
+      else {
+        UserProfileModel profileModel = UserProfileModel.fromJson(profileData[0]);
+        _isProfileCompleted = true;
+      }
       update();
       return true;
     }
