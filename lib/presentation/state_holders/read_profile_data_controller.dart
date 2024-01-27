@@ -26,7 +26,7 @@ class ReadProfileDataController extends GetxController  {
         update();
         return false;
       }
-      
+
       UserProfileModel profileModel = UserProfileModel.fromJson(profileData[0]);
       update();
       return true;

@@ -11,10 +11,12 @@ class VerifyOTPController extends GetxController {
   bool _inProgress = false;
   String _message = '';
   bool _isSuccess = true;
+  bool _shouldNavigateCompleteProfile = true;
 
   bool get inProgressStatus => _inProgress;
   String get message => _message;
   bool get isSuccess => _isSuccess;
+  bool get shouldNavigateCompleteProfile => _shouldNavigateCompleteProfile;
 
   Future<bool> verifyOTP(String email, int otp) async {
     _inProgress = true;
@@ -25,8 +27,9 @@ class VerifyOTPController extends GetxController {
 
     if(response.isSuccess) {
       final token = response.responseData['data'];
+      await Future.delayed(const Duration(seconds: 5));
       await Get.find<AuthController>().saveAuthToken(token);
-      await Get.find<ReadProfileDataController>().readProfileInfo();
+      _shouldNavigateCompleteProfile = await Get.find<ReadProfileDataController>().readProfileInfo();
       //final profileData
       _message = "Verification Success.";
       update();
