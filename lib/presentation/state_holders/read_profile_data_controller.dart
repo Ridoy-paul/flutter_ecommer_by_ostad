@@ -1,4 +1,4 @@
-import 'package:flutter_ecommer_by_ostad/data/models/user_profile_model.dart';
+import '../../data/models/user_profile_model.dart';
 import 'package:get/get.dart';
 import '../../data/services/network_caller.dart';
 import '../../data/services/response_data.dart';
