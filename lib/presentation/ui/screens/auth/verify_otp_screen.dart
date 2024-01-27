@@ -209,7 +209,7 @@ class _VerifyOTPScreenState extends State<VerifyOTPScreen> {
       return;
     }
 
-    final responseResult = await _verifyOTPController.verifyOTP(widget.email, 2222);
+    final responseResult = await _verifyOTPController.verifyOTP(widget.email, int.parse(_otpTEController.text));
     if (responseResult) {
       //showSnackMessage(_verifyOTPController.message);
       //Get.to(() => VerifyOTPScreen(email: _emailTEController.text.trim()));

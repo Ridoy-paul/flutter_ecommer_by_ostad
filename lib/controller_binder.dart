@@ -1,3 +1,5 @@
+import 'presentation/state_holders/auth_controller.dart';
+import 'presentation/state_holders/read_profile_data_controller.dart';
 import 'presentation/state_holders/verify_otp_screen_resend_otp_controller.dart';
 import 'presentation/state_holders/verify_otp_controller.dart';
 import 'presentation/state_holders/send_email_otp_controller.dart';
@@ -11,5 +13,7 @@ class ControllerBinder extends Bindings {
     Get.put(SendEmailOTPController());
     Get.put(VerifyOTPController());
     Get.put(VerifyOTPScreenResendOTPController());
+    Get.put(ReadProfileDataController());
+    Get.put(AuthController());
   }
 }
