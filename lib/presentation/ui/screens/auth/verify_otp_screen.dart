@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommer_by_ostad/presentation/state_holders/verify_otp_screen_resend_otp_controller.dart';
 import '../../../../data/utility/helpers.dart';
 import '../../utility/app_colors.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
@@ -16,8 +17,15 @@ class VerifyOTPScreen extends StatefulWidget {
 }
 
 class _VerifyOTPScreenState extends State<VerifyOTPScreen> {
+  final VerifyOTPScreenResendOTPController _verifyOTPScreenResendOTPController = Get.find<VerifyOTPScreenResendOTPController>();
   TextEditingController _otpTEController = TextEditingController();
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    _verifyOTPScreenResendOTPController.startTimer();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -82,27 +90,56 @@ class _VerifyOTPScreenState extends State<VerifyOTPScreen> {
                     ),
                   ),
                   const SizedBox(height: 36,),
-                  Center(
-                    child: RichText(
-                      text: TextSpan(
-                        text: 'This code will expire in ',
-                        style: const TextStyle(
-                          fontSize: 16.0,
-                          color: AppColors.gray,
-                          fontWeight: FontWeight.bold,
+                  GetBuilder<VerifyOTPScreenResendOTPController>(builder: (verifyOTPScreenResendOTPController) {
+                    return verifyOTPScreenResendOTPController.countTime != 0 ? Center(
+                      child: RichText(
+                        text: TextSpan(
+                          text: 'This code will expire in ',
+                          style: const TextStyle(
+                            color: AppColors.lightGray,
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.bold,
+                          ),
+                          children: <TextSpan>[
+                            TextSpan(
+                              text: "${verifyOTPScreenResendOTPController.countTime.toString()}s",
+                              style: const TextStyle(
+                                color: AppColors.primaryColor,
+                                fontSize: 16.0,
+                              ),
+                            ),
+                          ],
                         ),
-                        children: <TextSpan>[
-                          TextSpan(
-                            text: "120s",
-                            style: const TextStyle(
-                              color: AppColors.primaryColor,
+                      ),
+                    ) : Center(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text(
+                            "Did\'n get code?",
+                            style: TextStyle(
+                              color: AppColors.lightGray,
                               fontSize: 16.0,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              verifyOTPScreenResendOTPController.countTime = 120;
+                              verifyOTPScreenResendOTPController.startTimer();
+                            },
+                            child: const Text(
+                              "Resend",
+                              style: TextStyle(
+                                color: AppColors.primaryColor,
+                                fontSize: 16.0,
+                              ),
                             ),
                           ),
                         ],
                       ),
-                    ),
-                  ),
+                    );
+                  }),
                 ],
               ),
             ),
@@ -111,4 +148,7 @@ class _VerifyOTPScreenState extends State<VerifyOTPScreen> {
       ),
     );
   }
+
+
+
 }

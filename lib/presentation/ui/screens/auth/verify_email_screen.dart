@@ -52,7 +52,7 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
                       ),
                       //validator: (value) => inputValidate(value, "Enter your email!"),
                       validator: (value) {
-                        if (value!.trim().isEmpty ?? true) {
+                        if (value!.trim().isEmpty) {
                           return "Enter your email!";
                         }
                         if (!value.isEmail) {
