@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommer_by_ostad/presentation/state_holders/send_email_otp_controller.dart';
 import 'package:flutter_ecommer_by_ostad/presentation/state_holders/verify_otp_controller.dart';
+import 'package:flutter_ecommer_by_ostad/presentation/ui/screens/main_bottom_nav_screen.dart';
 import '../../../state_holders/verify_otp_screen_resend_otp_controller.dart';
 import '../../../../data/utility/helpers.dart';
 import '../../utility/app_colors.dart';
@@ -211,8 +212,12 @@ class _VerifyOTPScreenState extends State<VerifyOTPScreen> {
 
     final responseResult = await _verifyOTPController.verifyOTP(widget.email, int.parse(_otpTEController.text));
     if (responseResult) {
-      //showSnackMessage(_verifyOTPController.message);
-      //Get.to(() => VerifyOTPScreen(email: _emailTEController.text.trim()));
+      if(_verifyOTPController.shouldNavigateCompleteProfile) {
+        Get.to(() => const CompleteProfileScreen());
+      }
+      else {
+        Get.offAll(() => const MainBottomNavScreen());
+      }
     }
     else {
       showSnackMessage(_verifyOTPController.message, _verifyOTPController.isSuccess);

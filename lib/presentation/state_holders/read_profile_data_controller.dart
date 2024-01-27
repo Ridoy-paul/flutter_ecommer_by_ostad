@@ -15,7 +15,7 @@ class ReadProfileDataController extends GetxController  {
   bool get isSuccess => _isSuccess;
   bool get isProfileCompleted => _isProfileCompleted;
 
-  
+
   Future<bool> readProfileInfo() async {
     _inProgress = true;
     update();
