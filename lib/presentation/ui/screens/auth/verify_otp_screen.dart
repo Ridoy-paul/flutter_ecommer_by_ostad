@@ -173,12 +173,12 @@ class _VerifyOTPScreenState extends State<VerifyOTPScreen> {
     final responseResult = await _sendEmailOTPController.sendEmailOTP(
         widget.email);
     if (responseResult) {
+      showSnackMessage(_sendEmailOTPController.message);
       _verifyOTPScreenResendOTPController.countTime = 120;
       _verifyOTPScreenResendOTPController.startTimer();
     }
     else {
-      showSnackMessage(
-          _sendEmailOTPController.message, _sendEmailOTPController.isSuccess);
+      showSnackMessage(_sendEmailOTPController.message, _sendEmailOTPController.isSuccess);
     }
   }
 
