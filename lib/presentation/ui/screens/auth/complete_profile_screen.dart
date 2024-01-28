@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommer_by_ostad/presentation/ui/screens/main_bottom_nav_screen.dart';
-import 'verify_otp_screen.dart';
+import '../main_bottom_nav_screen.dart';
 import '../../widgets/app_logo.dart';
 import 'package:get/get.dart';
 
