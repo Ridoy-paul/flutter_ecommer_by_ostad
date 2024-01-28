@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommer_by_ostad/data/models/params/create_profile_params.dart';
 import 'package:flutter_ecommer_by_ostad/presentation/state_holders/complete_profile_controller.dart';
 import 'package:flutter_ecommer_by_ostad/presentation/ui/utility/show_snack_message.dart';
 import '../../../../data/utility/helpers.dart';
@@ -126,13 +127,16 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
       return;
     }
 
-    final bool response = await _completeProfileController.createUserProfile(
-      _firstNameTEController.text.trim(),
-      _lastNameTEController.text.trim(),
-      _mobileNameTEController.text.trim(),
-      _cityNameTEController.text.trim(),
-      _shippingAddressNameTEController.text.trim(),
+    final createProfileParamsInput = CreateProfileParams(
+      firstName: _firstNameTEController.text.trim(),
+      lastName: _lastNameTEController.text.trim(),
+      mobile: _mobileNameTEController.text.trim(),
+      city: _cityNameTEController.text.trim(),
+      address: _shippingAddressNameTEController.text.trim(),
     );
+
+    final bool response = await _completeProfileController.createUserProfile(createProfileParamsInput);
+    
     if (response) {
       Get.offAll(() => const MainBottomNavScreen());
       showSnackMessage("Profile Info Saved.",);

@@ -1,3 +1,5 @@
+import 'package:flutter_ecommer_by_ostad/data/models/params/create_profile_params.dart';
+
 import '../../data/models/user_profile_model.dart';
 import 'package:get/get.dart';
 import '../../data/services/network_caller.dart';
@@ -16,21 +18,13 @@ class CompleteProfileController extends GetxController  {
   String get message => _message;
   bool get isSuccess => _isSuccess;
 
-  Future<bool> createUserProfile(String firstName, String lastName, String mobile, String city, String address) async {
+  Future<bool> createUserProfile(CreateProfileParams params) async {
     _inProgress = true;
     update();
 
-    Map<String, dynamic> formInputData = {
-      "firstName": firstName,
-      "lastName": lastName,
-      "mobile": mobile,
-      "city": city,
-      "shippingAddress": address
-    };
-
     final ResponseData response = await NetworkCaller().postRequest(
       Urls.createProfile,
-      body: formInputData,
+      body: params.toJson(),
     );
 
     _inProgress = false;
