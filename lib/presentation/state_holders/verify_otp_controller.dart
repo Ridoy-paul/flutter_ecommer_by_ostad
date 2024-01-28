@@ -1,6 +1,5 @@
 import 'dart:developer';
-import 'package:flutter_ecommer_by_ostad/presentation/state_holders/read_profile_data_controller.dart';
-
+import 'read_profile_data_controller.dart';
 import 'auth_controller.dart';
 import 'package:get/get.dart';
 import '../../data/services/network_caller.dart';
@@ -27,10 +26,19 @@ class VerifyOTPController extends GetxController {
 
     if(response.isSuccess) {
       final token = response.responseData['data'];
-      await Future.delayed(const Duration(seconds: 5));
       await Get.find<AuthController>().saveAuthToken(token);
-      _shouldNavigateCompleteProfile = await Get.find<ReadProfileDataController>().readProfileInfo();
-      //final profileData
+
+      await Future.delayed(const Duration(seconds: 5));
+      final result = await Get.find<ReadProfileDataController>().readProfileInfo();
+      if(result) {
+        _shouldNavigateCompleteProfile = Get.find<ReadProfileDataController>().isProfileCompleted == false;
+      }
+      else {
+        _message = Get.find<ReadProfileDataController>().message;
+        update();
+        return false;
+      }
+
       _message = "Verification Success.";
       update();
       return true;

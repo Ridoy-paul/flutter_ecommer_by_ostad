@@ -200,8 +200,7 @@ class _VerifyOTPScreenState extends State<VerifyOTPScreen> {
       _verifyOTPScreenResendOTPController.startTimer();
     }
     else {
-      showSnackMessage(
-          _sendEmailOTPController.message, _sendEmailOTPController.isSuccess);
+      showSnackMessage(_sendEmailOTPController.message, _sendEmailOTPController.isSuccess);
     }
   }
 

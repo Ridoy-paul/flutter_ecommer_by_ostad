@@ -11,12 +11,13 @@ class NetworkCaller  {
 
   Future<ResponseData> getRequest(String url) async {
     log(url);
+    log(token);
     try {
       final response = await get(
         Uri.parse(url),
         headers: {
           'token': token,
-          'Content-Type': 'application/json', // Corrected header field name
+          'Content-Type': 'application/json',
         },
       );
       log(response.statusCode.toString());
