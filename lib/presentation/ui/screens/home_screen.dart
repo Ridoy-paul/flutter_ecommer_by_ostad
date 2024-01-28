@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../state_holders/auth_controller.dart';
+import 'auth/complete_profile_screen.dart';
 import 'auth/verify_email_screen.dart';
 import '../../state_holders/main_bottom_nav_controller.dart';
 import 'package:get/get.dart';

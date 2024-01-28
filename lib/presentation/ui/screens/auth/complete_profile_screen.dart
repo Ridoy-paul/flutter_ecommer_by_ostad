@@ -136,7 +136,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
     );
 
     final bool response = await _completeProfileController.createUserProfile(createProfileParamsInput);
-    
+
     if (response) {
       Get.offAll(() => const MainBottomNavScreen());
       showSnackMessage("Profile Info Saved.",);
