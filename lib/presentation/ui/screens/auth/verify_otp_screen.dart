@@ -112,6 +112,7 @@ class _VerifyOTPScreenState extends State<VerifyOTPScreen> {
                         );
                       }),
                     ),
+
                     const SizedBox(height: 36,),
                     resendOTPMethod,
                   ],

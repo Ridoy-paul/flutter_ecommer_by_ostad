@@ -17,7 +17,7 @@ class NetworkCaller  {
         Uri.parse(url),
         headers: {
           'token': token,
-          'Content-Type': 'application/json',
+          'Content-type' : 'application/json'
         },
       );
       log(response.statusCode.toString());
@@ -30,16 +30,18 @@ class NetworkCaller  {
             isSuccess: true,
             statusCode: response.statusCode,
             responseData: decodedResponse,
-            errorMessage: decodedResponse['data'] ?? "Something went wrong",
           );
-        } else {
+        }
+        else {
           return ResponseData(
             isSuccess: false,
             statusCode: response.statusCode,
             responseData: decodedResponse,
+            errorMessage: decodedResponse['data'] ?? 'Something went wrong',
           );
         }
-      } else {
+      }
+      else {
         return ResponseData(
           isSuccess: false,
           statusCode: response.statusCode,

@@ -1,3 +1,4 @@
+import 'dart:developer';
 import '../../data/models/user_profile_model.dart';
 import 'package:get/get.dart';
 import '../../data/services/network_caller.dart';
@@ -9,6 +10,8 @@ class ReadProfileDataController extends GetxController  {
   String _message = '';
   bool _isSuccess = true;
   bool _isProfileCompleted = false;
+
+  UserProfileModel profileModel = UserProfileModel();
 
   bool get inProgressStatus => _inProgress;
   String get message => _message;
@@ -25,11 +28,11 @@ class ReadProfileDataController extends GetxController  {
 
     if(response.isSuccess) {
       final profileData = response.responseData['data'];
-      if(profileData == null) {
+      if(profileData.isEmpty) {
         _isProfileCompleted = false;
       }
       else {
-        UserProfileModel profileModel = UserProfileModel.fromJson(profileData[0]);
+         profileModel = UserProfileModel.fromJson(profileData[0]);
         _isProfileCompleted = true;
       }
       update();
