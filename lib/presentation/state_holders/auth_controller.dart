@@ -16,6 +16,13 @@ class AuthController extends GetxController {
     userProfileModel = profile;
   }
 
+  Future<void> saveAuthUseToken(String t) async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    await sharedPreferences.setString('token', t);
+    token = t;
+    update();
+  }
+
   Future<void> updateUserInformation(UserProfileModel model) async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     await sharedPreferences.setString('profile', jsonEncode(model.toJson()));
@@ -46,12 +53,13 @@ class AuthController extends GetxController {
 
 
   Future<bool> isLoggedIn() async {
-    initializeUserCache();
+    //initializeUserCache();
+    print(token);
     return token != null;
     if(token != null) {
       return true;
     }
-    return false;
+    return true;
   }
 
 

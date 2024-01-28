@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommer_by_ostad/presentation/state_holders/auth_controller.dart';
+import '../main_bottom_nav_screen.dart';
 import 'verify_email_screen.dart';
 import 'package:get/get.dart';
 import '../../widgets/app_logo.dart';
@@ -14,13 +16,23 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   void initState() {
-    super.initState();
     moveToNextScreen();
+    super.initState();
   }
 
   void moveToNextScreen() async {
-    await Future.delayed(const Duration(seconds: 2));
-    Get.offAll(const VerifyEmailScreen());
+    await Future.delayed(const Duration(seconds: 1));
+    final bool isLoggedIn = await Get.find<AuthController>().isLoggedIn();
+
+    String token = Get.find<AuthController>().token.toString();
+
+    print(token);
+    if(isLoggedIn) {
+      Get.offAll(const MainBottomNavScreen());
+    }
+    else {
+      Get.offAll(const VerifyEmailScreen());
+    }
   }
 
   @override

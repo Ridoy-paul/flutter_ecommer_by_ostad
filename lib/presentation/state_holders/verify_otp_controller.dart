@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'read_profile_data_controller.dart';
 import 'auth_controller.dart';
 import 'package:get/get.dart';
@@ -32,7 +31,8 @@ class VerifyOTPController extends GetxController {
       if(result) {
         _shouldNavigateCompleteProfile = Get.find<ReadProfileDataController>().isProfileCompleted == false;
         if(_shouldNavigateCompleteProfile == false) {
-          await Get.find<AuthController>().saveAuthUserDetails(token, Get.find<ReadProfileDataController>().profileModel);
+          //await Get.find<AuthController>().saveAuthUserDetails(token, Get.find<ReadProfileDataController>().profileModel);
+          await Get.find<AuthController>().saveAuthUseToken(token);
         }
       }
       else {
@@ -41,12 +41,12 @@ class VerifyOTPController extends GetxController {
         return false;
       }
 
-      _message = "Verification Success.";
+      _message = "Wrong OTP! Please Try Again.";
       update();
       return true;
     }
     else {
-      _message = response.errorMessage!;
+      _message = response.errorMessage;
       _isSuccess = false;
       update();
       return false;
