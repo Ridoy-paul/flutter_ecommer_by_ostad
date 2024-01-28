@@ -3,6 +3,8 @@ class Urls {
   static userLoginEmailVerification(String email) => '$_baseUrl/UserLogin/$email';
   static userLoginOTPVerification(String email, int otp) => '$_baseUrl/VerifyLogin/$email/$otp';
   static const String userReadProfileInfo = '$_baseUrl/ReadProfile';
+  static const String createProfile = '$_baseUrl/CreateProfile';
+
 
 
 }

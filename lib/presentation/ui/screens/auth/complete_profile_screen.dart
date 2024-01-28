@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommer_by_ostad/data/utility/helpers.dart';
+import 'package:flutter_ecommer_by_ostad/presentation/state_holders/complete_profile_controller.dart';
+import 'package:flutter_ecommer_by_ostad/presentation/ui/utility/show_snack_message.dart';
+import '../../../../data/utility/helpers.dart';
 import '../main_bottom_nav_screen.dart';
 import '../../widgets/app_logo.dart';
 import 'package:get/get.dart';
@@ -12,6 +14,8 @@ class CompleteProfileScreen extends StatefulWidget {
 }
 
 class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
+  final CompleteProfileController _completeProfileController = Get.find<
+      CompleteProfileController>();
 
   final TextEditingController _firstNameTEController = TextEditingController();
   final TextEditingController _lastNameTEController = TextEditingController();
@@ -35,13 +39,20 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                     SizedBox(height: Get.height * .02,),
                     const AppLogoWidget(),
                     const SizedBox(height: 16,),
-                    Text("Complete Profile", style: Theme.of(context).textTheme.titleLarge,),
+                    Text("Complete Profile", style: Theme
+                        .of(context)
+                        .textTheme
+                        .titleLarge,),
                     const SizedBox(height: 5,),
-                    Text("Get started with us with your details", style: Theme.of(context).textTheme.bodyLarge,),
+                    Text("Get started with us with your details", style: Theme
+                        .of(context)
+                        .textTheme
+                        .bodyLarge,),
                     const SizedBox(height: 16,),
                     TextFormField(
                       controller: _firstNameTEController,
-                      validator: (value) => inputValidate(value, "Enter First Name"),
+                      validator: (value) =>
+                          inputValidate(value, "Enter First Name"),
                       decoration: const InputDecoration(
                         hintText: 'First Name',
                       ),
@@ -49,7 +60,8 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                     const SizedBox(height: 8,),
                     TextFormField(
                       controller: _lastNameTEController,
-                      validator: (value) => inputValidate(value, "Enter Last Name"),
+                      validator: (value) =>
+                          inputValidate(value, "Enter Last Name"),
                       decoration: const InputDecoration(
                         hintText: 'Last Name',
                       ),
@@ -57,7 +69,8 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                     const SizedBox(height: 8,),
                     TextFormField(
                       controller: _mobileNameTEController,
-                      validator: (value) => inputValidate(value, "Enter Mobile Number"),
+                      validator: (value) =>
+                          inputValidate(value, "Enter Mobile Number"),
                       decoration: const InputDecoration(
                         hintText: 'Mobile',
                       ),
@@ -66,7 +79,8 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                     const SizedBox(height: 8,),
                     TextFormField(
                       controller: _cityNameTEController,
-                      validator: (value) => inputValidate(value, "Enter Your City Name"),
+                      validator: (value) =>
+                          inputValidate(value, "Enter Your City Name"),
                       decoration: const InputDecoration(
                         hintText: 'City',
                       ),
@@ -74,7 +88,8 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                     const SizedBox(height: 8,),
                     TextFormField(
                       controller: _shippingAddressNameTEController,
-                      validator: (value) => inputValidate(value, "Enter Shipping Address"),
+                      validator: (value) =>
+                          inputValidate(value, "Enter Shipping Address"),
                       decoration: const InputDecoration(
                         hintText: 'Shipping Address',
                       ),
@@ -85,12 +100,16 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
 
                     SizedBox(
                       width: double.infinity,
-                      child: ElevatedButton(
-                        onPressed: () {
-                          Get.offAll(() => const MainBottomNavScreen());
-                        },
-                        child: const Text("Next"),
-                      ),
+                      child: GetBuilder<CompleteProfileController>(builder: (controller) {
+                        return Visibility(
+                          visible: !controller.inProgressStatus,
+                          replacement: circleProgressIndicatorShow(),
+                          child: ElevatedButton(
+                            onPressed: submitCompleteProfile,
+                            child: const Text("Complete Profile"),
+                          ),
+                        );
+                      }),
                     )
                   ],
                 ),
@@ -100,6 +119,27 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
         ),
       ),
     );
+  }
+
+  Future<void> submitCompleteProfile() async {
+    if (!_formKey.currentState!.validate()) {
+      return;
+    }
+
+    final bool response = await _completeProfileController.createUserProfile(
+      _firstNameTEController.text,
+      _lastNameTEController.text,
+      int.parse(_mobileNameTEController.text),
+      _cityNameTEController.text,
+      _shippingAddressNameTEController.text,
+    );
+    if (response) {
+      Get.offAll(() => const MainBottomNavScreen());
+      showSnackMessage("Profile Info Saved.",);
+    }
+    else {
+      showSnackMessage(_completeProfileController.message, false);
+    }
   }
 
 

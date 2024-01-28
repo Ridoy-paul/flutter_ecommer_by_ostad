@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommer_by_ostad/presentation/state_holders/auth_controller.dart';
+import 'package:flutter_ecommer_by_ostad/presentation/ui/screens/auth/complete_profile_screen.dart';
 import 'package:flutter_ecommer_by_ostad/presentation/ui/screens/auth/splash_screen.dart';
 import 'package:flutter_ecommer_by_ostad/presentation/ui/screens/auth/verify_email_screen.dart';
 import 'package:flutter_ecommer_by_ostad/presentation/ui/screens/create_product_review_screen.dart';
@@ -136,8 +137,9 @@ class _HomeScreenState extends State<HomeScreen> {
       actions: [
         CircleIconButton(
           onTap: () async {
-            await Get.find<AuthController>().clearAuthData();
-            Get.offAll(() => const VerifyEmailScreen());
+            //await Get.find<AuthController>().clearAuthData();
+            //Get.offAll(() => const VerifyEmailScreen());
+            Get.offAll(() => const CompleteProfileScreen());
           },
           iconData: Icons.person_outline,
         ),

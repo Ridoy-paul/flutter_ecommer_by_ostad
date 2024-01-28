@@ -61,26 +61,36 @@ class NetworkCaller  {
 
   Future<ResponseData> postRequest(String url, {Map<String, dynamic>? body}) async {
     log(url);
-    final response = await post(Uri.parse(url), body: jsonEncode(body));
+    final response = await post(
+      Uri.parse(url),
+      headers: {'token': token, 'Content-type': 'application/json'},
+      body: jsonEncode(body),
+    );
     log(response.statusCode.toString());
     log(response.body.toString());
 
-    if(response.statusCode == 200) {
+    if (response.statusCode == 200) {
       final decodedResponse = jsonDecode(response.body);
-      if(decodedResponse['msg'] == 'success') {
+      if (decodedResponse['msg'] == 'success') {
         return ResponseData(
           isSuccess: true,
           statusCode: response.statusCode,
           responseData: decodedResponse,
-          errorMessage: decodedResponse['data'] ?? "Something went wrong",
+        );
+      } else {
+        return ResponseData(
+          isSuccess: false,
+          statusCode: response.statusCode,
+          responseData: decodedResponse,
+          errorMessage: decodedResponse['data'] ?? 'Something went wrong',
         );
       }
-      else {
-        return ResponseData(isSuccess: false, statusCode: response.statusCode, responseData: decodedResponse);
-      }
-    }
-    else {
-      return ResponseData(isSuccess: false, statusCode: response.statusCode, responseData: '');
+    } else {
+      return ResponseData(
+        isSuccess: false,
+        statusCode: response.statusCode,
+        responseData: '',
+      );
     }
   }
 
