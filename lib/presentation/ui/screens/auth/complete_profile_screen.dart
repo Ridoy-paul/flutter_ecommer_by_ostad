@@ -141,7 +141,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
       showSnackMessage(_completeProfileController.message, false);
     }
   }
-  
+
   @override
   void dispose() {
     _firstNameTEController.dispose();

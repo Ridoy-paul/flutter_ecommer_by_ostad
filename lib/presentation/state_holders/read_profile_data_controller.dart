@@ -1,4 +1,3 @@
-import 'dart:developer';
 import '../../data/models/user_profile_model.dart';
 import 'package:get/get.dart';
 import '../../data/services/network_caller.dart';
@@ -39,7 +38,7 @@ class ReadProfileDataController extends GetxController  {
       return true;
     }
     else {
-      _message = response.errorMessage!;
+      _message = response.errorMessage;
       _isSuccess = false;
       update();
       return false;
