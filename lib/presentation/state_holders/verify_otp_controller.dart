@@ -26,12 +26,14 @@ class VerifyOTPController extends GetxController {
 
     if(response.isSuccess) {
       final token = response.responseData['data'];
-      await Get.find<AuthController>().saveAuthToken(token);
 
       await Future.delayed(const Duration(seconds: 5));
       final result = await Get.find<ReadProfileDataController>().readProfileInfo();
       if(result) {
         _shouldNavigateCompleteProfile = Get.find<ReadProfileDataController>().isProfileCompleted == false;
+        if(_shouldNavigateCompleteProfile == false) {
+          await Get.find<AuthController>().saveAuthUserDetails(token, Get.find<ReadProfileDataController>().profileModel);
+        }
       }
       else {
         _message = Get.find<ReadProfileDataController>().message;

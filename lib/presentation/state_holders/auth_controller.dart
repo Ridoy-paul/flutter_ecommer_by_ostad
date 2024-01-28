@@ -7,41 +7,48 @@ class AuthController extends GetxController {
   String? token;
   UserProfileModel? userProfileModel;
 
-
-  Future<void> saveAuthToken(String t) async {
+  Future<void> saveAuthUserDetails(String t, UserProfileModel profile) async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     await sharedPreferences.setString('token', t);
     token = t;
-    update();
-  }
 
-
-  Future<void> saveUserProfileInformation(UserProfileModel model) async {
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    await sharedPreferences.setString('userInfo', jsonEncode(model.toJson()));
-    userProfileModel = model;
-    update();
+    await sharedPreferences.setString('profile', jsonEncode(profile.toJson()));
+    userProfileModel = profile;
   }
 
   Future<void> updateUserInformation(UserProfileModel model) async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    await sharedPreferences.setString('userInfo', jsonEncode(model.toJson()));
+    await sharedPreferences.setString('profile', jsonEncode(model.toJson()));
     userProfileModel = model;
     update();
   }
 
   Future<void> initializeUserCache() async {
-    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    token = sharedPreferences.getString('token');
-    // userProfileModel = UserProfileModel.fromJson(jsonDecode(sharedPreferences.getString('userInfo') ?? '{}'));
-    update();
+    token = await _getToken();
+    userProfileModel = await _getProfile();
   }
 
-  Future<bool> checkAuthState() async {
+  Future<String?> _getToken() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-    String? token = sharedPreferences.getString('token');
+    return sharedPreferences.getString('token');
+  }
+
+  Future<UserProfileModel?> _getProfile() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    String? userProfile = sharedPreferences.getString('profile');
+    if(userProfile == null) {
+      return null;
+    }
+    else {
+      return UserProfileModel.fromJson(jsonDecode(userProfile));
+    }
+  }
+
+
+  Future<bool> isLoggedIn() async {
+    initializeUserCache();
+    return token != null;
     if(token != null) {
-      await initializeUserCache();
       return true;
     }
     return false;
