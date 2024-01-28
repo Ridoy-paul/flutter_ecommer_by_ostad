@@ -54,6 +54,11 @@ class AuthController extends GetxController {
     return token != null;
   }
 
+  Future<void> clearAuthData() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    await sharedPreferences.clear();
+  }
+
 
 
 }
