@@ -24,14 +24,11 @@ class _SplashScreenState extends State<SplashScreen> {
     await Future.delayed(const Duration(seconds: 1));
     final bool isLoggedIn = await Get.find<AuthController>().isLoggedIn();
 
-    String token = Get.find<AuthController>().token.toString();
-
-    print(token);
     if(isLoggedIn) {
-      Get.offAll(const MainBottomNavScreen());
+      Get.offAll(() => const MainBottomNavScreen());
     }
     else {
-      Get.offAll(const VerifyEmailScreen());
+      Get.offAll(() => const VerifyEmailScreen());
     }
   }
 
