@@ -61,11 +61,13 @@ class NetworkCaller  {
 
   Future<ResponseData> postRequest(String url, {Map<String, dynamic>? body}) async {
     log(url);
+
     final response = await post(
       Uri.parse(url),
       headers: {'token': token, 'Content-type': 'application/json'},
       body: jsonEncode(body),
     );
+
     log(response.statusCode.toString());
     log(response.body.toString());
 

@@ -127,11 +127,11 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
     }
 
     final bool response = await _completeProfileController.createUserProfile(
-      _firstNameTEController.text,
-      _lastNameTEController.text,
-      int.parse(_mobileNameTEController.text),
-      _cityNameTEController.text,
-      _shippingAddressNameTEController.text,
+      _firstNameTEController.text.trim(),
+      _lastNameTEController.text.trim(),
+      _mobileNameTEController.text.trim(),
+      _cityNameTEController.text.trim(),
+      _shippingAddressNameTEController.text.trim(),
     );
     if (response) {
       Get.offAll(() => const MainBottomNavScreen());
@@ -141,8 +141,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
       showSnackMessage(_completeProfileController.message, false);
     }
   }
-
-
+  
   @override
   void dispose() {
     _firstNameTEController.dispose();

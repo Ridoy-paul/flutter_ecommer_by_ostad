@@ -10,13 +10,13 @@ class CompleteProfileController extends GetxController  {
   String _message = '';
   bool _isSuccess = true;
 
-  UserProfileModel _profileModel = UserProfileModel();
+  UserProfileModel _profile = UserProfileModel();
 
   bool get inProgressStatus => _inProgress;
   String get message => _message;
   bool get isSuccess => _isSuccess;
 
-  Future<bool> createUserProfile(String firstName, String lastName, int mobile, String city, String address) async {
+  Future<bool> createUserProfile(String firstName, String lastName, String mobile, String city, String address) async {
     _inProgress = true;
     update();
 
@@ -36,9 +36,8 @@ class CompleteProfileController extends GetxController  {
     _inProgress = false;
 
     if(response.isSuccess) {
-      _profileModel = UserProfileModel.fromJson(response.responseData['data']);
-      await Get.find<AuthController>().saveAuthUserDetails(_profileModel);
-
+      _profile = UserProfileModel.fromJson(response.responseData['data']);
+      await Get.find<AuthController>().saveAuthUserDetails(_profile);
       update();
       return true;
     }
