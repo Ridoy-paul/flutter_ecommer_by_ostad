@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommer_by_ostad/presentation/state_holders/send_email_otp_controller.dart';
-import 'package:flutter_ecommer_by_ostad/presentation/state_holders/verify_otp_controller.dart';
-import 'package:flutter_ecommer_by_ostad/presentation/ui/screens/main_bottom_nav_screen.dart';
+import '../../../state_holders/send_email_otp_controller.dart';
+import '../../../state_holders/verify_otp_controller.dart';
+import '../main_bottom_nav_screen.dart';
 import '../../../state_holders/verify_otp_screen_resend_otp_controller.dart';
 import '../../../../data/utility/helpers.dart';
 import '../../utility/app_colors.dart';
