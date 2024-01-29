@@ -19,8 +19,8 @@ class CategoryListModel {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['msg'] = msg;
-    if (this.categoryList != null) {
-      data['data'] = this.categoryList!.map((v) => v.toJson()).toList();
+    if (categoryList != null) {
+      data['data'] = categoryList!.map((v) => v.toJson()).toList();
     }
     return data;
   }
