@@ -22,6 +22,5 @@ class ControllerBinder extends Bindings {
     Get.put(HomeSliderController());
     Get.put(CategoryListController());
 
-
   }
 }

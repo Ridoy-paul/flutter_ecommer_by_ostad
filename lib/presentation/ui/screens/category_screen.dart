@@ -43,7 +43,11 @@ class _CategoryScreenState extends State<CategoryScreen> {
                   crossAxisSpacing: 8
                 ),
                 itemBuilder: (context, index) {
-                  return FittedBox(child: CategoryItemWidget(categoryName: "Fish"));
+                  // return FittedBox(
+                  //   child: CategoryItemWidget(
+                  //     categoryName: "Fish",
+                  //   ),
+                  // );
                 }),
           ),
         ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommer_by_ostad/data/utility/helpers.dart';
+import 'package:flutter_ecommer_by_ostad/presentation/state_holders/category_list_controller.dart';
 import '../../state_holders/home_slider_controller.dart';
 import '../../state_holders/auth_controller.dart';
 import 'auth/complete_profile_screen.dart';
@@ -37,19 +38,21 @@ class _HomeScreenState extends State<HomeScreen> {
                 const SizedBox(height: 16,),
                 SizedBox(
                   height: 230,
-                  child: GetBuilder<HomeSliderController>(builder: (homeSliderController) {
-                    return Visibility(
-                      visible: !homeSliderController.inProgressStatus,
-                      replacement: circleProgressIndicatorShow(),
-                      child: HomeImageCarouselWidget(sliderList: homeSliderController.homeScreenSliderListModel.sliderList ?? [],),
-                    );
-                  }),
+                  child: GetBuilder<HomeSliderController>(
+                      builder: (homeSliderController) {
+                        return Visibility(
+                          visible: !homeSliderController.inProgressStatus,
+                          replacement: circleProgressIndicatorShow(),
+                          child: HomeImageCarouselWidget(
+                            sliderList: homeSliderController
+                                .homeScreenSliderListModel.sliderList ?? [],),
+                        );
+                      }),
                 ),
                 SectionTitleWidget(
                   title: "All Categories",
                   onTapSeeAll: () =>
-                      Get.find<MainBottomNavController>().changeIndex(1)
-                  ,
+                      Get.find<MainBottomNavController>().changeIndex(1),
                 ),
                 getCategoryLists,
                 SectionTitleWidget(title: "Popular", onTapSeeAll: () {
@@ -73,22 +76,29 @@ class _HomeScreenState extends State<HomeScreen> {
   SizedBox get getCategoryLists {
     return SizedBox(
       height: Get.height * .15,
-      child: ListView.separated(
-        itemCount: 10,
-        primary: false,
-        shrinkWrap: true,
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (context, index) {
-          return const CategoryItemWidget(
-            categoryName: 'Electronics',
-          );
-        },
-        separatorBuilder: (_, __) {
-          return const SizedBox(
-            width: 8,
-          );
-        },
-      ),
+      child: GetBuilder<CategoryListController>(
+          builder: (categoryListController) {
+            return Visibility(
+              visible: !categoryListController.inProgressStatus,
+              replacement: circleProgressIndicatorShow(),
+              child: ListView.separated(
+                itemCount: categoryListController.categoryListModel.categoryList?.length ?? 0,
+                primary: false,
+                shrinkWrap: true,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index) {
+                  return CategoryItemWidget(
+                    categoryItem: categoryListController.categoryListModel.categoryList![index],
+                  );
+                },
+                separatorBuilder: (_, __) {
+                  return const SizedBox(
+                    width: 8,
+                  );
+                },
+              ),
+            );
+          }),
     );
   }
 
