@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../../../data/utility/helpers.dart';
+import '../../state_holders/category_list_controller.dart';
 import '../../state_holders/main_bottom_nav_controller.dart';
 import '../widgets/category_item_widget.dart';
 import 'package:get/get.dart';
@@ -22,7 +24,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
         appBar: AppBar(
           backgroundColor: Colors.white,
           leading: IconButton(
-            onPressed: ()=> Get.find<MainBottomNavController>().backToHome(),
+            onPressed: () => Get.find<MainBottomNavController>().backToHome(),
             icon: const Icon(Icons.arrow_back_ios),
           ),
           title: const Text(
@@ -34,21 +36,29 @@ class _CategoryScreenState extends State<CategoryScreen> {
         body: SafeArea(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-            child: GridView.builder(
-                itemCount: 10,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 4,
-                  childAspectRatio: 1,
-                  mainAxisSpacing: 12,
-                  crossAxisSpacing: 8
+            child: GetBuilder<CategoryListController>(builder: (controller) {
+              return Visibility(
+                visible: !controller.inProgressStatus,
+                replacement: circleProgressIndicatorShow(),
+                child: GridView.builder(
+                  itemCount:
+                      controller.categoryListModel.categoryList?.length ?? 0,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 4,
+                      childAspectRatio: 1,
+                      mainAxisSpacing: 12,
+                      crossAxisSpacing: 8),
+                  itemBuilder: (context, index) {
+                    return FittedBox(
+                      child: CategoryItemWidget(
+                        categoryItem:
+                            controller.categoryListModel.categoryList![index],
+                      ),
+                    );
+                  },
                 ),
-                itemBuilder: (context, index) {
-                  // return FittedBox(
-                  //   child: CategoryItemWidget(
-                  //     categoryName: "Fish",
-                  //   ),
-                  // );
-                }),
+              );
+            }),
           ),
         ),
       ),
