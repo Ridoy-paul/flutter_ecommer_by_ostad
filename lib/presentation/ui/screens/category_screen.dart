@@ -33,32 +33,37 @@ class _CategoryScreenState extends State<CategoryScreen> {
           ),
           elevation: 4,
         ),
-        body: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-            child: GetBuilder<CategoryListController>(builder: (controller) {
-              return Visibility(
-                visible: !controller.inProgressStatus,
-                replacement: circleProgressIndicatorShow(),
-                child: GridView.builder(
-                  itemCount:
-                      controller.categoryListModel.categoryList?.length ?? 0,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 4,
-                      childAspectRatio: 1,
-                      mainAxisSpacing: 12,
-                      crossAxisSpacing: 8),
-                  itemBuilder: (context, index) {
-                    return FittedBox(
-                      child: CategoryItemWidget(
-                        categoryItem:
-                            controller.categoryListModel.categoryList![index],
-                      ),
-                    );
-                  },
-                ),
-              );
-            }),
+        body: RefreshIndicator(
+          onRefresh: () async {
+            Get.find<CategoryListController>().getCategoryList();
+          },
+          child: SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+              child: GetBuilder<CategoryListController>(builder: (controller) {
+                return Visibility(
+                  visible: !controller.inProgressStatus,
+                  replacement: circleProgressIndicatorShow(),
+                  child: GridView.builder(
+                    itemCount:
+                        controller.categoryListModel.categoryList?.length ?? 0,
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 4,
+                        childAspectRatio: 1,
+                        mainAxisSpacing: 12,
+                        crossAxisSpacing: 8),
+                    itemBuilder: (context, index) {
+                      return FittedBox(
+                        child: CategoryItemWidget(
+                          categoryItem:
+                              controller.categoryListModel.categoryList![index],
+                        ),
+                      );
+                    },
+                  ),
+                );
+              }),
+            ),
           ),
         ),
       ),
