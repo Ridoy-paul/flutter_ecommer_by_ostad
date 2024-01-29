@@ -64,7 +64,7 @@ class _HomeImageCarouselWidgetState extends State<HomeImageCarouselWidget> {
                         ),
                         Expanded(
                           child: Padding(
-                            padding: const EdgeInsets.only(top: 5, right: 8),
+                            padding: const EdgeInsets.only(top: 2, right: 2),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -74,9 +74,19 @@ class _HomeImageCarouselWidgetState extends State<HomeImageCarouselWidget> {
                                   maxLines: 3,
                                   overflow: TextOverflow.ellipsis,
                                   style: const TextStyle(
-                                      fontSize: 22,
+                                      fontSize: 16,
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Text(
+                                  slider.shortDes.toString() ?? '',
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: const TextStyle(
+                                    fontSize: 12,
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
                                   ),
                                 ),
                                 ElevatedButton(
@@ -84,7 +94,7 @@ class _HomeImageCarouselWidgetState extends State<HomeImageCarouselWidget> {
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor: Colors.white,
                                     fixedSize: const Size(130, 25),
-                                    padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                                    padding: const EdgeInsets.symmetric(vertical: 3, horizontal: 10),
                                   ),
                                   child: const FittedBox(
                                     child: Text(
