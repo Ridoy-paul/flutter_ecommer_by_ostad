@@ -58,8 +58,10 @@ class _HomeImageCarouselWidgetState extends State<HomeImageCarouselWidget> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
-                        // NetworkImage(slider.)
-                        Image.asset('assets/images/shoe.png', width: Get.width * .45,),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Image.network(slider.image ?? '', width: Get.width * .45,),
+                        ),
                         Expanded(
                           child: Padding(
                             padding: const EdgeInsets.only(top: 5, right: 8),
@@ -67,11 +69,11 @@ class _HomeImageCarouselWidgetState extends State<HomeImageCarouselWidget> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                const Text(
-                                  "Happy New Year Special Deal Save 30%",
+                                 Text(
+                                  slider.title.toString() ?? '',
                                   maxLines: 3,
                                   overflow: TextOverflow.ellipsis,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       fontSize: 22,
                                       color: Colors.white,
                                       fontWeight: FontWeight.bold,

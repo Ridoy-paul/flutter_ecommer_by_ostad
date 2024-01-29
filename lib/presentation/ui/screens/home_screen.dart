@@ -41,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     return Visibility(
                       visible: !homeSliderController.inProgressStatus,
                       replacement: circleProgressIndicatorShow(),
-                      child: const HomeImageCarouselWidget(sliderList: homeSliderController.homeScreenSliderListModel.sliderList ?? [],),
+                      child: HomeImageCarouselWidget(sliderList: homeSliderController.homeScreenSliderListModel.sliderList ?? [],),
                     );
                   }),
                 ),
