@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommer_by_ostad/data/utility/helpers.dart';
+import '../../state_holders/home_slider_controller.dart';
 import '../../state_holders/auth_controller.dart';
 import 'auth/complete_profile_screen.dart';
 import 'auth/verify_email_screen.dart';
@@ -19,6 +21,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,10 +35,20 @@ class _HomeScreenState extends State<HomeScreen> {
                 const SizedBox(height: 8,),
                 searchTextFormField,
                 const SizedBox(height: 16,),
-                const HomeImageCarouselWidget(),
+                SizedBox(
+                  height: 230,
+                  child: GetBuilder<HomeSliderController>(builder: (homeSliderController) {
+                    return Visibility(
+                      visible: !homeSliderController.inProgressStatus,
+                      replacement: circleProgressIndicatorShow(),
+                      child: const HomeImageCarouselWidget(sliderList: homeSliderController.homeScreenSliderListModel.sliderList ?? [],),
+                    );
+                  }),
+                ),
                 SectionTitleWidget(
                   title: "All Categories",
-                  onTapSeeAll: ()=> Get.find<MainBottomNavController>().changeIndex(1)
+                  onTapSeeAll: () =>
+                      Get.find<MainBottomNavController>().changeIndex(1)
                   ,
                 ),
                 getCategoryLists,
@@ -98,7 +111,6 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
-
 
 
   TextFormField get searchTextFormField {

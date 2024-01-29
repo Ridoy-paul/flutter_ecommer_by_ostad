@@ -2,16 +2,16 @@ import 'slider_list.dart';
 
 class HomeScreenSliderListModel {
   String? msg;
-  List<Slider>? sliderList;
+  List<SliderItem>? sliderList;
 
   HomeScreenSliderListModel({this.msg, this.sliderList});
 
   HomeScreenSliderListModel.fromJson(Map<String, dynamic> json) {
     msg = json['msg'];
     if (json['data'] != null) {
-      sliderList = <Slider>[];
+      sliderList = <SliderItem>[];
       json['data'].forEach((v) {
-        sliderList!.add(Slider.fromJson(v));
+        sliderList!.add(SliderItem.fromJson(v));
       });
     }
   }

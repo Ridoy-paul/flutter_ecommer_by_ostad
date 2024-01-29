@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../state_holders/home_slider_controller.dart';
 import '../../state_holders/main_bottom_nav_controller.dart';
 import 'cart_screen.dart';
 import 'category_screen.dart';
@@ -22,6 +23,12 @@ class _MainBottomNavScreenState extends State<MainBottomNavScreen> {
     CartScreen(),
     WishlistScreen(),
   ];
+
+  @override
+  void initState() {
+    super.initState();
+    Get.find<HomeSliderController>().getSliderList();
+  }
 
   @override
   Widget build(BuildContext context) {

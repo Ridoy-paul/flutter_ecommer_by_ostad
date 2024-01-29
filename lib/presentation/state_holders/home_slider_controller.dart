@@ -1,4 +1,4 @@
-import 'package:flutter_ecommer_by_ostad/data/models/home_screen_slider_list_model.dart';
+import '../../data/models/home_screen_slider_list_model.dart';
 import 'package:get/get.dart';
 import '../../data/services/network_caller.dart';
 import '../../data/services/response_data.dart';
@@ -26,16 +26,14 @@ class HomeSliderController extends GetxController {
     );
 
     _inProgress = false;
-
     if(response.isSuccess) {
-      update();
-      return true;
+      _homeScreenSliderListModel = HomeScreenSliderListModel.fromJson(response.responseData);
     }
     else {
       _message = response.errorMessage;
       _isSuccess = false;
-      update();
-      return false;
     }
+    update();
+    return _isSuccess;
   }
 }

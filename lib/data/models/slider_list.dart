@@ -1,4 +1,4 @@
-class Slider {
+class SliderItem {
   int? id;
   String? title;
   String? shortDes;
@@ -7,7 +7,7 @@ class Slider {
   String? createdAt;
   String? updatedAt;
 
-  Slider({
+  SliderItem({
     this.id,
     this.title,
     this.shortDes,
@@ -17,7 +17,7 @@ class Slider {
     this.updatedAt,
   });
 
-  Slider.fromJson(Map<String, dynamic> json) {
+  SliderItem.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     title = json['title'];
     shortDes = json['short_des'];

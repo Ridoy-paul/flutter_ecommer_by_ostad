@@ -1,15 +1,18 @@
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import '../../../../data/models/slider_list.dart';
 import 'package:get/get.dart';
 import '../../utility/app_colors.dart';
 
 class HomeImageCarouselWidget extends StatefulWidget {
   const HomeImageCarouselWidget({
     super.key, this.height,
+    required this.sliderList,
   });
 
   final double? height;
+  final List<SliderItem> sliderList;
 
   @override
   State<HomeImageCarouselWidget> createState() => _HomeImageCarouselWidgetState();
@@ -42,7 +45,7 @@ class _HomeImageCarouselWidgetState extends State<HomeImageCarouselWidget> {
             },
             scrollDirection: Axis.horizontal,
           ),
-          items: [1,2,3,4,5].map((i) {
+          items: widget.sliderList.map((slider) {
             return Builder(
               builder: (BuildContext context) {
                 return Container(
@@ -55,6 +58,7 @@ class _HomeImageCarouselWidgetState extends State<HomeImageCarouselWidget> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
+                        // NetworkImage(slider.)
                         Image.asset('assets/images/shoe.png', width: Get.width * .45,),
                         Expanded(
                           child: Padding(
@@ -107,7 +111,7 @@ class _HomeImageCarouselWidgetState extends State<HomeImageCarouselWidget> {
             return Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                for(int i = 0; i < 5; i++)
+                for(int i = 0; i < widget.sliderList.length; i++)
                   Container(
                     width: 16.0,
                     height: 16.0,

@@ -1,3 +1,4 @@
+import 'presentation/state_holders/home_slider_controller.dart';
 import 'presentation/state_holders/complete_profile_controller.dart';
 import 'presentation/state_holders/auth_controller.dart';
 import 'presentation/state_holders/read_profile_data_controller.dart';
@@ -17,5 +18,7 @@ class ControllerBinder extends Bindings {
     Get.put(ReadProfileDataController());
     Get.put(AuthController());
     Get.put(CompleteProfileController());
+    Get.put(HomeSliderController());
+
   }
 }
