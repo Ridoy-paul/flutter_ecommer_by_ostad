@@ -22,7 +22,7 @@ class PopularProductListController extends GetxController {
     update();
 
     final ResponseData response = await NetworkCaller().getRequest(
-      Urls.categoryList,
+      Urls.popularProductList,
     );
 
     _inProgress = false;

@@ -6,6 +6,8 @@ class Urls {
   static const String createProfile = '$_baseUrl/CreateProfile';
   static const String homeSliderList = '$_baseUrl/ListProductSlider';
   static const String categoryList = '$_baseUrl/CategoryList';
+  static const String popularProductList = '$_baseUrl/ListProductByRemark/Popular';
+
 
 
 
