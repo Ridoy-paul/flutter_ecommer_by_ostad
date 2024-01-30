@@ -1,4 +1,4 @@
-import '../../data/models/popular_product_model.dart';
+import '../../data/models/product_list_model.dart';
 import 'package:get/get.dart';
 import '../../data/services/network_caller.dart';
 import '../../data/services/response_data.dart';
@@ -9,9 +9,9 @@ class PopularProductListController extends GetxController {
   String _message = '';
   bool _isSuccess = true;
 
-  PopularProductModel _popularProductModel = PopularProductModel();
+  ProductListModel _popularProductModel = ProductListModel();
 
-  PopularProductModel get popularProductModel => _popularProductModel;
+  ProductListModel get popularProductModel => _popularProductModel;
 
   bool get inProgressStatus => _inProgress;
   String get message => _message;
@@ -27,7 +27,7 @@ class PopularProductListController extends GetxController {
 
     _inProgress = false;
     if(response.isSuccess) {
-      _popularProductModel = PopularProductModel.fromJson(response.responseData);
+      _popularProductModel = ProductListModel.fromJson(response.responseData);
     }
     else {
       _message = response.errorMessage;

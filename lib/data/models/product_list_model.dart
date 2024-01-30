@@ -1,12 +1,12 @@
 import 'product_item.dart';
 
-class PopularProductModel {
+class ProductListModel {
   String? msg;
   List<ProductItem>? productList;
 
-  PopularProductModel({this.msg, this.productList});
+  ProductListModel({this.msg, this.productList});
 
-  PopularProductModel.fromJson(Map<String, dynamic> json) {
+  ProductListModel.fromJson(Map<String, dynamic> json) {
     msg = json['msg'];
     if (json['data'] != null) {
       productList = <ProductItem>[];

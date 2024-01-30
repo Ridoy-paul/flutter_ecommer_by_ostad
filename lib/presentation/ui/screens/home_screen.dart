@@ -113,7 +113,7 @@ class _HomeScreenState extends State<HomeScreen> {
           visible: !popularProductController.inProgressStatus,
           replacement: circleProgressIndicatorShow(),
           child: ListView.separated(
-            itemCount: popularProductController.popularProductModel.productList!.length ?? 0,
+            itemCount: popularProductController.popularProductModel.productList?.length ?? 0,
             primary: false,
             shrinkWrap: true,
             scrollDirection: Axis.horizontal,
