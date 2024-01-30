@@ -1,3 +1,5 @@
+import 'product_brand_model.dart';
+
 class ProductItem {
   int? id;
   String? title;
@@ -13,7 +15,7 @@ class ProductItem {
   int? brandId;
   String? createdAt;
   String? updatedAt;
-  Brand? brand;
+  BrandModel? brand;
   Category? category;
 
   ProductItem({
@@ -50,7 +52,7 @@ class ProductItem {
     brandId = json['brand_id'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
-    brand = json['brand'] != null ? Brand.fromJson(json['brand']) : null;
+    brand = json['brand'] != null ? BrandModel.fromJson(json['brand']) : null;
     category = json['category'] != null
         ? Category.fromJson(json['category'])
         : null;
@@ -82,34 +84,6 @@ class ProductItem {
   }
 }
 
-class Brand {
-  int? id;
-  String? brandName;
-  String? brandImg;
-  String? createdAt;
-  String? updatedAt;
-
-  Brand(
-      {this.id, this.brandName, this.brandImg, this.createdAt, this.updatedAt});
-
-  Brand.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    brandName = json['brandName'];
-    brandImg = json['brandImg'];
-    createdAt = json['created_at'];
-    updatedAt = json['updated_at'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = id;
-    data['brandName'] = brandName;
-    data['brandImg'] = brandImg;
-    data['created_at'] = createdAt;
-    data['updated_at'] = updatedAt;
-    return data;
-  }
-}
 
 class Category {
   int? id;
