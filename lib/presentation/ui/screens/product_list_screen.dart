@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommer_by_ostad/data/utility/helpers.dart';
-import 'package:flutter_ecommer_by_ostad/presentation/state_holders/product_list_by_category_controller.dart';
+import '../../../data/utility/helpers.dart';
+import '../../state_holders/product_list_by_category_controller.dart';
+import '../widgets/no_result_found_widget.dart';
 import '../widgets/products/product_card_item.dart';
 import '../../state_holders/main_bottom_nav_controller.dart';
 import 'package:get/get.dart';
@@ -53,17 +54,25 @@ class _ProductListScreenState extends State<ProductListScreen> {
               return Visibility(
                 visible: !controller.inProgressStatus,
                 replacement: circleProgressIndicatorShow(),
-                child: GridView.builder(
-                    itemCount: controller.productListModel.productList?.length ?? 0,
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 3,
-                        childAspectRatio: 0.70,
-                        mainAxisSpacing: 2,
-                        crossAxisSpacing: 2
-                    ),
-                    itemBuilder: (context, index) {
-                      return  FittedBox(child: ProductCardItem(productItem: controller.productListModel.productList![index],),);
-                    }),
+                child:
+                    controller.productListModel.productList!.length > 0 ?
+                GridView.builder(
+                  itemCount:
+                      controller.productListModel.productList?.length ?? 0,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 3,
+                      childAspectRatio: 0.70,
+                      mainAxisSpacing: 2,
+                      crossAxisSpacing: 2),
+                  itemBuilder: (context, index) {
+                    return FittedBox(
+                      child: ProductCardItem(
+                        productItem:
+                            controller.productListModel.productList![index],
+                      ),
+                    );
+                  },
+                ) : const NoResultFoundWidget(),
               );
             }),
           ),
