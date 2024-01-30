@@ -15,7 +15,12 @@ class CategoryItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.to(()=> ProductListScreen(categoryTitle: categoryItem.categoryName.toString(),));
+        Get.to(()=>
+            ProductListScreen(
+            categoryTitle: categoryItem.categoryName.toString(),
+            categoryId: int.parse(categoryItem.id.toString()),
+          ),
+        );
       },
       child: Column(
         children: [

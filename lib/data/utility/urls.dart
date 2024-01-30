@@ -9,6 +9,8 @@ class Urls {
   static const String popularProductList = '$_baseUrl/ListProductByRemark/Popular';
   static const String specialProductList = '$_baseUrl/ListProductByRemark/Special';
   static const String newProductList = '$_baseUrl/ListProductByRemark/New';
+  static listProductByCategory(int categoryId) => '$_baseUrl/ListProductByCategory/$categoryId';
+
 
 
 
