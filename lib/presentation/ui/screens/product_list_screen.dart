@@ -45,7 +45,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
                     crossAxisSpacing: 2
                 ),
                 itemBuilder: (context, index) {
-                  return const FittedBox(child: ProductCardItem());
+                  //return const FittedBox(child: ProductCardItem());
                 }),
           ),
         ),

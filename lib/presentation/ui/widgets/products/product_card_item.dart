@@ -1,13 +1,17 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommer_by_ostad/presentation/ui/screens/product_details_screen.dart';
+import '../../../../data/models/product_item.dart';
+import '../../screens/product_details_screen.dart';
 import 'package:get/get.dart';
 import '../../utility/app_colors.dart';
 
 class ProductCardItem extends StatelessWidget {
-  const ProductCardItem({
+  ProductCardItem({
     super.key,
+    required this.productItem,
   });
+
+  ProductItem productItem;
 
   @override
   Widget build(BuildContext context) {
@@ -30,11 +34,11 @@ class ProductCardItem extends StatelessWidget {
                   topLeft: Radius.circular(16),
                   topRight: Radius.circular(16),
                 ),
-                child: Image.asset(
-                  'assets/images/shoe.png',
+                child: Image.network(
+                  productItem.image ?? '',
                   width: Get.width * .3,
                   height: 120,
-                  fit: BoxFit.cover,
+                  fit: BoxFit.scaleDown,
                 ),
               ),
               Padding(
@@ -43,7 +47,7 @@ class ProductCardItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "New year special shoe 30",
+                      productItem.title.toString() ?? '',
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
@@ -53,8 +57,8 @@ class ProductCardItem extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "\$120",
-                          style: TextStyle(
+                          "\$${productItem.price.toString() ?? ''}",
+                          style: const TextStyle(
                             fontSize: 12,
                             color: AppColors.primaryColor,
                             fontWeight: FontWeight.w600,
@@ -64,10 +68,10 @@ class ProductCardItem extends StatelessWidget {
                         Wrap(
                           crossAxisAlignment: WrapCrossAlignment.center,
                           children: [
-                            Icon(Icons.star, size: 12, color: Colors.amber,),
+                            const Icon(Icons.star, size: 12, color: Colors.amber,),
                             Text(
-                              "4.8",
-                              style: TextStyle(
+                              productItem.star.toString() ?? '',
+                              style: const TextStyle(
                                 fontSize: 12,
                                 fontWeight: FontWeight.w600,
                               ),
