@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_ecommer_by_ostad/data/utility/helpers.dart';
 import 'package:flutter_ecommer_by_ostad/presentation/state_holders/category_list_controller.dart';
 import 'package:flutter_ecommer_by_ostad/presentation/state_holders/popular_product_list_controller.dart';
+import 'package:flutter_ecommer_by_ostad/presentation/state_holders/special_product_list_controller.dart';
 import '../../state_holders/home_slider_controller.dart';
 import '../../state_holders/auth_controller.dart';
 import 'auth/complete_profile_screen.dart';
@@ -61,7 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 },),
                 getPopularProductsLists,
                 SectionTitleWidget(title: "Special", onTapSeeAll: () {},),
-                getProductsLists,
+                getSpecialProductsLists,
                 SectionTitleWidget(title: "New", onTapSeeAll: () {},),
                 getProductsLists,
                 const SizedBox(height: 10,),
@@ -130,6 +131,33 @@ class _HomeScreenState extends State<HomeScreen> {
       }),
     );
   }
+
+  SizedBox get getSpecialProductsLists {
+    return SizedBox(
+      height: Get.height * .24,
+      child: GetBuilder<SpecialProductListController>(builder: (specialProductController) {
+        return Visibility(
+          visible: !specialProductController.inProgressStatus,
+          replacement: circleProgressIndicatorShow(),
+          child: ListView.separated(
+            itemCount: specialProductController.popularProductModel.productList?.length ?? 0,
+            primary: false,
+            shrinkWrap: true,
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (context, index) {
+              return ProductCardItem(productItem: specialProductController.popularProductModel.productList![index],);
+            },
+            separatorBuilder: (_, __) {
+              return const SizedBox(
+                width: 8,
+              );
+            },
+          ),
+        );
+      }),
+    );
+  }
+
 
   SizedBox get getProductsLists {
     return SizedBox(

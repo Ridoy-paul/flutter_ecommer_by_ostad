@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommer_by_ostad/presentation/state_holders/category_list_controller.dart';
 import 'package:flutter_ecommer_by_ostad/presentation/state_holders/popular_product_list_controller.dart';
+import 'package:flutter_ecommer_by_ostad/presentation/state_holders/special_product_list_controller.dart';
 import '../../state_holders/home_slider_controller.dart';
 import '../../state_holders/main_bottom_nav_controller.dart';
 import 'cart_screen.dart';
@@ -32,6 +33,8 @@ class _MainBottomNavScreenState extends State<MainBottomNavScreen> {
     Get.find<HomeSliderController>().getSliderList();
     Get.find<CategoryListController>().getCategoryList();
     Get.find<PopularProductListController>().getProductList();
+    Get.find<SpecialProductListController>().getProductList();
+
 
   }
 
