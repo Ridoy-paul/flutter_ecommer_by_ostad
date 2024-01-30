@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommer_by_ostad/data/utility/helpers.dart';
 import 'package:flutter_ecommer_by_ostad/presentation/state_holders/category_list_controller.dart';
+import 'package:flutter_ecommer_by_ostad/presentation/state_holders/new_product_list_controller.dart';
 import 'package:flutter_ecommer_by_ostad/presentation/state_holders/popular_product_list_controller.dart';
 import 'package:flutter_ecommer_by_ostad/presentation/state_holders/special_product_list_controller.dart';
 import '../../state_holders/home_slider_controller.dart';
@@ -64,7 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 SectionTitleWidget(title: "Special", onTapSeeAll: () {},),
                 getSpecialProductsLists,
                 SectionTitleWidget(title: "New", onTapSeeAll: () {},),
-                getProductsLists,
+                getNewProductsLists,
                 const SizedBox(height: 10,),
 
               ],
@@ -158,27 +159,31 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-
-  SizedBox get getProductsLists {
+  SizedBox get getNewProductsLists {
     return SizedBox(
       height: Get.height * .24,
-      child: ListView.separated(
-        itemCount: 10,
-        primary: false,
-        shrinkWrap: true,
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (context, index) {
-          //return ProductCardItem();
-        },
-        separatorBuilder: (_, __) {
-          return const SizedBox(
-            width: 8,
-          );
-        },
-      ),
+      child: GetBuilder<NewProductListController>(builder: (newProductController) {
+        return Visibility(
+          visible: !newProductController.inProgressStatus,
+          replacement: circleProgressIndicatorShow(),
+          child: ListView.separated(
+            itemCount: newProductController.popularProductModel.productList?.length ?? 0,
+            primary: false,
+            shrinkWrap: true,
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (context, index) {
+              return ProductCardItem(productItem: newProductController.popularProductModel.productList![index],);
+            },
+            separatorBuilder: (_, __) {
+              return const SizedBox(
+                width: 8,
+              );
+            },
+          ),
+        );
+      }),
     );
   }
-
 
   TextFormField get searchTextFormField {
     return TextFormField(
