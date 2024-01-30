@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommer_by_ostad/data/utility/helpers.dart';
-import 'package:flutter_ecommer_by_ostad/presentation/state_holders/category_list_controller.dart';
-import 'package:flutter_ecommer_by_ostad/presentation/state_holders/new_product_list_controller.dart';
-import 'package:flutter_ecommer_by_ostad/presentation/state_holders/popular_product_list_controller.dart';
-import 'package:flutter_ecommer_by_ostad/presentation/state_holders/special_product_list_controller.dart';
+import '../../../data/utility/helpers.dart';
+import '../../state_holders/category_list_controller.dart';
+import '../../state_holders/new_product_list_controller.dart';
+import '../../state_holders/popular_product_list_controller.dart';
+import '../../state_holders/special_product_list_controller.dart';
 import '../../state_holders/home_slider_controller.dart';
 import '../../state_holders/auth_controller.dart';
 import 'auth/complete_profile_screen.dart';
