@@ -47,34 +47,41 @@ class _ProductListScreenState extends State<ProductListScreen> {
           ),
           elevation: 4,
         ),
-        body: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-            child: GetBuilder<ProductListByCategoryController>(builder: (controller) {
-              return Visibility(
-                visible: !controller.inProgressStatus,
-                replacement: circleProgressIndicatorShow(),
-                child:
-                    controller.productListModel.productList!.length > 0 ?
-                GridView.builder(
-                  itemCount:
-                      controller.productListModel.productList?.length ?? 0,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 3,
-                      childAspectRatio: 0.70,
-                      mainAxisSpacing: 2,
-                      crossAxisSpacing: 2),
-                  itemBuilder: (context, index) {
-                    return FittedBox(
-                      child: ProductCardItem(
-                        productItem:
-                            controller.productListModel.productList![index],
-                      ),
-                    );
-                  },
-                ) : const NoResultFoundWidget(),
-              );
-            }),
+        body: RefreshIndicator(
+          onRefresh: () async {
+            if(widget.categoryId != null) {
+              Get.find<ProductListByCategoryController>().getProductList(widget.categoryId!);
+            }
+          },
+          child: SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+              child: GetBuilder<ProductListByCategoryController>(builder: (controller) {
+                return Visibility(
+                  visible: !controller.inProgressStatus,
+                  replacement: circleProgressIndicatorShow(),
+                  child:
+                      controller.productListModel.productList!.isNotEmpty ?
+                  GridView.builder(
+                    itemCount:
+                        controller.productListModel.productList?.length ?? 0,
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 3,
+                        childAspectRatio: 0.70,
+                        mainAxisSpacing: 2,
+                        crossAxisSpacing: 2),
+                    itemBuilder: (context, index) {
+                      return FittedBox(
+                        child: ProductCardItem(
+                          productItem:
+                              controller.productListModel.productList![index],
+                        ),
+                      );
+                    },
+                  ) : const NoResultFoundWidget(),
+                );
+              }),
+            ),
           ),
         ),
       ),
