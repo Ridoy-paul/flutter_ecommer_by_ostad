@@ -66,7 +66,7 @@ class _VerifyOTPScreenState extends State<VerifyOTPScreen> {
                       validator: (value) =>
                           inputValidate(
                               value, "Enter 4 digit verification code!"),
-                      length: 4,
+                      length: 6,
                       obscureText: false,
                       animationType: AnimationType.fade,
                       backgroundColor: AppColors.transparentColor,
