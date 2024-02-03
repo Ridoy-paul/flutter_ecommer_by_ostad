@@ -70,10 +70,10 @@ class _HomeImageCarouselWidgetState extends State<HomeImageCarouselWidget> {
                             ),
                           ),
                           Container(
-                            padding: const EdgeInsets.all(8.0),
-                            alignment: Alignment.centerLeft,
+                            padding: const EdgeInsets.symmetric(vertical: 3, horizontal: 8),
+                            alignment: Alignment.topLeft,
                             child: SizedBox(
-                              width: Get.width * .45,
+                              width: Get.width * .48,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -84,7 +84,7 @@ class _HomeImageCarouselWidgetState extends State<HomeImageCarouselWidget> {
                                     overflow: TextOverflow.ellipsis,
                                     style: const TextStyle(
                                       fontSize: 18,
-                                      color: Colors.black54,
+                                      color: AppColors.primaryColor,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
@@ -99,7 +99,7 @@ class _HomeImageCarouselWidgetState extends State<HomeImageCarouselWidget> {
                                     ),
                                   ),
                                   SizedBox(
-                                    height: 15,
+                                    height: 18,
                                     child: ElevatedButton(
                                       onPressed: () {
                                         Get.to(() => ProductDetailsScreen());
