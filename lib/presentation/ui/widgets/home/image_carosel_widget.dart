@@ -1,7 +1,7 @@
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommer_by_ostad/presentation/ui/screens/product_details_screen.dart';
+import '../../screens/product_details_screen.dart';
 import '../../../../data/models/slider_list.dart';
 import 'package:get/get.dart';
 import '../../utility/app_colors.dart';
