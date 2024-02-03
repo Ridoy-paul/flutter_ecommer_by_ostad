@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'package:flutter_ecommer_by_ostad/presentation/ui/screens/auth/verify_email_screen.dart';
+
 import '../../data/models/user_profile_model.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -57,6 +59,12 @@ class AuthController extends GetxController {
   Future<void> clearAuthData() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     await sharedPreferences.clear();
+    token = null;
+  }
+  
+  Future<void> goToLogin() async {
+    await clearAuthData();
+    Get.to(() => const VerifyEmailScreen());
   }
 
 
