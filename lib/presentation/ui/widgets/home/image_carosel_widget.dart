@@ -29,7 +29,7 @@ class _HomeImageCarouselWidgetState extends State<HomeImageCarouselWidget> {
       children: [
         CarouselSlider(
           options: CarouselOptions(
-            height: widget.height ?? 140,
+            height: widget.height ?? 110,
             aspectRatio: 16/9,
             viewportFraction: 1,
             initialPage: 0,
@@ -72,8 +72,8 @@ class _HomeImageCarouselWidgetState extends State<HomeImageCarouselWidget> {
                           Container(
                             padding: const EdgeInsets.all(8.0),
                             alignment: Alignment.centerLeft,
-                            child: Padding(
-                              padding: const EdgeInsets.only(top: 2, right: 2),
+                            child: SizedBox(
+                              width: Get.width * .45,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -83,7 +83,7 @@ class _HomeImageCarouselWidgetState extends State<HomeImageCarouselWidget> {
                                     maxLines: 3,
                                     overflow: TextOverflow.ellipsis,
                                     style: const TextStyle(
-                                      fontSize: 16,
+                                      fontSize: 18,
                                       color: Colors.black54,
                                       fontWeight: FontWeight.bold,
                                     ),
@@ -98,25 +98,28 @@ class _HomeImageCarouselWidgetState extends State<HomeImageCarouselWidget> {
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                                  // ElevatedButton(
-                                  //   onPressed: () {
-                                  //     Get.to(() => ProductDetailsScreen());
-                                  //   },
-                                  //   style: ElevatedButton.styleFrom(
-                                  //     backgroundColor: AppColors.primaryColor,
-                                  //     fixedSize: const Size(130, 1),
-                                  //     padding: const EdgeInsets.symmetric(vertical: 1, horizontal: 10),
-                                  //   ),
-                                  //   child: const FittedBox(
-                                  //     child: Text(
-                                  //       "Buy Now",
-                                  //       style: TextStyle(
-                                  //         color: Colors.white,
-                                  //         fontSize: 8
-                                  //       ),
-                                  //     ),
-                                  //   ),
-                                  // )
+                                  SizedBox(
+                                    height: 15,
+                                    child: ElevatedButton(
+                                      onPressed: () {
+                                        Get.to(() => ProductDetailsScreen());
+                                      },
+                                      style: ElevatedButton.styleFrom(
+                                        backgroundColor: AppColors.primaryColor,
+                                        fixedSize: const Size(100, 1),
+                                        padding: const EdgeInsets.symmetric(vertical: 1, horizontal: 10),
+                                      ),
+                                      child: const FittedBox(
+                                        child: Text(
+                                          "Buy Now",
+                                          style: TextStyle(
+                                            color: Colors.white,
+                                            fontSize: 14
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  )
                                 ],
                               ),
                             ),
@@ -124,67 +127,6 @@ class _HomeImageCarouselWidgetState extends State<HomeImageCarouselWidget> {
                         ],
                       ),
                     ),
-                    /*
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Image.network(slider.image ?? '', width: Get.width * .45,),
-                        ),
-                        Expanded(
-                          child: Padding(
-                            padding: const EdgeInsets.only(top: 2, right: 2),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                 Text(
-                                  slider.title.toString() ?? '',
-                                  maxLines: 3,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: const TextStyle(
-                                      fontSize: 16,
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                Text(
-                                  slider.shortDes.toString() ?? '',
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: const TextStyle(
-                                    fontSize: 12,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                ElevatedButton(
-                                  onPressed: () {
-                                    Get.to(() => ProductDetailsScreen());
-                                  },
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: Colors.white,
-                                    fixedSize: const Size(130, 25),
-                                    padding: const EdgeInsets.symmetric(vertical: 3, horizontal: 10),
-                                  ),
-                                  child: const FittedBox(
-                                    child: Text(
-                                      "Buy Now",
-                                      style: TextStyle(
-                                          color: AppColors.primaryColor,
-                                      ),
-                                    ),
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                        )
-
-                      ],
-                    ),
-                  */
                 );
               },
             );
@@ -198,8 +140,8 @@ class _HomeImageCarouselWidgetState extends State<HomeImageCarouselWidget> {
               children: [
                 for(int i = 0; i < widget.sliderList.length; i++)
                   Container(
-                    width: 16.0,
-                    height: 16.0,
+                    width: 12.0,
+                    height: 12.0,
                     margin: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
