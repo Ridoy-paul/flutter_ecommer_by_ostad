@@ -56,15 +56,16 @@ class _ProductListScreenState extends State<ProductListScreen> {
           child: SafeArea(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-              child: GetBuilder<ProductListByCategoryController>(builder: (controller) {
+              child: GetBuilder<ProductListByCategoryController>(builder: (productListByCategoryController) {
                 return Visibility(
-                  visible: !controller.inProgressStatus,
+                  visible: !productListByCategoryController.inProgressStatus,
                   replacement: circleProgressIndicatorShow(),
                   child: Visibility(
                     replacement: const NoResultFoundWidget(),
-                    visible: controller.productListModel.productList!.isNotEmpty,
+                    visible: productListByCategoryController.productListModel.productList != null &&
+                        productListByCategoryController.productListModel.productList!.isNotEmpty,
                     child: GridView.builder(
-                      itemCount: controller.productListModel.productList?.length ?? 0,
+                      itemCount: productListByCategoryController.productListModel.productList?.length ?? 0,
                       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 3,
                         childAspectRatio: 0.70,
@@ -74,7 +75,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
                       itemBuilder: (context, index) {
                         return FittedBox(
                           child: ProductCardItem(
-                            productItem: controller.productListModel.productList![index],
+                            productItem: productListByCategoryController.productListModel.productList![index],
                           ),
                         );
                       },
