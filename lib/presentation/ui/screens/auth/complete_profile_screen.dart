@@ -52,20 +52,15 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                     const SizedBox(height: 16,),
                     TextFormField(
                       controller: _firstNameTEController,
-                      validator: (value) =>
-                          inputValidate(value, "Enter First Name"),
-                      decoration: const InputDecoration(
-                        hintText: 'First Name',
-                      ),
+                      validator: (value) => inputValidate(value, "Enter First Name"),
+                      decoration: inputDecorationParams("Full Name"),
                     ),
                     const SizedBox(height: 8,),
                     TextFormField(
                       controller: _lastNameTEController,
-                      validator: (value) =>
-                          inputValidate(value, "Enter Last Name"),
-                      decoration: const InputDecoration(
-                        hintText: 'Last Name',
-                      ),
+                      validator: (value) => inputValidate(value, "Enter Last Name"),
+                      decoration: inputDecorationParams("Full Name"),
+                      
                     ),
                     const SizedBox(height: 8,),
                     TextFormField(
@@ -122,17 +117,23 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
     );
   }
 
+  InputDecoration inputDecorationParams(String inputLabelText) {
+    return InputDecoration(
+      labelText: inputLabelText,
+    );
+  }
+
   Future<void> submitCompleteProfile() async {
     if (!_formKey.currentState!.validate()) {
       return;
     }
 
     final createProfileParamsInput = CreateProfileParams(
-      firstName: _firstNameTEController.text.trim(),
-      lastName: _lastNameTEController.text.trim(),
-      mobile: _mobileNameTEController.text.trim(),
-      city: _cityNameTEController.text.trim(),
-      address: _shippingAddressNameTEController.text.trim(),
+      // firstName: _firstNameTEController.text.trim(),
+      // lastName: _lastNameTEController.text.trim(),
+      // mobile: _mobileNameTEController.text.trim(),
+      // city: _cityNameTEController.text.trim(),
+      // address: _shippingAddressNameTEController.text.trim(),
     );
 
     final bool response = await _completeProfileController.createUserProfile(createProfileParamsInput);

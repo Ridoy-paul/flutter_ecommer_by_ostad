@@ -12,6 +12,10 @@ ThemeData lightThemeData = ThemeData(
     ///Input Decoration Theme Style
     inputDecorationTheme: InputDecorationTheme(
       contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      labelStyle: const TextStyle(
+        color: AppColors.lightGray,
+        fontWeight: FontWeight.w400,
+      ),
       hintStyle: const TextStyle(
         color: AppColors.lightGray,
         fontWeight: FontWeight.w400,
