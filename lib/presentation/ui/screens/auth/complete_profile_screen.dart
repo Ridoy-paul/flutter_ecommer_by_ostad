@@ -204,26 +204,23 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                 "Shipping Info.",
                 style: TextStyle(
                   color: AppColors.primaryColor,
-                  fontSize: 18,
+                  fontSize: 22,
                   fontWeight: FontWeight.w500,
                 ),
               ),
               Row(
-                children: <Widget>[
+                children: [
                   Checkbox(
-                    value: false,
-                    onChanged: (bool? value) {
-                      // setState(() {
-                      //   this.value = value;
-                      // },);
+                    value: true,
+                    onChanged: (bool? newValue) {
+                      setState(() {
+                        //isChecked = newValue ?? false;
+                      });
                     },
                   ),
-                  TextButton(
-                    onPressed: () {},
-                    child: const Text(
-                      'Same as profile?',
-                      style: TextStyle(fontSize: 17.0),
-                    ),
+                  const Text(
+                    'Same as Profile Information?',
+                    style: TextStyle(fontSize: 16),
                   ),
                 ],
               ),
