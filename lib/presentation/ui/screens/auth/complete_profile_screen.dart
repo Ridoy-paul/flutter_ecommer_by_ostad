@@ -15,8 +15,7 @@ class CompleteProfileScreen extends StatefulWidget {
 }
 
 class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
-  final CompleteProfileController _completeProfileController = Get.find<
-      CompleteProfileController>();
+  final CompleteProfileController _completeProfileController = Get.find<CompleteProfileController>();
 
   final TextEditingController _customerNameTEController = TextEditingController();
   final TextEditingController _lastNameTEController = TextEditingController();
@@ -110,6 +109,53 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                         ),
                       ],
                     ),
+                    const SizedBox(height: 12,),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: DropdownButtonFormField<String>(
+                            decoration: const InputDecoration(
+                              hintText: 'Country',
+                              border: OutlineInputBorder(),
+                            ),
+                            value: dropdownValue,
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                dropdownValue = newValue!;
+                              });
+                            },
+                            items: _countries.map<DropdownMenuItem<String>>((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text(value),
+                              );
+                            }).toList(),
+                          ),
+                        ),
+                        const SizedBox(width: 5,),
+                        Expanded(
+                          child: DropdownButtonFormField<String>(
+                            decoration: const InputDecoration(
+                              hintText: 'State',
+                              border: OutlineInputBorder(),
+                            ),
+                            value: dropdownValue,
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                dropdownValue = newValue!;
+                              });
+                            },
+                            items: _countries.map<DropdownMenuItem<String>>((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text(value),
+                              );
+                            }).toList(),
+                          ),
+                        ),
+                      ],
+                    ),
+
 
 
                     const SizedBox(height: 12,),
