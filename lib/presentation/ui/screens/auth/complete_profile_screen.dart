@@ -18,7 +18,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
   final CompleteProfileController _completeProfileController = Get.find<
       CompleteProfileController>();
 
-  final TextEditingController _firstNameTEController = TextEditingController();
+  final TextEditingController _customerNameTEController = TextEditingController();
   final TextEditingController _lastNameTEController = TextEditingController();
   final TextEditingController _mobileNameTEController = TextEditingController();
   final TextEditingController _cityNameTEController = TextEditingController();
@@ -51,18 +51,18 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                         .bodyLarge,),
                     const SizedBox(height: 16,),
                     TextFormField(
-                      controller: _firstNameTEController,
-                      validator: (value) => inputValidate(value, "Enter First Name"),
+                      controller: _customerNameTEController,
+                      validator: (value) => inputValidate(value, "Enter Full Name"),
                       decoration: inputDecorationParams("Full Name"),
                     ),
-                    const SizedBox(height: 8,),
+                    const SizedBox(height: 12,),
                     TextFormField(
                       controller: _lastNameTEController,
                       validator: (value) => inputValidate(value, "Enter Last Name"),
                       decoration: inputDecorationParams("Full Name"),
-                      
+
                     ),
-                    const SizedBox(height: 8,),
+                    const SizedBox(height: 12,),
                     TextFormField(
                       controller: _mobileNameTEController,
                       validator: (value) =>
@@ -72,7 +72,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                       ),
                       keyboardType: TextInputType.number,
                     ),
-                    const SizedBox(height: 8,),
+                    const SizedBox(height: 12,),
                     TextFormField(
                       controller: _cityNameTEController,
                       validator: (value) =>
@@ -81,7 +81,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                         hintText: 'City',
                       ),
                     ),
-                    const SizedBox(height: 8,),
+                    const SizedBox(height: 12,),
                     TextFormField(
                       controller: _shippingAddressNameTEController,
                       validator: (value) =>
@@ -92,7 +92,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                       keyboardType: TextInputType.multiline,
                       maxLines: 3,
                     ),
-                    const SizedBox(height: 8,),
+                    const SizedBox(height: 12,),
 
                     SizedBox(
                       width: double.infinity,
@@ -149,7 +149,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
 
   @override
   void dispose() {
-    _firstNameTEController.dispose();
+    _customerNameTEController.dispose();
     _lastNameTEController.dispose();
     _mobileNameTEController.dispose();
     _cityNameTEController.dispose();
