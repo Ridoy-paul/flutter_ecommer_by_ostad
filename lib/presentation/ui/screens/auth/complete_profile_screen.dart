@@ -193,6 +193,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
     return SizedBox(
       width: double.infinity,
       child: Card(
+        color: Colors.white,
         elevation: 4,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -200,12 +201,31 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text(
-                "Shipping Information.",
+                "Shipping Info.",
                 style: TextStyle(
                   color: AppColors.primaryColor,
-                  fontSize: 16,
+                  fontSize: 18,
                   fontWeight: FontWeight.w500,
                 ),
+              ),
+              Row(
+                children: <Widget>[
+                  Checkbox(
+                    value: false,
+                    onChanged: (bool? value) {
+                      // setState(() {
+                      //   this.value = value;
+                      // },);
+                    },
+                  ),
+                  TextButton(
+                    onPressed: () {},
+                    child: const Text(
+                      'Same as profile?',
+                      style: TextStyle(fontSize: 17.0),
+                    ),
+                  ),
+                ],
               ),
               const SizedBox(
                 height: 12,
