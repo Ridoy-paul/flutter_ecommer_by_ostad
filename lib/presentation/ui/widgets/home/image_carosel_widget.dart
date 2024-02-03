@@ -29,7 +29,7 @@ class _HomeImageCarouselWidgetState extends State<HomeImageCarouselWidget> {
       children: [
         CarouselSlider(
           options: CarouselOptions(
-            height: widget.height ?? 180,
+            height: widget.height ?? 110,
             aspectRatio: 16/9,
             viewportFraction: 1,
             initialPage: 0,
@@ -56,6 +56,31 @@ class _HomeImageCarouselWidgetState extends State<HomeImageCarouselWidget> {
                       color: AppColors.primaryColor,
                       borderRadius: BorderRadius.circular(8),
                     ),
+                    child: SizedBox(
+                      width: double.infinity,
+                      height: 150,
+                      child: Stack(
+                        children: <Widget>[
+                          Container(
+                            width: double.infinity,
+                            height: double.infinity,
+                            color: Colors.white,
+                            child: FittedBox(
+                              child: Image.network(slider.image ?? '', width: Get.width * .45,),
+                            ),
+                          ),
+                          Container(
+                            padding: const EdgeInsets.all(5.0),
+                            alignment: Alignment.topLeft,
+                            child: const Text(
+                              'Foreground Text',
+                              style: TextStyle(color: Colors.black54, fontSize: 20.0),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    /*
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
@@ -114,7 +139,8 @@ class _HomeImageCarouselWidgetState extends State<HomeImageCarouselWidget> {
                         )
 
                       ],
-                    )
+                    ),
+                  */
                 );
               },
             );

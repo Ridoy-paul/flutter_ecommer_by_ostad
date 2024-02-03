@@ -40,15 +40,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 searchTextFormField,
                 const SizedBox(height: 16,),
                 SizedBox(
-                  height: 230,
+                  height: 150,
                   child: GetBuilder<HomeSliderController>(
                       builder: (homeSliderController) {
                         return Visibility(
                           visible: !homeSliderController.inProgressStatus,
                           replacement: circleProgressIndicatorShow(),
                           child: HomeImageCarouselWidget(
-                            sliderList: homeSliderController
-                                .homeScreenSliderListModel.sliderList ?? [],),
+                            sliderList: homeSliderController.homeScreenSliderListModel.sliderList ?? [],),
                         );
                       }),
                 ),
