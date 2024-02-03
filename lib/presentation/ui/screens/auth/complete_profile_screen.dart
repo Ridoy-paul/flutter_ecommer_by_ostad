@@ -30,6 +30,8 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
   // List of countries
   List<String> _countries = ['Bangladesh', 'USA', 'India'];
 
+  String? dropdownValue;
+
 
   @override
   Widget build(BuildContext context) {
@@ -62,26 +64,22 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                       decoration: inputDecorationParams("Full Name"),
                     ),
                     const SizedBox(height: 12,),
-                    Align(
-                      alignment: Alignment.topLeft,
-                      child: SizedBox(
-                        width: Get.width * .45,
-                        child: DropdownButton<String>(
-                          icon: Icon(Icons.add),
-                          value: _selectedCountry,
-                          onChanged: (String? newValue) {
-                            setState(() {
-                              _selectedCountry = newValue!;
-                            });
-                          },
-                          items: _countries.map<DropdownMenuItem<String>>((String value) {
-                            return DropdownMenuItem<String>(
-                              value: value,
-                              child: Text(value),
-                            );
-                          }).toList(),
-                        ),
-                      ),
+
+                    DropdownButtonFormField<String>(
+                      hint: const Text('Select your favourite fruit'),
+                      value: dropdownValue,
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          dropdownValue = newValue!;
+                        });
+                      },
+                      items: _countries
+                          .map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      }).toList(),
                     ),
                     const SizedBox(height: 12,),
                     TextFormField(
