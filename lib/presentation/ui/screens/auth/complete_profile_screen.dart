@@ -241,7 +241,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                     child: DropdownButtonFormField<String>(
                       validator: (value) =>
                           inputValidate(value, "Select Shipping Country!"),
-                      decoration: inputDecorationParams("Shipping Country"),
+                      decoration: inputDecorationParams("Ship Country"),
                       value: dropdownValue,
                       onChanged: (String? newValue) {
                         setState(() {
@@ -264,7 +264,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                     child: DropdownButtonFormField<String>(
                       validator: (value) =>
                           inputValidate(value, "Select Shipping State!"),
-                      decoration: inputDecorationParams("Shipping State"),
+                      decoration: inputDecorationParams("Ship State"),
                       value: dropdownValue,
                       onChanged: (String? newValue) {
                         setState(() {
@@ -291,7 +291,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                     child: DropdownButtonFormField<String>(
                       validator: (value) =>
                           inputValidate(value, "Select Shipping City!"),
-                      decoration: inputDecorationParams("Shipping City"),
+                      decoration: inputDecorationParams("Ship City"),
                       value: dropdownValue,
                       onChanged: (String? newValue) {
                         setState(() {
