@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommer_by_ostad/data/models/params/create_profile_params.dart';
-import 'package:flutter_ecommer_by_ostad/presentation/state_holders/complete_profile_controller.dart';
+import 'package:flutter_ecommer_by_ostad/presentation/state_holders/auth/complete_profile_controller.dart';
 import 'package:flutter_ecommer_by_ostad/presentation/ui/utility/show_snack_message.dart';
 import '../../../../data/utility/helpers.dart';
 import '../main_bottom_nav_screen.dart';
