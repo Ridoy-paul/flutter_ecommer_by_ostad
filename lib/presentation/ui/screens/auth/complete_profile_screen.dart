@@ -212,8 +212,8 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
               ),
               TextFormField(
                 controller: _customerNameTEController,
-                validator: (value) => inputValidate(value, "Enter Full Name"),
-                decoration: inputDecorationParams("Full Name"),
+                validator: (value) => inputValidate(value, "Enter Shipping Person Name"),
+                decoration: inputDecorationParams("Shipping Person Name"),
               ),
               const SizedBox(
                 height: 12,
@@ -223,8 +223,8 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                   Expanded(
                     child: DropdownButtonFormField<String>(
                       validator: (value) =>
-                          inputValidate(value, "Select Country!"),
-                      decoration: inputDecorationParams("Country"),
+                          inputValidate(value, "Select Shipping Country!"),
+                      decoration: inputDecorationParams("Shipping Country"),
                       value: dropdownValue,
                       onChanged: (String? newValue) {
                         setState(() {
@@ -246,8 +246,8 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                   Expanded(
                     child: DropdownButtonFormField<String>(
                       validator: (value) =>
-                          inputValidate(value, "Select State!"),
-                      decoration: inputDecorationParams("State"),
+                          inputValidate(value, "Select Shipping State!"),
+                      decoration: inputDecorationParams("Shipping State"),
                       value: dropdownValue,
                       onChanged: (String? newValue) {
                         setState(() {
@@ -273,8 +273,8 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                   Expanded(
                     child: DropdownButtonFormField<String>(
                       validator: (value) =>
-                          inputValidate(value, "Select City!"),
-                      decoration: inputDecorationParams("City"),
+                          inputValidate(value, "Select Shipping City!"),
+                      decoration: inputDecorationParams("Shipping City"),
                       value: dropdownValue,
                       onChanged: (String? newValue) {
                         setState(() {
@@ -298,8 +298,8 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                       keyboardType: TextInputType.number,
                       controller: _lastNameTEController,
                       validator: (value) =>
-                          inputValidate(value, "Enter Postcode"),
-                      decoration: inputDecorationParams("Postcode"),
+                          inputValidate(value, "Enter Shipping Postcode"),
+                      decoration: inputDecorationParams("Ship Postcode"),
                     ),
                   ),
                 ],
@@ -310,17 +310,8 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
               TextFormField(
                 controller: _mobileNameTEController,
                 validator: (value) =>
-                    inputValidate(value, "Enter Phone Number"),
-                decoration: inputDecorationParams("Phone"),
-                keyboardType: TextInputType.number,
-              ),
-              const SizedBox(
-                height: 12,
-              ),
-              TextFormField(
-                controller: _mobileNameTEController,
-                validator: (value) => inputValidate(value, "Enter Fax Number"),
-                decoration: inputDecorationParams("Fax"),
+                    inputValidate(value, "Enter Shipping Person Phone Number"),
+                decoration: inputDecorationParams("Shipping Person Phone"),
                 keyboardType: TextInputType.number,
               ),
               const SizedBox(
@@ -331,7 +322,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                 validator: (value) =>
                     inputValidate(value, "Enter Shipping Address"),
                 decoration: const InputDecoration(
-                  hintText: 'Address',
+                  hintText: 'Shipping Address',
                 ),
                 keyboardType: TextInputType.multiline,
                 maxLines: 2,
