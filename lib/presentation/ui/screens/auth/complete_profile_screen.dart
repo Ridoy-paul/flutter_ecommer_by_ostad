@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommer_by_ostad/presentation/ui/utility/app_colors.dart';
 import '../../../../data/models/params/create_profile_params.dart';
 import '../../../state_holders/auth/complete_profile_controller.dart';
 import '../../utility/show_snack_message.dart';
@@ -44,9 +45,9 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
               child: Center(
                 child: Column(
                   children: [
-                    SizedBox(height: Get.height * .02,),
+                    SizedBox(height: Get.height * .01,),
                     const AppLogoWidget(),
-                    const SizedBox(height: 16,),
+                    const SizedBox(height: 8,),
                     Text("Complete Profile", style: Theme
                         .of(context)
                         .textTheme
@@ -68,10 +69,8 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                       children: [
                         Expanded(
                           child: DropdownButtonFormField<String>(
-                            decoration: const InputDecoration(
-                              hintText: 'Country',
-                              border: OutlineInputBorder(),
-                            ),
+                            validator: (value) => inputValidate(value, "Select Country!"),
+                            decoration: inputDecorationParams("Country"),
                             value: dropdownValue,
                             onChanged: (String? newValue) {
                               setState(() {
@@ -89,10 +88,8 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                         const SizedBox(width: 5,),
                         Expanded(
                           child: DropdownButtonFormField<String>(
-                            decoration: const InputDecoration(
-                              hintText: 'State',
-                              border: OutlineInputBorder(),
-                            ),
+                            validator: (value) => inputValidate(value, "Select State!"),
+                            decoration: inputDecorationParams("State"),
                             value: dropdownValue,
                             onChanged: (String? newValue) {
                               setState(() {
@@ -114,10 +111,8 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                       children: [
                         Expanded(
                           child: DropdownButtonFormField<String>(
-                            decoration: const InputDecoration(
-                              hintText: 'City',
-                              border: OutlineInputBorder(),
-                            ),
+                            validator: (value) => inputValidate(value, "Select City!"),
+                            decoration: inputDecorationParams("City"),
                             value: dropdownValue,
                             onChanged: (String? newValue) {
                               setState(() {
@@ -135,40 +130,27 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                         const SizedBox(width: 5,),
                         Expanded(
                           child: TextFormField(
+                            keyboardType: TextInputType.number,
                             controller: _lastNameTEController,
-                            validator: (value) => inputValidate(value, "Enter Zip Code"),
-                            decoration: inputDecorationParams("Zip Code"),
+                            validator: (value) => inputValidate(value, "Enter Postcode"),
+                            decoration: inputDecorationParams("Postcode"),
                           ),
                         ),
                       ],
                     ),
-
-
-
-                    const SizedBox(height: 12,),
-                    TextFormField(
-                      controller: _lastNameTEController,
-                      validator: (value) => inputValidate(value, "Enter Last Name"),
-                      decoration: inputDecorationParams("Full Name"),
-                    ),
                     const SizedBox(height: 12,),
                     TextFormField(
                       controller: _mobileNameTEController,
-                      validator: (value) =>
-                          inputValidate(value, "Enter Mobile Number"),
-                      decoration: const InputDecoration(
-                        hintText: 'Mobile',
-                      ),
+                      validator: (value) => inputValidate(value, "Enter Phone Number"),
+                      decoration: inputDecorationParams("Phone"),
                       keyboardType: TextInputType.number,
                     ),
                     const SizedBox(height: 12,),
                     TextFormField(
-                      controller: _cityNameTEController,
-                      validator: (value) =>
-                          inputValidate(value, "Enter Your City Name"),
-                      decoration: const InputDecoration(
-                        hintText: 'City',
-                      ),
+                      controller: _mobileNameTEController,
+                      validator: (value) => inputValidate(value, "Enter Fax Number"),
+                      decoration: inputDecorationParams("Fax"),
+                      keyboardType: TextInputType.number,
                     ),
                     const SizedBox(height: 12,),
                     TextFormField(
@@ -176,13 +158,30 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                       validator: (value) =>
                           inputValidate(value, "Enter Shipping Address"),
                       decoration: const InputDecoration(
-                        hintText: 'Shipping Address',
+                        hintText: 'Address',
                       ),
                       keyboardType: TextInputType.multiline,
-                      maxLines: 3,
+                      maxLines: 2,
                     ),
                     const SizedBox(height: 12,),
+                    SizedBox(
+                      width: double.infinity,
+                      child: Card(
+                        elevation: 4,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text("Shipping Information.", style: TextStyle(color: AppColors.primaryColor, fontSize: 16, fontWeight: FontWeight.w500,),),
+                              const SizedBox(height: 12,),
 
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 12,),
                     SizedBox(
                       width: double.infinity,
                       child: GetBuilder<CompleteProfileController>(builder: (controller) {
