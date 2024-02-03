@@ -60,24 +60,26 @@ class _ProductListScreenState extends State<ProductListScreen> {
                 return Visibility(
                   visible: !controller.inProgressStatus,
                   replacement: circleProgressIndicatorShow(),
-                  child: controller.productListModel.productList!.isNotEmpty ?
-                  GridView.builder(
-                    itemCount:
-                        controller.productListModel.productList?.length ?? 0,
-                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  child: Visibility(
+                    replacement: const NoResultFoundWidget(),
+                    visible: controller.productListModel.productList!.isNotEmpty,
+                    child: GridView.builder(
+                      itemCount: controller.productListModel.productList?.length ?? 0,
+                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 3,
                         childAspectRatio: 0.70,
                         mainAxisSpacing: 2,
-                        crossAxisSpacing: 2),
-                    itemBuilder: (context, index) {
-                      return FittedBox(
-                        child: ProductCardItem(
-                          productItem:
-                              controller.productListModel.productList![index],
-                        ),
-                      );
-                    },
-                  ) : const NoResultFoundWidget(),
+                        crossAxisSpacing: 2,
+                      ),
+                      itemBuilder: (context, index) {
+                        return FittedBox(
+                          child: ProductCardItem(
+                            productItem: controller.productListModel.productList![index],
+                          ),
+                        );
+                      },
+                    ),
+                  ),
                 );
               }),
             ),
