@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommer_by_ostad/data/models/params/create_profile_params.dart';
-import 'package:flutter_ecommer_by_ostad/presentation/state_holders/auth/complete_profile_controller.dart';
-import 'package:flutter_ecommer_by_ostad/presentation/ui/utility/show_snack_message.dart';
+import '../../../../data/models/params/create_profile_params.dart';
+import '../../../state_holders/auth/complete_profile_controller.dart';
+import '../../utility/show_snack_message.dart';
 import '../../../../data/utility/helpers.dart';
 import '../main_bottom_nav_screen.dart';
 import '../../widgets/app_logo.dart';
@@ -69,8 +69,8 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                       children: [
                         Expanded(
                           child: DropdownButtonFormField<String>(
-                            decoration: InputDecoration(
-                              hintText: 'Select Your Country',
+                            decoration: const InputDecoration(
+                              hintText: 'Country',
                               border: OutlineInputBorder(),
                             ),
                             value: dropdownValue,
@@ -90,8 +90,8 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                         const SizedBox(width: 5,),
                         Expanded(
                           child: DropdownButtonFormField<String>(
-                            decoration: InputDecoration(
-                              hintText: 'Select Your Country',
+                            decoration: const InputDecoration(
+                              hintText: 'State',
                               border: OutlineInputBorder(),
                             ),
                             value: dropdownValue,
