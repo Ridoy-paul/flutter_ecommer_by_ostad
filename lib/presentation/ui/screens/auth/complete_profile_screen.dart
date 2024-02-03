@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommer_by_ostad/presentation/ui/utility/app_colors.dart';
+import '../../utility/app_colors.dart';
 import '../../../../data/models/params/create_profile_params.dart';
 import '../../../state_holders/auth/complete_profile_controller.dart';
 import '../../utility/show_snack_message.dart';
@@ -298,8 +298,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                           dropdownValue = newValue!;
                         });
                       },
-                      items: _countries
-                          .map<DropdownMenuItem<String>>((String value) {
+                      items: _countries.map<DropdownMenuItem<String>>((String value) {
                         return DropdownMenuItem<String>(
                           value: value,
                           child: Text(value),
