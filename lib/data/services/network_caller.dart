@@ -42,6 +42,7 @@ class NetworkCaller  {
         }
       }
       else if(response.statusCode == 401) {
+        AuthController().clearAuthData();
         AuthController().goToLogin();
         return ResponseData(
           isSuccess: false,
@@ -97,6 +98,7 @@ class NetworkCaller  {
       }
     }
     else if(response.statusCode == 401) {
+      AuthController().clearAuthData();
       AuthController().goToLogin();
       return ResponseData(
         isSuccess: false,
