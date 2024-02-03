@@ -79,7 +79,7 @@ class _HomeImageCarouselWidgetState extends State<HomeImageCarouselWidget> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
-                                    slider.title.toString() ?? '',
+                                    slider.title.toString(),
                                     maxLines: 3,
                                     overflow: TextOverflow.ellipsis,
                                     style: const TextStyle(
@@ -89,7 +89,7 @@ class _HomeImageCarouselWidgetState extends State<HomeImageCarouselWidget> {
                                     ),
                                   ),
                                   Text(
-                                    slider.shortDes.toString() ?? '',
+                                    slider.shortDes.toString(),
                                     maxLines: 2,
                                     overflow: TextOverflow.ellipsis,
                                     style: const TextStyle(
@@ -102,7 +102,7 @@ class _HomeImageCarouselWidgetState extends State<HomeImageCarouselWidget> {
                                     height: 18,
                                     child: ElevatedButton(
                                       onPressed: () {
-                                        Get.to(() => ProductDetailsScreen());
+                                        Get.to(() => const ProductDetailsScreen());
                                       },
                                       style: ElevatedButton.styleFrom(
                                         backgroundColor: AppColors.primaryColor,
