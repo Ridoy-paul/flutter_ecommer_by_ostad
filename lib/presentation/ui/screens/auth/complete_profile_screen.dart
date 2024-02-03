@@ -156,7 +156,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                     TextFormField(
                       controller: _shippingAddressNameTEController,
                       validator: (value) =>
-                          inputValidate(value, "Enter Shipping Address"),
+                          inputValidate(value, "Enter Your Address"),
                       decoration: const InputDecoration(
                         hintText: 'Address',
                       ),
@@ -164,23 +164,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                       maxLines: 2,
                     ),
                     const SizedBox(height: 12,),
-                    SizedBox(
-                      width: double.infinity,
-                      child: Card(
-                        elevation: 4,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Text("Shipping Information.", style: TextStyle(color: AppColors.primaryColor, fontSize: 16, fontWeight: FontWeight.w500,),),
-                              const SizedBox(height: 12,),
-
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
+                    getShippingInformation,
                     const SizedBox(height: 12,),
                     SizedBox(
                       width: double.infinity,
@@ -199,6 +183,160 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                 ),
               ),
             ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  SizedBox get getShippingInformation {
+    return SizedBox(
+      width: double.infinity,
+      child: Card(
+        elevation: 4,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                "Shipping Information.",
+                style: TextStyle(
+                  color: AppColors.primaryColor,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              const SizedBox(
+                height: 12,
+              ),
+              TextFormField(
+                controller: _customerNameTEController,
+                validator: (value) => inputValidate(value, "Enter Full Name"),
+                decoration: inputDecorationParams("Full Name"),
+              ),
+              const SizedBox(
+                height: 12,
+              ),
+              Row(
+                children: [
+                  Expanded(
+                    child: DropdownButtonFormField<String>(
+                      validator: (value) =>
+                          inputValidate(value, "Select Country!"),
+                      decoration: inputDecorationParams("Country"),
+                      value: dropdownValue,
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          dropdownValue = newValue!;
+                        });
+                      },
+                      items: _countries
+                          .map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      }).toList(),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 5,
+                  ),
+                  Expanded(
+                    child: DropdownButtonFormField<String>(
+                      validator: (value) =>
+                          inputValidate(value, "Select State!"),
+                      decoration: inputDecorationParams("State"),
+                      value: dropdownValue,
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          dropdownValue = newValue!;
+                        });
+                      },
+                      items: _countries
+                          .map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      }).toList(),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 12,
+              ),
+              Row(
+                children: [
+                  Expanded(
+                    child: DropdownButtonFormField<String>(
+                      validator: (value) =>
+                          inputValidate(value, "Select City!"),
+                      decoration: inputDecorationParams("City"),
+                      value: dropdownValue,
+                      onChanged: (String? newValue) {
+                        setState(() {
+                          dropdownValue = newValue!;
+                        });
+                      },
+                      items: _countries
+                          .map<DropdownMenuItem<String>>((String value) {
+                        return DropdownMenuItem<String>(
+                          value: value,
+                          child: Text(value),
+                        );
+                      }).toList(),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 5,
+                  ),
+                  Expanded(
+                    child: TextFormField(
+                      keyboardType: TextInputType.number,
+                      controller: _lastNameTEController,
+                      validator: (value) =>
+                          inputValidate(value, "Enter Postcode"),
+                      decoration: inputDecorationParams("Postcode"),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 12,
+              ),
+              TextFormField(
+                controller: _mobileNameTEController,
+                validator: (value) =>
+                    inputValidate(value, "Enter Phone Number"),
+                decoration: inputDecorationParams("Phone"),
+                keyboardType: TextInputType.number,
+              ),
+              const SizedBox(
+                height: 12,
+              ),
+              TextFormField(
+                controller: _mobileNameTEController,
+                validator: (value) => inputValidate(value, "Enter Fax Number"),
+                decoration: inputDecorationParams("Fax"),
+                keyboardType: TextInputType.number,
+              ),
+              const SizedBox(
+                height: 12,
+              ),
+              TextFormField(
+                controller: _shippingAddressNameTEController,
+                validator: (value) =>
+                    inputValidate(value, "Enter Shipping Address"),
+                decoration: const InputDecoration(
+                  hintText: 'Address',
+                ),
+                keyboardType: TextInputType.multiline,
+                maxLines: 2,
+              ),
+            ],
           ),
         ),
       ),
