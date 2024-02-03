@@ -22,10 +22,5 @@ class CountriesCitiesAndStates {
       'Karnataka': ['Bangalore', 'Mysore', 'Hubli', 'Mangalore'],
       'Tamil Nadu': ['Chennai', 'Coimbatore', 'Madurai', 'Tiruchirappalli'],
     }
-    // Add more countries as needed
   };
-
-  //final List<String> usaCaliforniaCities = countriesCitiesAndStates['USA']['California'] ?? [];
-
-
 }
