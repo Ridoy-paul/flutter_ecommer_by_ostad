@@ -40,7 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 searchTextFormField,
                 const SizedBox(height: 16,),
                 SizedBox(
-                  height: 150,
+                  height: 180,
                   child: GetBuilder<HomeSliderController>(
                       builder: (homeSliderController) {
                         return Visibility(
