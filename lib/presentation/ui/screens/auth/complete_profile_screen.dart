@@ -115,7 +115,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                         Expanded(
                           child: DropdownButtonFormField<String>(
                             decoration: const InputDecoration(
-                              hintText: 'Country',
+                              hintText: 'City',
                               border: OutlineInputBorder(),
                             ),
                             value: dropdownValue,
@@ -134,23 +134,10 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                         ),
                         const SizedBox(width: 5,),
                         Expanded(
-                          child: DropdownButtonFormField<String>(
-                            decoration: const InputDecoration(
-                              hintText: 'State',
-                              border: OutlineInputBorder(),
-                            ),
-                            value: dropdownValue,
-                            onChanged: (String? newValue) {
-                              setState(() {
-                                dropdownValue = newValue!;
-                              });
-                            },
-                            items: _countries.map<DropdownMenuItem<String>>((String value) {
-                              return DropdownMenuItem<String>(
-                                value: value,
-                                child: Text(value),
-                              );
-                            }).toList(),
+                          child: TextFormField(
+                            controller: _lastNameTEController,
+                            validator: (value) => inputValidate(value, "Enter Zip Code"),
+                            decoration: inputDecorationParams("Zip Code"),
                           ),
                         ),
                       ],
@@ -163,7 +150,6 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                       controller: _lastNameTEController,
                       validator: (value) => inputValidate(value, "Enter Last Name"),
                       decoration: inputDecorationParams("Full Name"),
-
                     ),
                     const SizedBox(height: 12,),
                     TextFormField(
