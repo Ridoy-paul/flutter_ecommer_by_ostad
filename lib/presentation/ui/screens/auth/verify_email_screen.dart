@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommer_by_ostad/data/utility/helpers.dart';
-import 'package:flutter_ecommer_by_ostad/presentation/state_holders/send_email_otp_controller.dart';
+import 'package:flutter_ecommer_by_ostad/presentation/state_holders/auth/send_email_otp_controller.dart';
 import 'package:flutter_ecommer_by_ostad/presentation/ui/utility/show_snack_message.dart';
 import 'verify_otp_screen.dart';
 import '../../widgets/app_logo.dart';

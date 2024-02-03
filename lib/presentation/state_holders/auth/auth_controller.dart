@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:flutter_ecommer_by_ostad/presentation/ui/screens/auth/verify_email_screen.dart';
 
-import '../../data/models/user_profile_model.dart';
+import '../../../data/models/user_profile_model.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

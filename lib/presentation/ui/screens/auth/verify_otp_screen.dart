@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import '../../../state_holders/send_email_otp_controller.dart';
-import '../../../state_holders/verify_otp_controller.dart';
+import '../../../state_holders/auth/send_email_otp_controller.dart';
+import '../../../state_holders/auth/verify_otp_controller.dart';
 import '../main_bottom_nav_screen.dart';
-import '../../../state_holders/verify_otp_screen_resend_otp_controller.dart';
+import '../../../state_holders/auth/verify_otp_screen_resend_otp_controller.dart';
 import '../../../../data/utility/helpers.dart';
 import '../../utility/app_colors.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';

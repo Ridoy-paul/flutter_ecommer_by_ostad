@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
-import '../../presentation/state_holders/auth_controller.dart';
+import '../../presentation/state_holders/auth/auth_controller.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart';
 import 'response_data.dart';

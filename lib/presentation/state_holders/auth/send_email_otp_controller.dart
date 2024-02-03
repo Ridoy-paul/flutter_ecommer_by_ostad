@@ -1,6 +1,6 @@
-import '../../data/services/network_caller.dart';
-import '../../data/services/response_data.dart';
-import '../../data/utility/urls.dart';
+import '../../../data/services/network_caller.dart';
+import '../../../data/services/response_data.dart';
+import '../../../data/utility/urls.dart';
 import 'package:get/get.dart';
 
 class SendEmailOTPController extends GetxController {
