@@ -60,8 +60,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
                 return Visibility(
                   visible: !controller.inProgressStatus,
                   replacement: circleProgressIndicatorShow(),
-                  child:
-                      controller.productListModel.productList!.isNotEmpty ?
+                  child: controller.productListModel.productList!.isNotEmpty ?
                   GridView.builder(
                     itemCount:
                         controller.productListModel.productList?.length ?? 0,
