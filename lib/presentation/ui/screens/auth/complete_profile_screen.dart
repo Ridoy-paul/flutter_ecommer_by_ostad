@@ -25,6 +25,12 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
   final TextEditingController _shippingAddressNameTEController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
+  String _selectedCountry = 'Bangladesh'; // Default selected country
+
+  // List of countries
+  List<String> _countries = ['Bangladesh', 'USA', 'India'];
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,6 +60,28 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                       controller: _customerNameTEController,
                       validator: (value) => inputValidate(value, "Enter Full Name"),
                       decoration: inputDecorationParams("Full Name"),
+                    ),
+                    const SizedBox(height: 12,),
+                    Align(
+                      alignment: Alignment.topLeft,
+                      child: SizedBox(
+                        width: Get.width * .45,
+                        child: DropdownButton<String>(
+                          icon: Icon(Icons.add),
+                          value: _selectedCountry,
+                          onChanged: (String? newValue) {
+                            setState(() {
+                              _selectedCountry = newValue!;
+                            });
+                          },
+                          items: _countries.map<DropdownMenuItem<String>>((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(value),
+                            );
+                          }).toList(),
+                        ),
+                      ),
                     ),
                     const SizedBox(height: 12,),
                     TextFormField(
