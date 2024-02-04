@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../state_holders/auth/country_state_city_processing_controller.dart';
 import 'package:get/get.dart';
-import '../../../../data/utility/country_cities_and_state_utility.dart';
 import '../../utility/app_colors.dart';
 import '../../../../data/models/params/create_profile_params.dart';
 import '../../../state_holders/auth/complete_profile_controller.dart';
@@ -139,8 +138,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                           child: TextFormField(
                             keyboardType: TextInputType.number,
                             controller: _lastNameTEController,
-                            validator: (value) =>
-                                inputValidate(value, "Enter Postcode"),
+                            validator: (value) => inputValidate(value, "Enter Postcode"),
                             decoration: inputDecorationParams("Postcode"),
                           ),
                         ),
@@ -149,24 +147,21 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                     const SizedBox(height: 12),
                     TextFormField(
                       controller: _mobileNameTEController,
-                      validator: (value) =>
-                          inputValidate(value, "Enter Phone Number"),
+                      validator: (value) => inputValidate(value, "Enter Phone Number"),
                       decoration: inputDecorationParams("Phone"),
                       keyboardType: TextInputType.number,
                     ),
                     const SizedBox(height: 12),
                     TextFormField(
                       controller: _mobileNameTEController,
-                      validator: (value) =>
-                          inputValidate(value, "Enter Fax Number"),
+                      validator: (value) => inputValidate(value, "Enter Fax Number"),
                       decoration: inputDecorationParams("Fax"),
                       keyboardType: TextInputType.number,
                     ),
                     const SizedBox(height: 12),
                     TextFormField(
                       controller: _shippingAddressNameTEController,
-                      validator: (value) =>
-                          inputValidate(value, "Enter Your Address"),
+                      validator: (value) => inputValidate(value, "Enter Your Address"),
                       decoration: const InputDecoration(
                         hintText: 'Address',
                       ),
