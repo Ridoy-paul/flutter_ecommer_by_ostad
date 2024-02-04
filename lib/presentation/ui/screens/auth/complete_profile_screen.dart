@@ -19,6 +19,12 @@ class CompleteProfileScreen extends StatefulWidget {
 class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
   final CompleteProfileController _completeProfileController = Get.find<CompleteProfileController>();
 
+  String selectedCountry = '';
+  String selectedState = '';
+  String selectedCity = '';
+  CountriesCitiesAndStates countryData = CountriesCitiesAndStates();
+
+
   final TextEditingController _customerNameTEController = TextEditingController();
   final TextEditingController _lastNameTEController = TextEditingController();
   final TextEditingController _mobileNameTEController = TextEditingController();
@@ -37,6 +43,19 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
+
+    List<String> countries = countryData.countriesCitiesAndStates.keys.toList();
+
+    List<String> states = [];
+    if (selectedCountry.isNotEmpty) {
+      states = countryData.countriesCitiesAndStates[selectedCountry]!.keys.toList();
+    }
+
+    List<String> cities = [];
+    if (selectedCountry.isNotEmpty && selectedState.isNotEmpty) {
+      cities = countryData.countriesCitiesAndStates[selectedCountry]![selectedState]!;
+    }
+
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -76,15 +95,17 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                             value: dropdownValue,
                             onChanged: (String? newValue) {
                               setState(() {
-                                dropdownValue = newValue!;
+                                selectedCountry = newValue!;
+                                selectedState = '';
+                                selectedCity = '';
                               });
                             },
-                            items: _countries.map<DropdownMenuItem<String>>((String value) {
+                            items: countries.map<DropdownMenuItem<String>>((String value) {
                               return DropdownMenuItem<String>(
                                 value: value,
                                 child: Text(value),
                               );
-                            }).toList(),
+                            }).toList()
                           ),
                         ),
                         const SizedBox(width: 5,),
@@ -95,10 +116,11 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                             value: dropdownValue,
                             onChanged: (String? newValue) {
                               setState(() {
-                                dropdownValue = newValue!;
+                                selectedState = newValue!;
+                                selectedCity = ''; // Reset city selection
                               });
                             },
-                            items: _countries.map<DropdownMenuItem<String>>((String value) {
+                            items: states.map<DropdownMenuItem<String>>((String value) {
                               return DropdownMenuItem<String>(
                                 value: value,
                                 child: Text(value),
