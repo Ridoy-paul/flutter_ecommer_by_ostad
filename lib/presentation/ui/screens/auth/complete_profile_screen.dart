@@ -202,8 +202,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
         color: Colors.white,
         elevation: 4,
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
-
+          padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 8),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -214,22 +213,6 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                   fontSize: 22,
                   fontWeight: FontWeight.w500,
                 ),
-              ),
-              Row(
-                children: [
-                  Checkbox(
-                    value: true,
-                    onChanged: (bool? newValue) {
-                      setState(() {
-                        //isChecked = newValue ?? false;
-                      });
-                    },
-                  ),
-                  const Text(
-                    'Same as Profile Information?',
-                    style: TextStyle(fontSize: 16),
-                  ),
-                ],
               ),
               const SizedBox(
                 height: 12,
