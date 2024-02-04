@@ -74,8 +74,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                     Row(
                       children: [
                         Expanded(
-                          child: GetBuilder<
-                              CountryStateCityProcessingController>(
+                          child: GetBuilder<CountryStateCityProcessingController>(
                               builder: (controller) {
                                 return DropdownButtonFormField<String>(
                                   validator: (value) =>

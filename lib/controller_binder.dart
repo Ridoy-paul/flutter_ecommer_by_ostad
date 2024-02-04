@@ -1,3 +1,7 @@
+import 'presentation/state_holders/auth/country_state_and_city/profile_info_city_controller.dart';
+import 'presentation/state_holders/auth/country_state_and_city/profile_info_country_controller.dart';
+import 'presentation/state_holders/auth/country_state_and_city/profile_info_state_controller.dart';
+
 import 'presentation/state_holders/auth/country_state_city_processing_controller.dart';
 import 'presentation/state_holders/product_list_by_category_controller.dart';
 import 'presentation/state_holders/new_product_list_controller.dart';
@@ -31,6 +35,10 @@ class ControllerBinder extends Bindings {
     Get.put(NewProductListController());
     Get.put(ProductListByCategoryController());
     Get.put(CountryStateCityProcessingController());
+    Get.put(ProfileInfoCountryController());
+    Get.put(ProfileInfoStateController());
+    Get.put(ProfileInfoCityController());
+
 
 
   }
