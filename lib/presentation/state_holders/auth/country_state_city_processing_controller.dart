@@ -8,10 +8,13 @@ class CountryStateCityProcessingController extends GetxController {
   CountriesCitiesAndStates countryData = CountriesCitiesAndStates();
 
   List<String> _countries = [];
-  List<String> states = [];
-  List<String> cities = [];
+  List<String> _states = [];
+  List<String> _cities = [];
 
   List<String> get countries => _countries;
+  List<String> get states => _states;
+  List<String> get cities => _cities;
+
   String? get selectedCountry => _selectedCountry;
   String? get selectedState => _selectedState;
   String? get selectedCity => _selectedCity;
@@ -22,48 +25,40 @@ class CountryStateCityProcessingController extends GetxController {
   }
 
   void onCountryChanged(String? value) {
-    print(_selectedCountry);
-    print(value);
     if (value != null) {
       _selectedCountry = value;
       _selectedState = null;
       _selectedCity = null;
     }
+    getStatesData();
+    getCityData();
     update();
   }
 
-/*
-  void setSelectedCountry(String country) {
-    _selectedCountry = country;
-    _selectedState = '';
-    _selectedCity = '';
+  void getStatesData() {
+    _states = _selectedCountry != null ? countryData.countriesCitiesAndStates[_selectedCountry!]!.keys.toList() : [];
     update();
   }
 
-  void getStateData() {
-    // if (_selectedCountry.isNotEmpty) {
-    //   states = countryData.countriesCitiesAndStates[_selectedCountry]!.keys.toList();
-    //   update();
-    // }
-  }
-
-  void setSelectedState(String state) {
-    _selectedState = state;
-    _selectedCity = '';
+  void onStateChanged(String? value) {
+    if (value != null) {
+      _selectedState = value;
+      _selectedCity = null;
+    }
+    getCityData();
     update();
   }
 
   void getCityData() {
-    // if (_selectedCountry.isNotEmpty && _selectedState.isNotEmpty) {
-    //   cities = countryData.countriesCitiesAndStates[_selectedCountry]![_selectedState]!;
-    //   update();
-    // }
-  }
-
-  void setSelectedCity(String city) {
-    _selectedCity = city;
+    _cities = (_selectedCountry != null && _selectedState != null) ? countryData.countriesCitiesAndStates[_selectedCountry!]![_selectedState!]! : [];
     update();
   }
 
-   */
+  void onCityChanged(String? value) {
+    if (value != null) {
+      _selectedCity = value;
+    }
+    update();
+  }
+
 }
