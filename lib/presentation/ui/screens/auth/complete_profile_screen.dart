@@ -51,7 +51,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
           child: Form(
             key: _formKey,
             child: Padding(
-              padding: const EdgeInsets.all(24.0),
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 24),
               child: Center(
                 child: Column(
                   children: [
