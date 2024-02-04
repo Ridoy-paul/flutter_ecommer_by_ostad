@@ -25,14 +25,15 @@ class CountryStateCityProcessingController extends GetxController {
   }
 
   void onCountryChanged(String? value) {
-    if (value != null) {
+    if (value != null && _selectedCountry != value) {
       _selectedCountry = value;
       _selectedState = null;
       _selectedCity = null;
+
+      getStatesData();
+      getCityData();
+      update();
     }
-    getStatesData();
-    getCityData();
-    update();
   }
 
   void getStatesData() {
@@ -41,12 +42,13 @@ class CountryStateCityProcessingController extends GetxController {
   }
 
   void onStateChanged(String? value) {
-    if (value != null) {
+    if (value != null && _selectedState != value) {
       _selectedState = value;
       _selectedCity = null;
+
+      getCityData();
+      update();
     }
-    getCityData();
-    update();
   }
 
   void getCityData() {
@@ -55,10 +57,10 @@ class CountryStateCityProcessingController extends GetxController {
   }
 
   void onCityChanged(String? value) {
-    if (value != null) {
+    if (value != null && _selectedCity != value) {
       _selectedCity = value;
+      update();
     }
-    update();
   }
 
 }
