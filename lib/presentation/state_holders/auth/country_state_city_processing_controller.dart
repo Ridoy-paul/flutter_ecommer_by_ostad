@@ -18,10 +18,21 @@ class CountryStateCityProcessingController extends GetxController {
 
   void getCountriesData() {
     _countries = countryData.countriesCitiesAndStates.keys.toList();
-    //_countries = countryData.countriesCitiesAndStates.keys.toList();
     update();
   }
 
+  void onCountryChanged(String? value) {
+    print(_selectedCountry);
+    print(value);
+    if (value != null) {
+      _selectedCountry = value;
+      _selectedState = null;
+      _selectedCity = null;
+    }
+    update();
+  }
+
+/*
   void setSelectedCountry(String country) {
     _selectedCountry = country;
     _selectedState = '';
@@ -53,4 +64,6 @@ class CountryStateCityProcessingController extends GetxController {
     _selectedCity = city;
     update();
   }
+
+   */
 }

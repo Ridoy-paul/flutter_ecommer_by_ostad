@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommer_by_ostad/presentation/state_holders/auth/country_state_city_processing_controller.dart';
 import 'package:get/get.dart';
 import '../../../../data/utility/country_cities_and_state_utility.dart';
 import '../../utility/app_colors.dart';
@@ -32,17 +33,25 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
   String? _selectedCity;
 
   @override
+  void initState() {
+    Get.find<CountryStateCityProcessingController>().getCountriesData();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final countryData = CountriesCitiesAndStates();
 
-    final List<String> countries = countryData.countriesCitiesAndStates.keys.toList();
+    //final List<String> countries = countryData.countriesCitiesAndStates.keys.toList();
 
     final List<String> states = _selectedCountry != null
         ? countryData.countriesCitiesAndStates[_selectedCountry!]!.keys.toList()
         : [];
 
-    final List<String> cities = (_selectedCountry != null && _selectedState != null)
-        ? countryData.countriesCitiesAndStates[_selectedCountry!]![_selectedState!]!
+    final List<String> cities = (_selectedCountry != null &&
+        _selectedState != null)
+        ? countryData
+        .countriesCitiesAndStates[_selectedCountry!]![_selectedState!]!
         : [];
 
     return Scaffold(
@@ -58,16 +67,23 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                     SizedBox(height: Get.height * .01),
                     const AppLogoWidget(),
                     const SizedBox(height: 8),
-                    Text("Complete Profile", style: Theme.of(context).textTheme.headline6),
+                    Text("Complete Profile", style: Theme
+                        .of(context)
+                        .textTheme
+                        .titleLarge),
                     const SizedBox(height: 5),
                     Text(
                       "Get started with us with your details",
-                      style: Theme.of(context).textTheme.bodyText2,
+                      style: Theme
+                          .of(context)
+                          .textTheme
+                          .bodyMedium,
                     ),
                     const SizedBox(height: 16),
                     TextFormField(
                       controller: _customerNameTEController,
-                      validator: (value) => inputValidate(value, "Enter Full Name"),
+                      validator: (value) =>
+                          inputValidate(value, "Enter Full Name"),
                       decoration: inputDecorationParams("Full Name"),
                     ),
                     const SizedBox(height: 12),
@@ -75,6 +91,22 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                     Row(
                       children: [
                         Expanded(
+                          child: GetBuilder<CountryStateCityProcessingController>(builder: (controller) {
+                            return DropdownButtonFormField<String>(
+                              validator: (value) => inputValidate(value, "Select Country!"),
+                              decoration: inputDecorationParams("Country"),
+                              value: controller.selectedCountry,
+                                onChanged: controller.onCountryChanged,
+                              items: controller.countries.map<DropdownMenuItem<String>>((
+                                  String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(value),
+                                );
+                              }).toList(),
+                            );
+                          }),
+                          /*
                           child: DropdownButtonFormField<String>(
                             validator: (value) => inputValidate(value, "Select Country!"),
                             decoration: inputDecorationParams("Country"),
@@ -96,23 +128,27 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                               );
                             }).toList(),
                           ),
+
+                           */
                         ),
                         const SizedBox(width: 5),
                         Expanded(
                           child: DropdownButtonFormField<String>(
-                            validator: (value) => inputValidate(value, "Select State!"),
+                            validator: (value) =>
+                                inputValidate(value, "Select State!"),
                             decoration: inputDecorationParams("State"),
                             value: _selectedState,
                             onChanged: (String? newValue) {
                               setState(() {
-                                if(_selectedState == newValue) {
+                                if (_selectedState == newValue) {
                                   return;
                                 }
                                 _selectedState = newValue;
                                 _selectedCity = null;
                               });
                             },
-                            items: states.map<DropdownMenuItem<String>>((String value) {
+                            items: states.map<DropdownMenuItem<String>>((
+                                String value) {
                               return DropdownMenuItem<String>(
                                 value: value,
                                 child: Text(value),
@@ -127,7 +163,8 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                       children: [
                         Expanded(
                           child: DropdownButtonFormField<String>(
-                            validator: (value) => inputValidate(value, "Select City!"),
+                            validator: (value) =>
+                                inputValidate(value, "Select City!"),
                             decoration: inputDecorationParams("City"),
                             value: _selectedCity,
                             onChanged: (String? newValue) {
@@ -135,7 +172,8 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                                 _selectedCity = newValue;
                               });
                             },
-                            items: cities.map<DropdownMenuItem<String>>((String value) {
+                            items: cities.map<DropdownMenuItem<String>>((
+                                String value) {
                               return DropdownMenuItem<String>(
                                 value: value,
                                 child: Text(value),
@@ -148,7 +186,8 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                           child: TextFormField(
                             keyboardType: TextInputType.number,
                             controller: _lastNameTEController,
-                            validator: (value) => inputValidate(value, "Enter Postcode"),
+                            validator: (value) =>
+                                inputValidate(value, "Enter Postcode"),
                             decoration: inputDecorationParams("Postcode"),
                           ),
                         ),
@@ -157,21 +196,24 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                     const SizedBox(height: 12),
                     TextFormField(
                       controller: _mobileNameTEController,
-                      validator: (value) => inputValidate(value, "Enter Phone Number"),
+                      validator: (value) =>
+                          inputValidate(value, "Enter Phone Number"),
                       decoration: inputDecorationParams("Phone"),
                       keyboardType: TextInputType.number,
                     ),
                     const SizedBox(height: 12),
                     TextFormField(
                       controller: _mobileNameTEController,
-                      validator: (value) => inputValidate(value, "Enter Fax Number"),
+                      validator: (value) =>
+                          inputValidate(value, "Enter Fax Number"),
                       decoration: inputDecorationParams("Fax"),
                       keyboardType: TextInputType.number,
                     ),
                     const SizedBox(height: 12),
                     TextFormField(
                       controller: _shippingAddressNameTEController,
-                      validator: (value) => inputValidate(value, "Enter Your Address"),
+                      validator: (value) =>
+                          inputValidate(value, "Enter Your Address"),
                       decoration: const InputDecoration(
                         hintText: 'Address',
                       ),
@@ -390,7 +432,8 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
     );
 
     final bool response =
-    await _completeProfileController.createUserProfile(createProfileParamsInput);
+    await _completeProfileController.createUserProfile(
+        createProfileParamsInput);
 
     if (response) {
       Get.offAll(() => const MainBottomNavScreen());
