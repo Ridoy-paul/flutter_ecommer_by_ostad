@@ -27,7 +27,6 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
   final TextEditingController _shippingAddressNameTEController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-
   @override
   void initState() {
     Get.find<CountryStateCityProcessingController>().getCountriesData();
@@ -36,7 +35,6 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -50,17 +48,12 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                     SizedBox(height: Get.height * .01),
                     const AppLogoWidget(),
                     const SizedBox(height: 8),
-                    Text("Complete Profile", style: Theme
-                        .of(context)
-                        .textTheme
-                        .titleLarge),
+                    Text("Complete Profile",
+                        style: Theme.of(context).textTheme.titleLarge),
                     const SizedBox(height: 5),
                     Text(
                       "Get started with us with your details",
-                      style: Theme
-                          .of(context)
-                          .textTheme
-                          .bodyMedium,
+                      style: Theme.of(context).textTheme.bodyMedium,
                     ),
                     const SizedBox(height: 16),
                     TextFormField(
@@ -70,47 +63,52 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                       decoration: inputDecorationParams("Full Name"),
                     ),
                     const SizedBox(height: 12),
-
                     Row(
                       children: [
                         Expanded(
-                          child: GetBuilder<CountryStateCityProcessingController>(
-                              builder: (controller) {
-                                return DropdownButtonFormField<String>(
-                                  validator: (value) =>
-                                      inputValidate(value, "Select Country!"),
-                                  decoration: inputDecorationParams("Country"),
-                                  value: controller.selectedCountry,
-                                  onChanged: controller.onCountryChanged,
-                                  items: controller.countries.map<
-                                      DropdownMenuItem<String>>((String value) {
-                                    return DropdownMenuItem<String>(
-                                      value: value,
-                                      child: Text(value),
-                                    );
-                                  }).toList(),
-                                );
-                              }),
+                          child:
+                          GetBuilder<CountryStateCityProcessingController>(
+                            builder: (controller) {
+                              return DropdownButtonFormField<String>(
+                                validator: (value) =>
+                                    inputValidate(value, "Select Country!"),
+                                decoration: inputDecorationParams("Country"),
+                                value: controller.selectedCountry,
+                                onChanged: controller.onCountryChanged,
+                                items: controller.countries
+                                    .map<DropdownMenuItem<String>>(
+                                        (String value) {
+                                  return DropdownMenuItem<String>(
+                                    value: value,
+                                    child: Text(value),
+                                  );
+                                }).toList(),
+                              );
+                            },
+                          ),
                         ),
                         const SizedBox(width: 5),
                         Expanded(
-                          child: GetBuilder<CountryStateCityProcessingController>(
-                              builder: (controller) {
-                                return DropdownButtonFormField<String>(
-                                  validator: (value) =>
-                                      inputValidate(value, "Select State!"),
-                                  decoration: inputDecorationParams("State"),
-                                  value: controller.selectedState,
-                                  onChanged: controller.onStateChanged,
-                                  items: controller.states.map<
-                                      DropdownMenuItem<String>>((String value) {
-                                    return DropdownMenuItem<String>(
-                                      value: value,
-                                      child: Text(value),
-                                    );
-                                  }).toList(),
-                                );
-                              }),
+                          child:
+                          GetBuilder<CountryStateCityProcessingController>(
+                            builder: (controller) {
+                              return DropdownButtonFormField<String>(
+                                validator: (value) =>
+                                    inputValidate(value, "Select State!"),
+                                decoration: inputDecorationParams("State"),
+                                value: controller.selectedState,
+                                onChanged: controller.onStateChanged,
+                                items: controller.states
+                                    .map<DropdownMenuItem<String>>(
+                                        (String value) {
+                                  return DropdownMenuItem<String>(
+                                    value: value,
+                                    child: Text(value),
+                                  );
+                                }).toList(),
+                              );
+                            },
+                          ),
                         ),
                       ],
                     ),
@@ -118,21 +116,23 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                     Row(
                       children: [
                         Expanded(
-                          child: GetBuilder<CountryStateCityProcessingController>(
-                              builder: (controller) {
-                                return DropdownButtonFormField<String>(
-                                  validator: (value) => inputValidate(value, "Select City!"),
-                                  decoration: inputDecorationParams("City"),
-                                  value: controller.selectedCity,
-                                  onChanged: controller.onCityChanged,
-                                  items: controller.cities.map<DropdownMenuItem<String>>((String value) {
-                                    return DropdownMenuItem<String>(
-                                      value: value,
-                                      child: Text(value),
-                                    );
-                                  }).toList(),
-                                );
-                              }),
+                          child:
+                          GetBuilder<CountryStateCityProcessingController>(
+                            builder: (controller) {
+                              return DropdownButtonFormField<String>(
+                                validator: (value) => inputValidate(value, "Select City!"),
+                                decoration: inputDecorationParams("City"),
+                                value: controller.selectedCity,
+                                onChanged: controller.onCityChanged,
+                                items: controller.cities.map<DropdownMenuItem<String>>((String value) {
+                                  return DropdownMenuItem<String>(
+                                    value: value,
+                                    child: Text(value),
+                                  );
+                                }).toList(),
+                              );
+                            },
+                          ),
                         ),
                         const SizedBox(width: 5),
                         Expanded(
@@ -377,16 +377,15 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
     }
 
     final createProfileParamsInput = CreateProfileParams(
-      // firstName: _firstNameTEController.text.trim(),
-      // lastName: _lastNameTEController.text.trim(),
-      // mobile: _mobileNameTEController.text.trim(),
-      // city: _cityNameTEController.text.trim(),
-      // address: _shippingAddressNameTEController.text.trim(),
-    );
+        // firstName: _firstNameTEController.text.trim(),
+        // lastName: _lastNameTEController.text.trim(),
+        // mobile: _mobileNameTEController.text.trim(),
+        // city: _cityNameTEController.text.trim(),
+        // address: _shippingAddressNameTEController.text.trim(),
+        );
 
-    final bool response =
-    await _completeProfileController.createUserProfile(
-        createProfileParamsInput);
+    final bool response = await _completeProfileController
+        .createUserProfile(createProfileParamsInput);
 
     if (response) {
       Get.offAll(() => const MainBottomNavScreen());
