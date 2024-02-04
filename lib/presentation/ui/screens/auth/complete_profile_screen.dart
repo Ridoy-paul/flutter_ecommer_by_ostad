@@ -19,9 +19,9 @@ class CompleteProfileScreen extends StatefulWidget {
 class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
   final CompleteProfileController _completeProfileController = Get.find<CompleteProfileController>();
 
-  String selectedCountry = '';
-  String selectedState = '';
-  String selectedCity = '';
+  String _selectedCountry = '';
+  String _selectedState = '';
+  String _selectedCity = '';
   CountriesCitiesAndStates countryData = CountriesCitiesAndStates();
 
 
@@ -32,13 +32,15 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
   final TextEditingController _shippingAddressNameTEController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  String _selectedCountry = 'Bangladesh'; // Default selected country
-
-  // List of countries
-  List<String> _countries = ['Bangladesh', 'USA', 'India'];
-
   String? dropdownValue;
 
+  Map<String, Map<String, List<String>>> countriesCitiesAndStates = CountriesCitiesAndStates().countriesCitiesAndStates;
+  List<String> countries = [];
+  String selectedCountry = '';
+  List<String> states = [];
+  String selectedState = '';
+  List<String> cities = [];
+  String selectedCity = '';
 
 
   @override
@@ -47,14 +49,17 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
     List<String> countries = countryData.countriesCitiesAndStates.keys.toList();
 
     List<String> states = [];
-    if (selectedCountry.isNotEmpty) {
-      states = countryData.countriesCitiesAndStates[selectedCountry]!.keys.toList();
+    if (_selectedCountry.isNotEmpty) {
+      states = countryData.countriesCitiesAndStates[_selectedCountry]!.keys.toList();
     }
 
     List<String> cities = [];
-    if (selectedCountry.isNotEmpty && selectedState.isNotEmpty) {
-      cities = countryData.countriesCitiesAndStates[selectedCountry]![selectedState]!;
+    if (_selectedCountry.isNotEmpty && _selectedState.isNotEmpty) {
+      cities = countryData.countriesCitiesAndStates[_selectedCountry]![_selectedState]!;
     }
+
+    print(_selectedCountry);
+    print(states);
 
     return Scaffold(
       body: SafeArea(
@@ -93,11 +98,11 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                             validator: (value) => inputValidate(value, "Select Country!"),
                             decoration: inputDecorationParams("Country"),
                             value: dropdownValue,
-                            onChanged: (String? newValue) {
+                            onChanged: (String? selectedCountry) {
                               setState(() {
-                                selectedCountry = newValue!;
-                                selectedState = '';
-                                selectedCity = '';
+                                _selectedCountry = selectedCountry!;
+                                _selectedState = '';
+                                _selectedCity = '';
                               });
                             },
                             items: countries.map<DropdownMenuItem<String>>((String value) {
@@ -116,8 +121,8 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                             value: dropdownValue,
                             onChanged: (String? newValue) {
                               setState(() {
-                                selectedState = newValue!;
-                                selectedCity = ''; // Reset city selection
+                                _selectedState = newValue!;
+                                _selectedCity = ''; // Reset city selection
                               });
                             },
                             items: states.map<DropdownMenuItem<String>>((String value) {
@@ -140,7 +145,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                             value: dropdownValue,
                             onChanged: (String? newValue) {
                               setState(() {
-                                selectedCity = newValue!;
+                                _selectedCity = newValue!;
                               });
                             },
                             items: cities.map<DropdownMenuItem<String>>((String value) {
@@ -221,6 +226,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
         elevation: 4,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
+          /*
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -259,6 +265,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
               const SizedBox(
                 height: 12,
               ),
+
               Row(
                 children: [
                   Expanded(
@@ -266,19 +273,18 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                       validator: (value) =>
                           inputValidate(value, "Select Shipping Country!"),
                       decoration: inputDecorationParams("Ship Country"),
-                      value: dropdownValue,
+                      value: '',
                       onChanged: (String? newValue) {
-                        setState(() {
-                          dropdownValue = newValue!;
-                        });
+                        // setState(() {
+                        //   dropdownValue = newValue!;
+                        // });
                       },
-                      items: _countries
-                          .map<DropdownMenuItem<String>>((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(value),
-                        );
-                      }).toList(),
+                        items: countries.map<DropdownMenuItem<String>>((String value) {
+                          return DropdownMenuItem<String>(
+                            value: value,
+                            child: Text(value),
+                          );
+                        }).toList()
                     ),
                   ),
                   const SizedBox(
@@ -292,7 +298,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                       value: dropdownValue,
                       onChanged: (String? newValue) {
                         setState(() {
-                          dropdownValue = newValue!;
+                          //dropdownValue = newValue!;
                         });
                       },
                       items: _countries
@@ -316,13 +322,13 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                       validator: (value) =>
                           inputValidate(value, "Select Shipping City!"),
                       decoration: inputDecorationParams("Ship City"),
-                      value: dropdownValue,
+                      value: '',
                       onChanged: (String? newValue) {
                         setState(() {
-                          dropdownValue = newValue!;
+                          //dropdownValue = newValue!;
                         });
                       },
-                      items: _countries.map<DropdownMenuItem<String>>((String value) {
+                      items: countries.map<DropdownMenuItem<String>>((String value) {
                         return DropdownMenuItem<String>(
                           value: value,
                           child: Text(value),
@@ -369,6 +375,8 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
               ),
             ],
           ),
+
+           */
         ),
       ),
     );

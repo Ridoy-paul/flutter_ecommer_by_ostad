@@ -1,3 +1,4 @@
+import 'presentation/state_holders/auth/country_state_city_processing_controller.dart';
 import 'presentation/state_holders/product_list_by_category_controller.dart';
 import 'presentation/state_holders/new_product_list_controller.dart';
 import 'presentation/state_holders/special_product_list_controller.dart';
@@ -29,6 +30,7 @@ class ControllerBinder extends Bindings {
     Get.put(SpecialProductListController());
     Get.put(NewProductListController());
     Get.put(ProductListByCategoryController());
+    Get.put(CountryStateCityProcessingController());
 
 
   }
