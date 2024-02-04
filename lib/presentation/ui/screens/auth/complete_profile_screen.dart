@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../../state_holders/auth/country_state_city_processing_controller.dart';
+import '../../../state_holders/auth/country_state_and_city/country_state_city_processing_controller_for_shipping_info.dart';
+import '../../../state_holders/auth/country_state_and_city/country_state_city_processing_controller.dart';
 import 'package:get/get.dart';
 import '../../utility/app_colors.dart';
 import '../../../../data/models/params/create_profile_params.dart';
@@ -29,6 +30,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
   @override
   void initState() {
     Get.find<CountryStateCityProcessingController>().getCountriesData();
+    Get.find<CountryStateCityProcessingControllerForShippingInfo>().getCountriesData();
     super.initState();
   }
 
@@ -69,14 +71,11 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                           GetBuilder<CountryStateCityProcessingController>(
                             builder: (controller) {
                               return DropdownButtonFormField<String>(
-                                validator: (value) =>
-                                    inputValidate(value, "Select Country!"),
+                                validator: (value) => inputValidate(value, "Select Country!"),
                                 decoration: inputDecorationParams("Country"),
                                 value: controller.selectedCountry,
                                 onChanged: controller.onCountryChanged,
-                                items: controller.countries
-                                    .map<DropdownMenuItem<String>>(
-                                        (String value) {
+                                items: controller.countries.map<DropdownMenuItem<String>>((String value) {
                                   return DropdownMenuItem<String>(
                                     value: value,
                                     child: Text(value),
@@ -204,7 +203,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
         elevation: 4,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          /*
+
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -243,87 +242,81 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
               const SizedBox(
                 height: 12,
               ),
-
               Row(
                 children: [
                   Expanded(
-                    child: DropdownButtonFormField<String>(
-                      validator: (value) =>
-                          inputValidate(value, "Select Shipping Country!"),
-                      decoration: inputDecorationParams("Ship Country"),
-                      value: '',
-                      onChanged: (String? newValue) {
-                        // setState(() {
-                        //   dropdownValue = newValue!;
-                        // });
+                    child:
+                    GetBuilder<CountryStateCityProcessingControllerForShippingInfo>(
+                      builder: (controller) {
+                        return DropdownButtonFormField<String>(
+                          validator: (value) => inputValidate(value, "Select Country!"),
+                          decoration: inputDecorationParams("Country"),
+                          value: controller.selectedCountry,
+                          onChanged: controller.onCountryChanged,
+                          items: controller.countries.map<DropdownMenuItem<String>>((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(value),
+                            );
+                          }).toList(),
+                        );
                       },
-                        items: countries.map<DropdownMenuItem<String>>((String value) {
-                          return DropdownMenuItem<String>(
-                            value: value,
-                            child: Text(value),
-                          );
-                        }).toList()
                     ),
                   ),
-                  const SizedBox(
-                    width: 5,
-                  ),
+                  const SizedBox(width: 5),
                   Expanded(
-                    child: DropdownButtonFormField<String>(
-                      validator: (value) =>
-                          inputValidate(value, "Select Shipping State!"),
-                      decoration: inputDecorationParams("Ship State"),
-                      value: dropdownValue,
-                      onChanged: (String? newValue) {
-                        setState(() {
-                          //dropdownValue = newValue!;
-                        });
-                      },
-                      items: _countries
-                          .map<DropdownMenuItem<String>>((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(value),
+                    child:
+                    GetBuilder<CountryStateCityProcessingControllerForShippingInfo>(
+                      builder: (controller) {
+                        return DropdownButtonFormField<String>(
+                          validator: (value) =>
+                              inputValidate(value, "Select State!"),
+                          decoration: inputDecorationParams("State"),
+                          value: controller.selectedState,
+                          onChanged: controller.onStateChanged,
+                          items: controller.states
+                              .map<DropdownMenuItem<String>>(
+                                  (String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(value),
+                                );
+                              }).toList(),
                         );
-                      }).toList(),
+                      },
                     ),
                   ),
                 ],
               ),
-              const SizedBox(
-                height: 12,
-              ),
+              const SizedBox(height: 12),
               Row(
                 children: [
                   Expanded(
-                    child: DropdownButtonFormField<String>(
-                      validator: (value) =>
-                          inputValidate(value, "Select Shipping City!"),
-                      decoration: inputDecorationParams("Ship City"),
-                      value: '',
-                      onChanged: (String? newValue) {
-                        setState(() {
-                          //dropdownValue = newValue!;
-                        });
-                      },
-                      items: countries.map<DropdownMenuItem<String>>((String value) {
-                        return DropdownMenuItem<String>(
-                          value: value,
-                          child: Text(value),
+                    child:
+                    GetBuilder<CountryStateCityProcessingControllerForShippingInfo>(
+                      builder: (controller) {
+                        return DropdownButtonFormField<String>(
+                          validator: (value) => inputValidate(value, "Select City!"),
+                          decoration: inputDecorationParams("City"),
+                          value: controller.selectedCity,
+                          onChanged: controller.onCityChanged,
+                          items: controller.cities.map<DropdownMenuItem<String>>((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(value),
+                            );
+                          }).toList(),
                         );
-                      }).toList(),
+                      },
                     ),
                   ),
-                  const SizedBox(
-                    width: 5,
-                  ),
+                  const SizedBox(width: 5),
                   Expanded(
                     child: TextFormField(
                       keyboardType: TextInputType.number,
                       controller: _lastNameTEController,
-                      validator: (value) =>
-                          inputValidate(value, "Enter Shipping Postcode"),
-                      decoration: inputDecorationParams("Ship Postcode"),
+                      validator: (value) => inputValidate(value, "Enter Postcode"),
+                      decoration: inputDecorationParams("Postcode"),
                     ),
                   ),
                 ],
@@ -353,8 +346,6 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
               ),
             ],
           ),
-
-           */
         ),
       ),
     );

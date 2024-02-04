@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
-import '../../../data/utility/country_cities_and_state_utility.dart';
+import '../../../../data/utility/country_cities_and_state_utility.dart';
 
-class CountryStateCityProcessingController extends GetxController {
+class CountryStateCityProcessingControllerForShippingInfo extends GetxController {
   String? _selectedCountry;
   String? _selectedState;
   String? _selectedCity;
