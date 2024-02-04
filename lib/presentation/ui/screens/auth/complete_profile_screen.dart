@@ -20,14 +20,11 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
   final CompleteProfileController _completeProfileController =
   Get.find<CompleteProfileController>();
 
-  final TextEditingController _customerNameTEController =
-  TextEditingController();
+  final TextEditingController _customerNameTEController = TextEditingController();
   final TextEditingController _lastNameTEController = TextEditingController();
-  final TextEditingController _mobileNameTEController =
-  TextEditingController();
+  final TextEditingController _mobileNameTEController = TextEditingController();
   final TextEditingController _cityNameTEController = TextEditingController();
-  final TextEditingController _shippingAddressNameTEController =
-  TextEditingController();
+  final TextEditingController _shippingAddressNameTEController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   String? _selectedCountry;
@@ -84,6 +81,9 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                             value: _selectedCountry,
                             onChanged: (String? selectedCountry) {
                               setState(() {
+                                if(_selectedCountry == selectedCountry) {
+                                  return;
+                                }
                                 _selectedCountry = selectedCountry;
                                 _selectedState = null;
                                 _selectedCity = null;
@@ -105,8 +105,11 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                             value: _selectedState,
                             onChanged: (String? newValue) {
                               setState(() {
+                                if(_selectedState == newValue) {
+                                  return;
+                                }
                                 _selectedState = newValue;
-                                _selectedCity = null; // Reset city selection
+                                _selectedCity = null;
                               });
                             },
                             items: states.map<DropdownMenuItem<String>>((String value) {
