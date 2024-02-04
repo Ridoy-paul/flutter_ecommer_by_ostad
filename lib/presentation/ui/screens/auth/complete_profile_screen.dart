@@ -140,10 +140,10 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                             value: dropdownValue,
                             onChanged: (String? newValue) {
                               setState(() {
-                                dropdownValue = newValue!;
+                                selectedCity = newValue!;
                               });
                             },
-                            items: _countries.map<DropdownMenuItem<String>>((String value) {
+                            items: cities.map<DropdownMenuItem<String>>((String value) {
                               return DropdownMenuItem<String>(
                                 value: value,
                                 child: Text(value),
