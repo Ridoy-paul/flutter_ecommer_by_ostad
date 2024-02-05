@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import '../../../state_holders/auth/auth_controller.dart';
-import 'package:flutter_ecommer_by_ostad/presentation/ui/screens/auth/complete_profile_screen.dart';
 import '../main_bottom_nav_screen.dart';
 import 'verify_email_screen.dart';
 import 'package:get/get.dart';

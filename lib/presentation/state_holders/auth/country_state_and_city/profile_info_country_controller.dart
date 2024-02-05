@@ -18,8 +18,6 @@ class ProfileInfoCountryController extends GetxController {
   }
 
   void onCountryChanged(String? value) {
-    print(value);
-    print(_selectedCountry);
     if (value != null && _selectedCountry != value) {
       _selectedCountry = value;
 
