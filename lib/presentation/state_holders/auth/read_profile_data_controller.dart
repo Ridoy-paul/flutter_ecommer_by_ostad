@@ -31,7 +31,7 @@ class ReadProfileDataController extends GetxController  {
         _isProfileCompleted = false;
       }
       else {
-         profileModel = UserProfileModel.fromJson(profileData[0]);
+         profileModel = UserProfileModel.fromJson(profileData);
         _isProfileCompleted = true;
       }
       update();
