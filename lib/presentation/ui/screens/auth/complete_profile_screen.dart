@@ -37,10 +37,6 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
   final TextEditingController _shippingPhoneTEController = TextEditingController();
   final TextEditingController _shippingAddressTEController = TextEditingController();
 
-
-
-
-  final TextEditingController _shippingAddressNameTEController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   @override
@@ -149,7 +145,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                         Expanded(
                           child: TextFormField(
                             keyboardType: TextInputType.number,
-                            controller: _lastNameTEController,
+                            controller: _customerPostcodeTEController,
                             validator: (value) => inputValidate(value, "Enter Postcode"),
                             decoration: inputDecorationParams("Postcode"),
                           ),
@@ -158,21 +154,21 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                     ),
                     const SizedBox(height: 12),
                     TextFormField(
-                      controller: _mobileNameTEController,
+                      controller: _customerPhoneTEController,
                       validator: (value) => inputValidate(value, "Enter Phone Number"),
                       decoration: inputDecorationParams("Phone"),
                       keyboardType: TextInputType.number,
                     ),
                     const SizedBox(height: 12),
                     TextFormField(
-                      controller: _mobileNameTEController,
+                      controller: _customerFaxTEController,
                       validator: (value) => inputValidate(value, "Enter Fax Number"),
                       decoration: inputDecorationParams("Fax"),
                       keyboardType: TextInputType.number,
                     ),
                     const SizedBox(height: 12),
                     TextFormField(
-                      controller: _shippingAddressNameTEController,
+                      controller: _customerAddressTEController,
                       validator: (value) => inputValidate(value, "Enter Your Address"),
                       decoration: const InputDecoration(
                         hintText: 'Address',
@@ -231,7 +227,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                 height: 12,
               ),
               TextFormField(
-                controller: _customerNameTEController,
+                controller: _shippingPersonNameTEController,
                 validator: (value) => inputValidate(value, "Enter Shipping Person Name"),
                 decoration: inputDecorationParams("Shipping Person Name"),
               ),
@@ -310,7 +306,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                   Expanded(
                     child: TextFormField(
                       keyboardType: TextInputType.number,
-                      controller: _lastNameTEController,
+                      controller: _shippingPostcodeTEController,
                       validator: (value) => inputValidate(value, "Enter Postcode"),
                       decoration: inputDecorationParams("Postcode"),
                     ),
@@ -321,7 +317,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                 height: 12,
               ),
               TextFormField(
-                controller: _mobileNameTEController,
+                controller: _shippingPhoneTEController,
                 validator: (value) =>
                     inputValidate(value, "Enter Shipping Person Phone Number"),
                 decoration: inputDecorationParams("Shipping Person Phone"),
@@ -331,7 +327,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                 height: 12,
               ),
               TextFormField(
-                controller: _shippingAddressNameTEController,
+                controller: _shippingAddressTEController,
                 validator: (value) =>
                     inputValidate(value, "Enter Shipping Address"),
                 decoration: const InputDecoration(
