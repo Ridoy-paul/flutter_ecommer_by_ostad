@@ -19,7 +19,7 @@ class CompleteProfileScreen extends StatefulWidget {
 
 class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
   final CompleteProfileController _completeProfileController = Get.find<CompleteProfileController>();
-  final CountryStateCityProcessingController _cityProcessingController = Get.find<CountryStateCityProcessingController>();
+  final CountryStateCityProcessingController _countryStateCityProcessingController = Get.find<CountryStateCityProcessingController>();
   final CountryStateCityProcessingControllerForShippingInfo _countryStateCityProcessingControllerForShippingInfo = Get.find<CountryStateCityProcessingControllerForShippingInfo>();
 
   final TextEditingController _customerNameTEController = TextEditingController();
@@ -357,11 +357,22 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
     }
 
     final createProfileParamsInput = CreateProfileParams(
-        // firstName: _firstNameTEController.text.trim(),
-        // lastName: _lastNameTEController.text.trim(),
-        // mobile: _mobileNameTEController.text.trim(),
-        // city: _cityNameTEController.text.trim(),
-        // address: _shippingAddressNameTEController.text.trim(),
+        cusName: _customerNameTEController.text.trim(),
+        cusAdd: _customerAddressTEController.text.trim(),
+        cusCity: _countryStateCityProcessingController.selectedCountry,
+        cusState: _countryStateCityProcessingController.selectedState,
+        cusPostcode: _customerPostcodeTEController.text.trim(),
+        cusCountry: _countryStateCityProcessingController.selectedCountry,
+        cusPhone: _customerPhoneTEController.text.trim(),
+        cusFax: _customerFaxTEController.text.trim(),
+
+        shipName: _shippingPersonNameTEController.text.trim(),
+        shipAdd: _shippingAddressTEController.text.trim(),
+        shipCity: _countryStateCityProcessingControllerForShippingInfo.selectedCity,
+        shipState: _countryStateCityProcessingControllerForShippingInfo.selectedState,
+        shipPostcode: _shippingPostcodeTEController.text.trim(),
+        shipCountry: _countryStateCityProcessingControllerForShippingInfo.selectedCountry,
+        shipPhone: _shippingPhoneTEController.text.trim(),
     );
 
     final bool response = await _completeProfileController.createUserProfile(createProfileParamsInput);
