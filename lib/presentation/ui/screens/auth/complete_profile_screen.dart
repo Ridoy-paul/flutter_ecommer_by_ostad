@@ -19,6 +19,8 @@ class CompleteProfileScreen extends StatefulWidget {
 
 class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
   final CompleteProfileController _completeProfileController = Get.find<CompleteProfileController>();
+  final CountryStateCityProcessingController _cityProcessingController = Get.find<CountryStateCityProcessingController>();
+  final CountryStateCityProcessingControllerForShippingInfo _countryStateCityProcessingControllerForShippingInfo = Get.find<CountryStateCityProcessingControllerForShippingInfo>();
 
   final TextEditingController _customerNameTEController = TextEditingController();
   final TextEditingController _customerCountryTEController = TextEditingController();
@@ -360,7 +362,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
         // mobile: _mobileNameTEController.text.trim(),
         // city: _cityNameTEController.text.trim(),
         // address: _shippingAddressNameTEController.text.trim(),
-        );
+    );
 
     final bool response = await _completeProfileController.createUserProfile(createProfileParamsInput);
 
