@@ -21,9 +21,25 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
   final CompleteProfileController _completeProfileController = Get.find<CompleteProfileController>();
 
   final TextEditingController _customerNameTEController = TextEditingController();
-  final TextEditingController _lastNameTEController = TextEditingController();
-  final TextEditingController _mobileNameTEController = TextEditingController();
-  final TextEditingController _cityNameTEController = TextEditingController();
+  final TextEditingController _customerCountryTEController = TextEditingController();
+  final TextEditingController _customerStateTEController = TextEditingController();
+  final TextEditingController _customerCityTEController = TextEditingController();
+  final TextEditingController _customerPostcodeTEController = TextEditingController();
+  final TextEditingController _customerPhoneTEController = TextEditingController();
+  final TextEditingController _customerFaxTEController = TextEditingController();
+  final TextEditingController _customerAddressTEController = TextEditingController();
+
+  final TextEditingController _shippingPersonNameTEController = TextEditingController();
+  final TextEditingController _shippingCountryTEController = TextEditingController();
+  final TextEditingController _shippingStateTEController = TextEditingController();
+  final TextEditingController _shippingCityTEController = TextEditingController();
+  final TextEditingController _shippingPostcodeTEController = TextEditingController();
+  final TextEditingController _shippingPhoneTEController = TextEditingController();
+  final TextEditingController _shippingAddressTEController = TextEditingController();
+
+
+
+
   final TextEditingController _shippingAddressNameTEController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -91,14 +107,11 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                           GetBuilder<CountryStateCityProcessingController>(
                             builder: (controller) {
                               return DropdownButtonFormField<String>(
-                                validator: (value) =>
-                                    inputValidate(value, "Select State!"),
+                                validator: (value) => inputValidate(value, "Select State!"),
                                 decoration: inputDecorationParams("State"),
                                 value: controller.selectedState,
                                 onChanged: controller.onStateChanged,
-                                items: controller.states
-                                    .map<DropdownMenuItem<String>>(
-                                        (String value) {
+                                items: controller.states.map<DropdownMenuItem<String>>((String value) {
                                   return DropdownMenuItem<String>(
                                     value: value,
                                     child: Text(value),
@@ -353,8 +366,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
         // address: _shippingAddressNameTEController.text.trim(),
         );
 
-    final bool response = await _completeProfileController
-        .createUserProfile(createProfileParamsInput);
+    final bool response = await _completeProfileController.createUserProfile(createProfileParamsInput);
 
     if (response) {
       Get.offAll(() => const MainBottomNavScreen());
@@ -367,10 +379,21 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
   @override
   void dispose() {
     _customerNameTEController.dispose();
-    _lastNameTEController.dispose();
-    _mobileNameTEController.dispose();
-    _cityNameTEController.dispose();
-    _shippingAddressNameTEController.dispose();
+    _customerCountryTEController.dispose();
+    _customerStateTEController.dispose();
+    _customerCityTEController.dispose();
+    _customerPostcodeTEController.dispose();
+    _customerPhoneTEController.dispose();
+    _customerFaxTEController.dispose();
+    _customerAddressTEController.dispose();
+
+    _shippingPersonNameTEController.dispose();
+    _shippingCountryTEController.dispose();
+    _shippingStateTEController.dispose();
+    _shippingCityTEController.dispose();
+    _shippingPostcodeTEController.dispose();
+    _shippingPhoneTEController.dispose();
+    _shippingAddressTEController.dispose();
     super.dispose();
   }
 }
