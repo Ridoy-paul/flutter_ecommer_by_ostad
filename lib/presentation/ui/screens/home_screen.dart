@@ -231,12 +231,10 @@ class _HomeScreenState extends State<HomeScreen> {
                   ],
                 ),
                 onConfirm: () async {
-                  //await Get.find<AuthController>().clearAuthData();
-                  //Get.offAll(() => const VerifyEmailScreen());
-                }
+                  await Get.find<AuthController>().clearAuthData();
+                  Get.offAll(() => const VerifyEmailScreen());
+                },
             );
-
-            // Get.offAll(() => const CompleteProfileScreen());
           },
           iconData: Icons.person_outline,
         ),
