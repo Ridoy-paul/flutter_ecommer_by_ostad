@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommer_by_ostad/presentation/state_holders/brand_list_controller.dart';
+import 'package:flutter_ecommer_by_ostad/presentation/ui/screens/all_brand_screen.dart';
 import '../widgets/brand_item_widget.dart';
 import 'all_product_list_by_remarks_screen.dart';
 import '../../../data/utility/helpers.dart';
@@ -72,7 +73,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 getNewProductsLists,
                 SectionTitleWidget(
                   title: "All Brands",
-                  onTapSeeAll: () => Get.find<MainBottomNavController>().changeIndex(1),
+                  onTapSeeAll: () {
+                    Get.to(() => const AllBrandScreen());
+                  },
                 ),
                 getBrandLists,
                 const SizedBox(height: 10,),
@@ -118,31 +121,31 @@ class _HomeScreenState extends State<HomeScreen> {
     return SizedBox(
       height: Get.height * .15,
       child: GetBuilder<BrandListController>(
-          builder: (brandListController) {
-            return Visibility(
-              visible: !brandListController.inProgressStatus,
-              replacement: circleProgressIndicatorShow(),
-              child: ListView.separated(
-                itemCount: brandListController.brandListModel.brandItemList ?.length ?? 0,
-                primary: false,
-                shrinkWrap: true,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) {
-                  return BrandItemWidget(
-                    brandItem: brandListController.brandListModel.brandItemList![index],
-                  );
-                },
-                separatorBuilder: (_, __) {
-                  return const SizedBox(
-                    width: 8,
-                  );
-                },
-              ),
-            );
-          }),
+        builder: (brandListController) {
+          return Visibility(
+            visible: !brandListController.inProgressStatus,
+            replacement: circleProgressIndicatorShow(),
+            child: ListView.separated(
+              itemCount: brandListController.brandListModel.brandItemList?.length ?? 0,
+              primary: false,
+              shrinkWrap: true,
+              scrollDirection: Axis.horizontal,
+              itemBuilder: (context, index) {
+                return BrandItemWidget(
+                  brandItem: brandListController.brandListModel.brandItemList![index],
+                );
+              },
+              separatorBuilder: (_, __) {
+                return const SizedBox(
+                  width: 8,
+                );
+              },
+            ),
+          );
+        },
+      ),
     );
   }
-
 
   SizedBox get getPopularProductsLists {
     return SizedBox(
@@ -166,7 +169,7 @@ class _HomeScreenState extends State<HomeScreen> {
             },
           ),
         );
-      }),
+      },),
     );
   }
 
