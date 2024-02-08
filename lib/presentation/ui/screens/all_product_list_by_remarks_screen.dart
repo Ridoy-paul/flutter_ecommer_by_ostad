@@ -40,7 +40,7 @@ class _AllProductListByRemarksScreenState extends State<AllProductListByRemarksS
             icon: const Icon(Icons.arrow_back_ios),
           ),
           title: Text(
-            '${widget.productTypeTitle} Products'.toUpperCase() ?? 'Products',
+            '${widget.productTypeTitle} Products'.toUpperCase(),
             style: const TextStyle(fontSize: 18),
           ),
           elevation: 4,
