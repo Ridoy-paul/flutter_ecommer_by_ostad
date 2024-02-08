@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../widgets/brand_item_widget.dart';
 import 'all_product_list_by_remarks_screen.dart';
 import '../../../data/utility/helpers.dart';
 import '../../state_holders/category_list_controller.dart';
@@ -53,8 +54,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 SectionTitleWidget(
                   title: "All Categories",
-                  onTapSeeAll: () =>
-                      Get.find<MainBottomNavController>().changeIndex(1),
+                  onTapSeeAll: () => Get.find<MainBottomNavController>().changeIndex(1),
                 ),
                 getCategoryLists,
                 SectionTitleWidget(title: "Popular", onTapSeeAll: () {
@@ -69,6 +69,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   Get.to(() => const AllProductListByRemarksScreen(productTypeTitle: 'new',),);
                 },),
                 getNewProductsLists,
+                SectionTitleWidget(
+                  title: "All Brands",
+                  onTapSeeAll: () => Get.find<MainBottomNavController>().changeIndex(1),
+                ),
+                getBrandLists,
                 const SizedBox(height: 10,),
               ],
             ),
@@ -94,8 +99,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
                   return CategoryItemWidget(
-                    categoryItem: categoryListController.categoryListModel
-                        .categoryList![index],
+                    categoryItem: categoryListController.categoryListModel.categoryList![index],
                   );
                 },
                 separatorBuilder: (_, __) {
@@ -108,6 +112,36 @@ class _HomeScreenState extends State<HomeScreen> {
           }),
     );
   }
+
+  SizedBox get getBrandLists {
+    return SizedBox(
+      height: Get.height * .15,
+      child: GetBuilder<CategoryListController>(
+          builder: (categoryListController) {
+            return Visibility(
+              visible: !categoryListController.inProgressStatus,
+              replacement: circleProgressIndicatorShow(),
+              child: ListView.separated(
+                itemCount: categoryListController.categoryListModel.categoryList ?.length ?? 0,
+                primary: false,
+                shrinkWrap: true,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index) {
+                  return BrandItemWidget(
+                    categoryItem: categoryListController.categoryListModel.categoryList![index],
+                  );
+                },
+                separatorBuilder: (_, __) {
+                  return const SizedBox(
+                    width: 8,
+                  );
+                },
+              ),
+            );
+          }),
+    );
+  }
+
 
   SizedBox get getPopularProductsLists {
     return SizedBox(
