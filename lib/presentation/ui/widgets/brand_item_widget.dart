@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommer_by_ostad/data/models/brand_item.dart';
 import '../../../data/models/category_item.dart';
 import '../screens/product_list_screen.dart';
 import 'package:get/get.dart';
@@ -6,10 +7,10 @@ import '../utility/app_colors.dart';
 
 class BrandItemWidget extends StatelessWidget {
   const BrandItemWidget({
-    super.key, required this.categoryItem,
+    super.key, required this.brandItem,
   });
 
-  final CategoryItem categoryItem;
+  final BrandItem brandItem;
 
   @override
   Widget build(BuildContext context) {
@@ -17,8 +18,8 @@ class BrandItemWidget extends StatelessWidget {
       onTap: () {
         Get.to(()=>
             ProductListScreen(
-              categoryTitle: categoryItem.categoryName.toString(),
-              categoryId: int.parse(categoryItem.id.toString()),
+              categoryTitle: brandItem.brandName.toString(),
+              categoryId: int.parse(brandItem.id.toString()),
             ),
         );
       },
@@ -29,11 +30,10 @@ class BrandItemWidget extends StatelessWidget {
             color: AppColors.primaryColor.withOpacity(.2),
             child: Padding(
               padding: const EdgeInsets.all(18),
-              child: Image.network(categoryItem.categoryImg ?? '', width: 50, height: 50,),
+              child: Image.network(brandItem.brandImg ?? '', width: 50, height: 50,),
             ),
           ),
-          Text(
-            categoryItem.categoryName.toString() ?? '',
+          Text(brandItem.brandName.toString() ?? '',
             style: const TextStyle(
               color: AppColors.primaryColor,
               fontSize: 16,

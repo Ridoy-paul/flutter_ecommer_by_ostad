@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommer_by_ostad/presentation/state_holders/brand_list_controller.dart';
 import '../widgets/brand_item_widget.dart';
 import 'all_product_list_by_remarks_screen.dart';
 import '../../../data/utility/helpers.dart';
@@ -116,19 +117,19 @@ class _HomeScreenState extends State<HomeScreen> {
   SizedBox get getBrandLists {
     return SizedBox(
       height: Get.height * .15,
-      child: GetBuilder<CategoryListController>(
-          builder: (categoryListController) {
+      child: GetBuilder<BrandListController>(
+          builder: (brandListController) {
             return Visibility(
-              visible: !categoryListController.inProgressStatus,
+              visible: !brandListController.inProgressStatus,
               replacement: circleProgressIndicatorShow(),
               child: ListView.separated(
-                itemCount: categoryListController.categoryListModel.categoryList ?.length ?? 0,
+                itemCount: brandListController.brandListModel.brandItemList ?.length ?? 0,
                 primary: false,
                 shrinkWrap: true,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
                   return BrandItemWidget(
-                    categoryItem: categoryListController.categoryListModel.categoryList![index],
+                    brandItem: brandListController.brandListModel.brandItemList![index],
                   );
                 },
                 separatorBuilder: (_, __) {
