@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../state_holders/all_product_list_by_remarks_controller.dart';
 import '../../../data/utility/helpers.dart';
-import '../../state_holders/product_list_by_category_controller.dart';
 import '../widgets/no_result_found_widget.dart';
 import '../widgets/products/product_card_item.dart';
 import '../../state_holders/main_bottom_nav_controller.dart';
@@ -41,7 +40,7 @@ class _AllProductListByRemarksScreenState extends State<AllProductListByRemarksS
             icon: const Icon(Icons.arrow_back_ios),
           ),
           title: Text(
-            widget.productTypeTitle ?? 'Products',
+            '${widget.productTypeTitle} Products'.toUpperCase() ?? 'Products',
             style: const TextStyle(fontSize: 18),
           ),
           elevation: 4,
