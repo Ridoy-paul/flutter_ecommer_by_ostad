@@ -6,7 +6,6 @@ import '../../state_holders/popular_product_list_controller.dart';
 import '../../state_holders/special_product_list_controller.dart';
 import '../../state_holders/home_slider_controller.dart';
 import '../../state_holders/auth/auth_controller.dart';
-import 'auth/complete_profile_screen.dart';
 import 'auth/verify_email_screen.dart';
 import '../../state_holders/main_bottom_nav_controller.dart';
 import 'package:get/get.dart';
@@ -49,7 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: HomeImageCarouselWidget(
                             sliderList: homeSliderController.homeScreenSliderListModel.sliderList ?? [],),
                         );
-                      }),
+                      },),
                 ),
                 SectionTitleWidget(
                   title: "All Categories",
