@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommer_by_ostad/presentation/ui/screens/all_product_list_by_remarks_screen.dart';
+import 'all_product_list_by_remarks_screen.dart';
 import '../../../data/utility/helpers.dart';
 import '../../state_holders/category_list_controller.dart';
 import '../../state_holders/new_product_list_controller.dart';
@@ -70,7 +70,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 },),
                 getNewProductsLists,
                 const SizedBox(height: 10,),
-
               ],
             ),
           ),
@@ -220,9 +219,23 @@ class _HomeScreenState extends State<HomeScreen> {
       title: Image.asset(AssetsPath.logoNav),
       actions: [
         CircleIconButton(
-          onTap: () async {
-            await Get.find<AuthController>().clearAuthData();
-            Get.offAll(() => const VerifyEmailScreen());
+          onTap: () {
+            Get.defaultDialog(
+                title: "Logout",
+                contentPadding: const EdgeInsets.all(10),
+                textConfirm: "Yes",
+                textCancel: "No",
+                content: const Column(
+                  children: [
+                    Text("Are you want to Logout?"),
+                  ],
+                ),
+                onConfirm: () async {
+                  //await Get.find<AuthController>().clearAuthData();
+                  //Get.offAll(() => const VerifyEmailScreen());
+                }
+            );
+
             // Get.offAll(() => const CompleteProfileScreen());
           },
           iconData: Icons.person_outline,
@@ -232,7 +245,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         CircleIconButton(
           onTap: () {
-            print("hello");
+            //print("hello");
           },
           iconData: Icons.call_outlined,
         ),
@@ -241,7 +254,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         CircleIconButton(
           onTap: () {
-            print("hello");
+            //print("hello");
           },
           iconData: Icons.notification_important_outlined,
         ),
