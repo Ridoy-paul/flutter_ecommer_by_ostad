@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommer_by_ostad/presentation/ui/screens/all_product_list_by_remarks_screen.dart';
 import '../../../data/utility/helpers.dart';
 import '../../state_holders/category_list_controller.dart';
 import '../../state_holders/new_product_list_controller.dart';
@@ -57,12 +58,16 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 getCategoryLists,
                 SectionTitleWidget(title: "Popular", onTapSeeAll: () {
-
+                  Get.to(() => const AllProductListByRemarksScreen(productTypeTitle: 'popular',),);
                 },),
                 getPopularProductsLists,
-                SectionTitleWidget(title: "Special", onTapSeeAll: () {},),
+                SectionTitleWidget(title: "Special", onTapSeeAll: () {
+                  Get.to(() => const AllProductListByRemarksScreen(productTypeTitle: 'special',),);
+                },),
                 getSpecialProductsLists,
-                SectionTitleWidget(title: "New", onTapSeeAll: () {},),
+                SectionTitleWidget(title: "New", onTapSeeAll: () {
+                  Get.to(() => const AllProductListByRemarksScreen(productTypeTitle: 'new',),);
+                },),
                 getNewProductsLists,
                 const SizedBox(height: 10,),
 

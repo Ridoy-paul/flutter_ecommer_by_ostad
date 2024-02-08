@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../state_holders/all_product_list_by_remarks_controller.dart';
 import '../../../data/utility/helpers.dart';
 import '../../state_holders/product_list_by_category_controller.dart';
 import '../widgets/no_result_found_widget.dart';
@@ -6,23 +7,22 @@ import '../widgets/products/product_card_item.dart';
 import '../../state_holders/main_bottom_nav_controller.dart';
 import 'package:get/get.dart';
 
-class ProductListScreen extends StatefulWidget {
-  const ProductListScreen({super.key, this.categoryTitle, required this.categoryId});
+class AllProductListByRemarksScreen extends StatefulWidget {
+  const AllProductListByRemarksScreen({super.key, this.productTypeTitle,});
 
-  final String? categoryTitle;
-  final int? categoryId;
+  final String? productTypeTitle;
 
   @override
-  State<ProductListScreen> createState() => _ProductListScreenState();
+  State<AllProductListByRemarksScreen> createState() => _AllProductListByRemarksScreenState();
 }
 
-class _ProductListScreenState extends State<ProductListScreen> {
+class _AllProductListByRemarksScreenState extends State<AllProductListByRemarksScreen> {
 
   @override
   void initState() {
     super.initState();
-    if(widget.categoryId != null) {
-      Get.find<ProductListByCategoryController>().getProductList(widget.categoryId!);
+    if(widget.productTypeTitle != null) {
+      Get.find<AllProductListByRemarksController>().getProductList(widget.productTypeTitle!);
     }
   }
 
@@ -41,30 +41,30 @@ class _ProductListScreenState extends State<ProductListScreen> {
             icon: const Icon(Icons.arrow_back_ios),
           ),
           title: Text(
-            widget.categoryTitle ?? 'Products',
+            widget.productTypeTitle ?? 'Products',
             style: const TextStyle(fontSize: 18),
           ),
           elevation: 4,
         ),
         body: RefreshIndicator(
           onRefresh: () async {
-            if(widget.categoryId != null) {
-              Get.find<ProductListByCategoryController>().getProductList(widget.categoryId!);
+            if(widget.productTypeTitle != null) {
+              Get.find<AllProductListByRemarksController>().getProductList(widget.productTypeTitle!);
             }
           },
           child: SafeArea(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-              child: GetBuilder<ProductListByCategoryController>(builder: (productListByCategoryController) {
+              child: GetBuilder<AllProductListByRemarksController>(builder: (allProductListByRemarksController) {
                 return Visibility(
-                  visible: !productListByCategoryController.inProgressStatus,
+                  visible: !allProductListByRemarksController.inProgressStatus,
                   replacement: circleProgressIndicatorShow(),
                   child: Visibility(
                     replacement: const NoResultFoundWidget(),
-                    visible: productListByCategoryController.productListModel.productList != null &&
-                        productListByCategoryController.productListModel.productList!.isNotEmpty,
+                    visible: allProductListByRemarksController.productListModel.productList != null &&
+                        allProductListByRemarksController.productListModel.productList!.isNotEmpty,
                     child: GridView.builder(
-                      itemCount: productListByCategoryController.productListModel.productList?.length ?? 0,
+                      itemCount: allProductListByRemarksController.productListModel.productList?.length ?? 0,
                       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 3,
                         childAspectRatio: 0.70,
@@ -74,7 +74,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
                       itemBuilder: (context, index) {
                         return FittedBox(
                           child: ProductCardItem(
-                            productItem: productListByCategoryController.productListModel.productList![index],
+                            productItem: allProductListByRemarksController.productListModel.productList![index],
                           ),
                         );
                       },

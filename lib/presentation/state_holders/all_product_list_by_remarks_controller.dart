@@ -4,7 +4,7 @@ import '../../data/services/network_caller.dart';
 import '../../data/services/response_data.dart';
 import '../../data/utility/urls.dart';
 
-class AllProductListByRemarks extends GetxController {
+class AllProductListByRemarksController extends GetxController {
   bool _inProgress = false;
   String _message = '';
   bool _isSuccess = true;
