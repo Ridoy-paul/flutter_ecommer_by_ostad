@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommer_by_ostad/data/models/brand_item.dart';
-import 'package:flutter_ecommer_by_ostad/presentation/ui/screens/product_list_by_brand_screen.dart';
-import '../../../data/models/category_item.dart';
-import '../screens/product_list_screen.dart';
+import '../../../data/models/brand_item.dart';
+import '../screens/product_list_by_brand_screen.dart';
 import 'package:get/get.dart';
 import '../utility/app_colors.dart';
 
