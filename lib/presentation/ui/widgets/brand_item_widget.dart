@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommer_by_ostad/data/models/brand_item.dart';
+import 'package:flutter_ecommer_by_ostad/presentation/ui/screens/product_list_by_brand_screen.dart';
 import '../../../data/models/category_item.dart';
 import '../screens/product_list_screen.dart';
 import 'package:get/get.dart';
@@ -17,9 +18,9 @@ class BrandItemWidget extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         Get.to(()=>
-            ProductListScreen(
-              categoryTitle: brandItem.brandName.toString(),
-              categoryId: int.parse(brandItem.id.toString()),
+            ProductListByBrandScreen(
+              brandTitle: brandItem.brandName.toString(),
+              brandId: int.parse(brandItem.id.toString()),
             ),
         );
       },
