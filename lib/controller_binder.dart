@@ -1,3 +1,4 @@
+import 'presentation/state_holders/product_list_by_brand_controller.dart';
 import 'presentation/state_holders/brand_list_controller.dart';
 import 'presentation/state_holders/all_product_list_by_remarks_controller.dart';
 import 'presentation/state_holders/auth/country_state_and_city/country_state_city_processing_controller_for_shipping_info.dart';
@@ -37,9 +38,8 @@ class ControllerBinder extends Bindings {
     Get.put(CountryStateCityProcessingControllerForShippingInfo());
     Get.put(AllProductListByRemarksController());
     Get.put(BrandListController());
-
-
-
+    Get.put(ProductListByBrandController());
+    
 
   }
 }

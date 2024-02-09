@@ -2,10 +2,7 @@ import 'package:flutter/material.dart';
 import '../../state_holders/brand_list_controller.dart';
 import '../widgets/brand_item_widget.dart';
 import '../../../data/utility/helpers.dart';
-import '../../state_holders/main_bottom_nav_controller.dart';
 import 'package:get/get.dart';
-
-import 'main_bottom_nav_screen.dart';
 
 class AllBrandScreen extends StatefulWidget {
   const AllBrandScreen({super.key});
@@ -47,7 +44,7 @@ class _AllBrandScreenState extends State<AllBrandScreen> {
                       crossAxisCount: 4,
                       childAspectRatio: 1,
                       mainAxisSpacing: 12,
-                      crossAxisSpacing: 8),
+                      crossAxisSpacing: 8,),
                   itemBuilder: (context, index) {
                     return FittedBox(
                       child: BrandItemWidget(

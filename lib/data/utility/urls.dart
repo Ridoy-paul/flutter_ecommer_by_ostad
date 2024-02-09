@@ -12,6 +12,7 @@ class Urls {
   static String allProductListByRemarks(String type) => '$_baseUrl/ListProductByRemark/$type';
   static listProductByCategory(int categoryId) => '$_baseUrl/ListProductByCategory/$categoryId';
   static const String brandList = '$_baseUrl/BrandList';
+  static listProductByBrand(int brandId) => '$_baseUrl/ListProductByBrand/$brandId';
 
 
 
