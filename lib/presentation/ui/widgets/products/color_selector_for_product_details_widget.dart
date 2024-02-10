@@ -53,7 +53,7 @@ class _ColorSelectorState extends State<ColorSelector> {
                 child: _selectedColor == c
                     ? const Icon(
                   Icons.done,
-                  color: Colors.white,
+                  color: Colors.deepPurple,
                 )
                     : null,
               ),
