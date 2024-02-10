@@ -136,7 +136,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
             style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
           ),
           ColorSelector(
-            colors: colors,
+            colors: productDetailsData.color?.split(',').map((e) => getColorInput(e)).toList() ?? [],
             onchange: (selectedColor) {
               _selectedColor = selectedColor;
             },
@@ -270,5 +270,20 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
       ),
     );
   }
+
+  Color getColorInput(String inputColor) {
+    if(inputColor == 'Red') {
+      return Colors.red;
+    }
+    else if(inputColor == 'Green') {
+      return Colors.green;
+    }
+    else if(inputColor == 'White') {
+      return Colors.white;
+    }
+    return Colors.transparent;
+  }
+
+
 }
 
