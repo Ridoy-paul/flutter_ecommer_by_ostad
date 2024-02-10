@@ -22,6 +22,8 @@ class ProductDetailsScreen extends StatefulWidget {
 
 class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
 
+  ValueNotifier<int> noOfItem = ValueNotifier(1);
+
   List<Color> colors = [
     Color(0xFF343541),
     Color(0xFFBF0D4C),
@@ -108,16 +110,21 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
               ),
-              ItemCount(
-                color: AppColors.primaryColor,
-                initialValue: 2,
-                minValue: 1,
-                maxValue: 100,
-                decimalPlaces: 0,
-                onChanged: (v) {
-                  //noOfItem.value = v.toInt();
-                },
-              )
+              ValueListenableBuilder(
+                  valueListenable: noOfItem,
+                  builder: (context, value, _) {
+                    return ItemCount(
+                      color: AppColors.primaryColor,
+                      initialValue: value,
+                      minValue: 1,
+                      maxValue: 100,
+                      decimalPlaces: 0,
+                      onChanged: (v) {
+                        noOfItem.value = v.toInt();
+                      },
+                    );
+                  }
+              ),
             ],
           ),
           reviewAndRating(productDetailsData.product!.star ?? 0),
