@@ -32,12 +32,14 @@ class _MainBottomNavScreenState extends State<MainBottomNavScreen> {
   @override
   void initState() {
     super.initState();
-    Get.find<HomeSliderController>().getSliderList();
-    Get.find<CategoryListController>().getCategoryList();
-    Get.find<PopularProductListController>().getProductList();
-    Get.find<SpecialProductListController>().getProductList();
-    Get.find<NewProductListController>().getProductList();
-    Get.find<BrandListController>().getBrandList();
+    //WidgetsBinding.instance.addPersistentFrameCallback((timeStamp) {
+      Get.find<HomeSliderController>().getSliderList();
+      Get.find<CategoryListController>().getCategoryList();
+      Get.find<PopularProductListController>().getProductList();
+      Get.find<SpecialProductListController>().getProductList();
+      Get.find<NewProductListController>().getProductList();
+      Get.find<BrandListController>().getBrandList();
+    //});
   }
 
   @override
