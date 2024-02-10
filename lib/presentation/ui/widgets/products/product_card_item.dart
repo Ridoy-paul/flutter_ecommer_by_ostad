@@ -17,7 +17,7 @@ class ProductCardItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.to(() => ProductDetailsScreen());
+        Get.to(() => ProductDetailsScreen(productId: productItem.id!));
       },
       borderRadius: BorderRadius.circular(16),
       child: SizedBox(
@@ -47,7 +47,7 @@ class ProductCardItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      productItem.title.toString() ?? '',
+                      productItem.title.toString(),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
@@ -57,7 +57,7 @@ class ProductCardItem extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "\$${productItem.price.toString() ?? ''}",
+                          "\$${productItem.price.toString()}",
                           style: const TextStyle(
                             fontSize: 12,
                             color: AppColors.primaryColor,
@@ -70,7 +70,7 @@ class ProductCardItem extends StatelessWidget {
                           children: [
                             const Icon(Icons.star, size: 12, color: Colors.amber,),
                             Text(
-                              productItem.star.toString() ?? '',
+                              productItem.star.toString(),
                               style: const TextStyle(
                                 fontSize: 12,
                                 fontWeight: FontWeight.w600,

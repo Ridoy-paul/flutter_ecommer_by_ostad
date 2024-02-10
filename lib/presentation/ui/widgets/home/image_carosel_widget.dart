@@ -102,7 +102,7 @@ class _HomeImageCarouselWidgetState extends State<HomeImageCarouselWidget> {
                                     height: 18,
                                     child: ElevatedButton(
                                       onPressed: () {
-                                        Get.to(() => const ProductDetailsScreen());
+                                        // Get.to(() => const ProductDetailsScreen(productId: slider.productId ?? 0,));
                                       },
                                       style: ElevatedButton.styleFrom(
                                         backgroundColor: AppColors.primaryColor,

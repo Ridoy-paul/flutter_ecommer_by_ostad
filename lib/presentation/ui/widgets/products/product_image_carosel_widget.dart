@@ -6,10 +6,11 @@ import '../../utility/app_colors.dart';
 
 class ProductImageCarouselWidget extends StatefulWidget {
   const ProductImageCarouselWidget({
-    super.key, this.height,
+    super.key, this.height, required this.urls,
   });
 
   final double? height;
+  final List<String> urls;
 
   @override
   State<ProductImageCarouselWidget> createState() => _ProductImageCarouselWidgetState();
@@ -42,21 +43,16 @@ class _ProductImageCarouselWidgetState extends State<ProductImageCarouselWidget>
             },
             scrollDirection: Axis.horizontal,
           ),
-          items: [1,2,3,4,5].map((i) {
+          items: widget.urls.map((url) {
             return Builder(
               builder: (BuildContext context) {
                 return Container(
-                    width: MediaQuery.of(context).size.width,
-                    decoration: const BoxDecoration(
-                      color: AppColors.lightGray,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: NetworkImage(url), // Example image source
+                      fit: BoxFit.cover,
                     ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        Image.asset('assets/images/shoe.png', width: Get.width * .65,),
-
-                      ],
-                    )
+                  ),
                 );
               },
             );
@@ -72,7 +68,7 @@ class _ProductImageCarouselWidgetState extends State<ProductImageCarouselWidget>
               return Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  for(int i = 0; i < 5; i++)
+                  for(int i = 0; i < widget.urls.length; i++)
                     Container(
                       width: 16.0,
                       height: 16.0,

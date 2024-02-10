@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommer_by_ostad/data/utility/helpers.dart';
+import '../../state_holders/product_details_controller.dart';
 import '../widgets/products/size_selector_for_product_details_widget.dart';
 import '../widgets/products/color_selector_for_product_details_widget.dart';
 import 'product_review_lists_screen.dart';
@@ -9,7 +11,9 @@ import '../../state_holders/main_bottom_nav_controller.dart';
 import 'package:get/get.dart';
 
 class ProductDetailsScreen extends StatefulWidget {
-  const ProductDetailsScreen({super.key});
+  const ProductDetailsScreen({super.key, required this.productId,});
+
+  final int productId;
 
   @override
   State<ProductDetailsScreen> createState() => _ProductDetailsScreenState();
@@ -37,6 +41,12 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   Color _selectedColor = Colors.black54;
   String _selectedSize = '';
 
+  @override
+  void initState() {
+    super.initState();
+    Get.find<ProductDetailsController>().getProductDetails(widget.productId);
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +59,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
         appBar: AppBar(
           backgroundColor: Colors.white70,
           leading: IconButton(
-            onPressed: ()=> Get.back(),
+            onPressed: () => Get.back(),
             icon: const Icon(Icons.arrow_back_ios),
           ),
           title: const Text(
@@ -59,21 +69,32 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
           elevation: 4,
         ),
         body: SafeArea(
-          child: Column(
-            children: [
-              Expanded(
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      const ProductImageCarouselWidget(),
-                      productDetailsBody,
-                    ],
+          child: GetBuilder<ProductDetailsController>(builder: (controller) {
+            return Visibility(
+              visible: !controller.inProgressStatus,
+              replacement: circleProgressIndicatorShow(),
+              child: Column(
+                children: [
+                  Expanded(
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          ProductImageCarouselWidget(urls: [
+                            controller.productDetailsModel.img1 ?? '',
+                            controller.productDetailsModel.img2 ?? '',
+                            controller.productDetailsModel.img3 ?? '',
+                            controller.productDetailsModel.img4 ?? '',
+                          ],),
+                          productDetailsBody,
+                        ],
+                      ),
+                    ),
                   ),
-                ),
+                  productDetailsBottomPriceSection,
+                ],
               ),
-              productDetailsBottomPriceSection,
-            ],
-          ),
+            );
+          }),
         ),
       ),
     );
@@ -91,7 +112,10 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
               Expanded(
                 child: Text(
                   "Happy New Year Special Deal Save 30% test product",
-                  style: Theme.of(context).textTheme.titleMedium,
+                  style: Theme
+                      .of(context)
+                      .textTheme
+                      .titleMedium,
                 ),
               ),
               ItemCount(
