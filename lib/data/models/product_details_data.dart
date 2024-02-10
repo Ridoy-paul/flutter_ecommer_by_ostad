@@ -1,4 +1,4 @@
-import 'package:flutter_ecommer_by_ostad/data/models/product_item.dart';
+import 'product_item.dart';
 
 class ProductDetailsData {
   int? id;

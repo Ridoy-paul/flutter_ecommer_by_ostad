@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommer_by_ostad/data/models/product_details_data.dart';
 import 'package:flutter_ecommer_by_ostad/data/utility/helpers.dart';
 import '../../state_holders/product_details_controller.dart';
 import '../widgets/products/size_selector_for_product_details_widget.dart';
@@ -85,7 +86,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                             controller.productDetailsModel.img3 ?? '',
                             controller.productDetailsModel.img4 ?? '',
                           ],),
-                          productDetailsBody,
+                          productDetailsBody(controller.productDetailsModel),
                         ],
                       ),
                     ),
@@ -100,7 +101,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
     );
   }
 
-  Padding get productDetailsBody {
+  Padding productDetailsBody(ProductDetailsData productDetailsData) {
     return Padding(
       padding: const EdgeInsets.only(top: 8, left: 8, right: 8),
       child: Column(
@@ -111,7 +112,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
             children: [
               Expanded(
                 child: Text(
-                  "Happy New Year Special Deal Save 30% test product",
+                  productDetailsData.product?.title ?? '',
                   style: Theme
                       .of(context)
                       .textTheme
