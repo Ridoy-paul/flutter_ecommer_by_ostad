@@ -1,3 +1,4 @@
+import 'presentation/state_holders/add_to_cart_controller.dart';
 import 'presentation/state_holders/product_details_controller.dart';
 import 'presentation/state_holders/product_list_by_brand_controller.dart';
 import 'presentation/state_holders/brand_list_controller.dart';
@@ -41,6 +42,8 @@ class ControllerBinder extends Bindings {
     Get.put(BrandListController());
     Get.put(ProductListByBrandController());
     Get.put(ProductDetailsController());
+    Get.put(AddToCartController());
+
 
 
 

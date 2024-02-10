@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommer_by_ostad/presentation/state_holders/brand_list_controller.dart';
-import 'package:flutter_ecommer_by_ostad/presentation/ui/screens/all_brand_screen.dart';
+import '../../state_holders/brand_list_controller.dart';
+import 'all_brand_screen.dart';
 import '../widgets/brand_item_widget.dart';
 import 'all_product_list_by_remarks_screen.dart';
 import '../../../data/utility/helpers.dart';

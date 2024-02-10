@@ -11,7 +11,6 @@ class ProductDetailsController extends GetxController {
   bool _isSuccess = true;
 
   ProductDetailsModel _productDetailsModel = ProductDetailsModel();
-
   ProductDetailsData get productDetailsModel => _productDetailsModel.productDetailsData!.first;
 
   bool get inProgressStatus => _inProgress;

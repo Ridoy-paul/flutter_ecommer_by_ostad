@@ -50,6 +50,7 @@ class AuthController extends GetxController {
     }
   }
 
+  bool get isTokenNotNull => token != null;
 
   Future<bool> isLoggedIn() async {
     await initialize();

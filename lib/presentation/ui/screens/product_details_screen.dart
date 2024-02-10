@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommer_by_ostad/data/models/product_details_data.dart';
-import 'package:flutter_ecommer_by_ostad/data/utility/helpers.dart';
+import '../../../data/models/product_details_data.dart';
+import '../../../data/utility/helpers.dart';
+import '../../state_holders/add_to_cart_controller.dart';
+import '../../state_holders/auth/auth_controller.dart';
+import 'auth/verify_email_screen.dart';
 import '../../state_holders/product_details_controller.dart';
 import '../utility/show_snack_message.dart';
 import '../widgets/products/size_selector_for_product_details_widget.dart';
@@ -24,16 +27,6 @@ class ProductDetailsScreen extends StatefulWidget {
 class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
 
   ValueNotifier<int> noOfItem = ValueNotifier(1);
-
-  List<Color> colors = [
-    Color(0xFF343541),
-    Color(0xFFBF0D4C),
-    Color(0xFF0524EA),
-    Color(0xFF99F50C),
-    Color(0xFFDC09A0),
-    Color(0xFFE3D509),
-  ];
-
 
   Color _selectedColor = Colors.black54;
   String _selectedSize = '';
@@ -86,7 +79,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                       ),
                     ),
                   ),
-                  productDetailsBottomPriceSection,
+                  productDetailsBottomPriceSection(controller.productDetailsModel.product?.id ?? 0),
                 ],
               ),
             );
@@ -108,7 +101,10 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
               Expanded(
                 child: Text(
                   productDetailsData.product?.title ?? '',
-                  style: Theme.of(context).textTheme.titleMedium,
+                  style: Theme
+                      .of(context)
+                      .textTheme
+                      .titleMedium,
                 ),
               ),
               ValueListenableBuilder(
@@ -137,7 +133,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
             style: TextStyle(fontWeight: FontWeight.w500, fontSize: 16),
           ),
           ColorSelector(
-            colors: productDetailsData.color?.split(',').map((e) => getColorInput(e)).toList() ?? [],
+            colors: productDetailsData.color?.split(',').map((e) =>
+                getColorInput(e)).toList() ?? [],
             onchange: (selectedColor) {
               _selectedColor = selectedColor;
             },
@@ -229,7 +226,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
     );
   }
 
-  Container get productDetailsBottomPriceSection {
+  Container productDetailsBottomPriceSection(int productId) {
     return Container(
       decoration: BoxDecoration(
         color: AppColors.primaryColor.withOpacity(0.16),
@@ -261,18 +258,35 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
             ),
             SizedBox(
               width: 120,
-              child: ElevatedButton(
-                onPressed: () {
-                  if(_selectedColor != null && _selectedSize != null) {
-                    print(_selectedSize);
-                    print(_selectedColor);
-                  }
-                  else {
-                    showSnackMessage('Add to cart failed!', false);
-                  }
-                },
-                child: const Text("Add To Cart"),
-              ),
+              child: GetBuilder<AddToCartController>(builder: (addToCartController) {
+                return Visibility(
+                  visible: !addToCartController.inProgressStatus,
+                  replacement: circleProgressIndicatorShow(),
+                  child: ElevatedButton(
+                    onPressed: () async {
+                      if (_selectedColor != null && _selectedSize != null) {
+                        if (Get.find<AuthController>().isTokenNotNull) {
+                          final selectedColorName = colorToString(_selectedColor);
+                          final response = await addToCartController.addToCart(productId, selectedColorName.toString(), _selectedSize.toString(), noOfItem.value);
+                          if(response) {
+                            showSnackMessage('This product has been added to cart.');
+                          }
+                          else {
+                            showSnackMessage('Add to cart failed!', false);
+                          }
+                        }
+                        else {
+                          Get.to(() => const VerifyEmailScreen());
+                        }
+                      }
+                      else {
+                        showSnackMessage('Add to cart failed!', false);
+                      }
+                    },
+                    child: const Text("Add To Cart"),
+                  ),
+                );
+              },),
             ),
           ],
         ),
@@ -281,16 +295,27 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
   }
 
   Color getColorInput(String inputColor) {
-    if(inputColor == 'Red') {
+    if (inputColor == 'Red') {
       return Colors.red;
     }
-    else if(inputColor == 'Green') {
+    else if (inputColor == 'Green') {
       return Colors.green;
     }
-    else if(inputColor == 'White') {
+    else if (inputColor == 'White') {
       return Colors.white;
     }
     return Colors.transparent;
+  }
+
+  String colorToString(Color color) {
+    if (color == Colors.red) {
+      return 'Red';
+    } else if (color == Colors.white) {
+      return 'White';
+    } else if (color == Colors.green) {
+      return 'Green';
+    }
+    return 'Grey';
   }
 
 
