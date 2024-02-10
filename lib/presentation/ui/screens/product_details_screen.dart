@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_ecommer_by_ostad/data/models/product_details_data.dart';
 import 'package:flutter_ecommer_by_ostad/data/utility/helpers.dart';
 import '../../state_holders/product_details_controller.dart';
+import '../utility/show_snack_message.dart';
 import '../widgets/products/size_selector_for_product_details_widget.dart';
 import '../widgets/products/color_selector_for_product_details_widget.dart';
 import 'product_review_lists_screen.dart';
@@ -261,7 +262,15 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
             SizedBox(
               width: 120,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  if(_selectedColor != null && _selectedSize != null) {
+                    print(_selectedSize);
+                    print(_selectedColor);
+                  }
+                  else {
+                    showSnackMessage('Add to cart failed!', false);
+                  }
+                },
                 child: const Text("Add To Cart"),
               ),
             ),
