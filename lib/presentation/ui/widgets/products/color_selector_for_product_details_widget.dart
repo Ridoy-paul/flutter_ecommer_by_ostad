@@ -39,16 +39,26 @@ class _ColorSelectorState extends State<ColorSelector> {
               vertical: 2,
               horizontal: 3,
             ),
-            child: CircleAvatar(
-              radius: 16,
-              backgroundColor: c,
-              child: _selectedColor == c
-                  ? const Icon(
-                Icons.done,
-                color: Colors.white,
-              )
-                  : null,
-            ),
+            child:Container(
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                border: Border.all(
+                  color: Colors.grey,
+                  width: 1,
+                ),
+              ),
+              child: CircleAvatar(
+                radius: 16,
+                backgroundColor: c,
+                child: _selectedColor == c
+                    ? const Icon(
+                  Icons.done,
+                  color: Colors.white,
+                )
+                    : null,
+              ),
+            )
+            ,
           ),
         ),
       )
