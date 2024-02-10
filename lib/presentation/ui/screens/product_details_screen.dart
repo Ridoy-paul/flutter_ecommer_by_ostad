@@ -31,13 +31,6 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
     Color(0xFFE3D509),
   ];
 
-  List<String> size = [
-    "S",
-    "M",
-    "L",
-    "2L",
-    "XL",
-  ];
 
   Color _selectedColor = Colors.black54;
   String _selectedSize = '';
@@ -47,7 +40,6 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
     super.initState();
     Get.find<ProductDetailsController>().getProductDetails(widget.productId);
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -113,10 +105,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
               Expanded(
                 child: Text(
                   productDetailsData.product?.title ?? '',
-                  style: Theme
-                      .of(context)
-                      .textTheme
-                      .titleMedium,
+                  style: Theme.of(context).textTheme.titleMedium,
                 ),
               ),
               ItemCount(
@@ -131,7 +120,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
               )
             ],
           ),
-          reviewAndRating,
+          reviewAndRating(productDetailsData.product!.star ?? 0),
           const SizedBox(
             height: 8,
           ),
@@ -168,7 +157,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
           const SizedBox(
             height: 8,
           ),
-          Text("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer"),
+          Text(productDetailsData.des ?? ''),
           const SizedBox(
             height: 8,
           ),
@@ -177,21 +166,21 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
     );
   }
 
-  Row get reviewAndRating {
+  Row reviewAndRating(int rating) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
         Wrap(
           crossAxisAlignment: WrapCrossAlignment.center,
           children: [
-            Icon(
+            const Icon(
               Icons.star,
               size: 16,
               color: Colors.amber,
             ),
             Text(
-              "4.8",
-              style: TextStyle(
+              '$rating',
+              style: const TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w600,
               ),
@@ -200,7 +189,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
         ),
         TextButton(
           onPressed: () {
-            Get.to(() => ProductReviewListsScreen());
+            Get.to(() => const ProductReviewListsScreen());
           },
           child: const Text(
             "Reviews",
@@ -216,8 +205,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
             borderRadius: BorderRadius.circular(5),
           ),
           color: AppColors.primaryColor,
-          child: Padding(
-            padding: const EdgeInsets.all(6.0),
+          child: const Padding(
+            padding: EdgeInsets.all(6.0),
             child: Icon(
               Icons.favorite_outline,
               size: 16,
