@@ -59,6 +59,9 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
         ),
         body: SafeArea(
           child: GetBuilder<ProductDetailsController>(builder: (controller) {
+            if(controller.inProgressStatus) {
+              return circleProgressIndicatorShow();
+            }
             return Visibility(
               visible: !controller.inProgressStatus,
               replacement: circleProgressIndicatorShow(),
