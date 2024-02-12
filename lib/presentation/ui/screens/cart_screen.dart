@@ -44,6 +44,9 @@ class _CartScreenState extends State<CartScreen> {
         ),
         body: SafeArea(
           child: GetBuilder<CartListController>(builder: (controller) {
+            if(controller.inProgressStatus) {
+              return circleProgressIndicatorShow();
+            }
             return Visibility(
               visible: !controller.inProgressStatus,
               replacement: circleProgressIndicatorShow(),

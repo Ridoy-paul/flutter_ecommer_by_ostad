@@ -14,7 +14,15 @@ class CartProductItem extends StatefulWidget {
 }
 
 class _CartProductItemState extends State<CartProductItem> {
-  ValueNotifier<int> noOfItem = ValueNotifier(1);
+  late int cartQty;
+  late ValueNotifier<int> noOfItem;
+
+  @override
+  void initState() {
+    super.initState();
+    cartQty = int.tryParse(widget.cartListItem.qty ?? '0') ?? 0;
+    noOfItem = ValueNotifier(cartQty);
+  }
 
   @override
   Widget build(BuildContext context) {
