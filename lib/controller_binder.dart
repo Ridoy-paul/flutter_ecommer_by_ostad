@@ -1,3 +1,4 @@
+import 'presentation/state_holders/delete_cart_list_controller.dart';
 import 'presentation/state_holders/cart_list_controller.dart';
 import 'presentation/state_holders/add_to_cart_controller.dart';
 import 'presentation/state_holders/product_details_controller.dart';
@@ -45,6 +46,8 @@ class ControllerBinder extends Bindings {
     Get.put(ProductDetailsController());
     Get.put(AddToCartController());
     Get.put(CartListController());
+    Get.put(DeleteCartListController());
+
 
 
 

@@ -5,9 +5,10 @@ import 'package:item_count_number_button/item_count_number_button.dart';
 import '../utility/app_colors.dart';
 
 class CartProductItem extends StatefulWidget {
-  const CartProductItem({super.key, required this.cartListItem});
+  const CartProductItem({super.key, required this.cartListItem, required this.onRemoveCartItem});
 
   final CartListItem cartListItem;
+  final Function(bool) onRemoveCartItem;
 
   @override
   State<CartProductItem> createState() => _CartProductItemState();
@@ -20,7 +21,7 @@ class _CartProductItemState extends State<CartProductItem> {
   @override
   void initState() {
     super.initState();
-    cartQty = int.tryParse(widget.cartListItem.qty ?? '0') ?? 0;
+    cartQty = int.tryParse(widget.cartListItem.qty ?? '1') ?? 1;
     noOfItem = ValueNotifier(cartQty);
   }
 
@@ -60,7 +61,15 @@ class _CartProductItemState extends State<CartProductItem> {
                         ],
                       ),
                     ),
-                    IconButton(onPressed: (){}, icon: const Icon(Icons.delete_outlined, color: Colors.black54,))
+                    IconButton(
+                      onPressed: () {
+                        widget.onRemoveCartItem(true);
+                      },
+                      icon: const Icon(
+                        Icons.delete_outlined,
+                        color: Colors.black54,
+                      ),
+                    )
                   ],
                 ),
                 Row(
@@ -88,8 +97,6 @@ class _CartProductItemState extends State<CartProductItem> {
                     ),
                   ],
                 ),
-
-
               ],
             ),
           ),

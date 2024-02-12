@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommer_by_ostad/presentation/state_holders/delete_cart_list_controller.dart';
 import '../../../data/utility/helpers.dart';
 import '../../state_holders/cart_list_controller.dart';
 import '../utility/app_colors.dart';
@@ -61,7 +62,14 @@ class _CartScreenState extends State<CartScreen> {
                         child: ListView.separated(
                           itemCount: controller.cartListModel.cartListItem?.length ?? 0,
                           itemBuilder: (context, index) {
-                            return CartProductItem(cartListItem: controller.cartListModel.cartListItem![index],);
+                            return CartProductItem(
+                              cartListItem: controller.cartListModel.cartListItem![index],
+                              onRemoveCartItem: (bool isSuccess) async {
+                                if(isSuccess) {
+                                  final response = await Get.find<DeleteCartListController>().deleteCartListItem(controller.cartListModel.cartListItem![index].productId ?? 0);
+                                }
+                              },
+                            );
                           },
                           separatorBuilder: (_, __) =>
                           const SizedBox(
