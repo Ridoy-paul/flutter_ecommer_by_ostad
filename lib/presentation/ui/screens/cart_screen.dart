@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import '../../../data/utility/helpers.dart';
+import '../../state_holders/cart_list_controller.dart';
 import '../utility/app_colors.dart';
 import 'package:get/get.dart';
 import '../../state_holders/main_bottom_nav_controller.dart';
 import '../widgets/cart_product_item.dart';
+import '../widgets/no_result_found_widget.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({super.key});
@@ -12,6 +15,12 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreen> {
+
+  @override
+  void initState() {
+    super.initState();
+    Get.find<CartListController>().getCartList();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +33,7 @@ class _CartScreenState extends State<CartScreen> {
         appBar: AppBar(
           backgroundColor: Colors.white,
           leading: IconButton(
-            onPressed: ()=> Get.find<MainBottomNavController>().backToHome(),
+            onPressed: () => Get.find<MainBottomNavController>().backToHome(),
             icon: const Icon(Icons.arrow_back_ios),
           ),
           title: const Text(
@@ -34,25 +43,36 @@ class _CartScreenState extends State<CartScreen> {
           elevation: 4,
         ),
         body: SafeArea(
-          child: Column(
-            children: [
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: ListView.separated(
-                    itemCount: 10,
-                    itemBuilder: (context, index) {
-                      return CartProductItem();
-                    },
-                    separatorBuilder: (_, __) => const SizedBox(
-                      height: 5,
+          child: GetBuilder<CartListController>(builder: (controller) {
+            return Visibility(
+              visible: !controller.inProgressStatus,
+              replacement: circleProgressIndicatorShow(),
+              child: Visibility(
+                visible: controller.cartListModel.cartListItem!.isNotEmpty,
+                replacement: const NoResultFoundWidget(),
+                child: Column(
+                  children: [
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: ListView.separated(
+                          itemCount: controller.cartListModel.cartListItem?.length ?? 0,
+                          itemBuilder: (context, index) {
+                            return CartProductItem(cartListItem: controller.cartListModel.cartListItem![index],);
+                          },
+                          separatorBuilder: (_, __) =>
+                          const SizedBox(
+                            height: 5,
+                          ),
+                        ),
+                      ),
                     ),
-                  ),
+                    totalPriceAndCheckoutSection
+                  ],
                 ),
               ),
-              totalPriceAndCheckoutSection
-            ],
-          ),
+            );
+          }),
         ),
       ),
     );

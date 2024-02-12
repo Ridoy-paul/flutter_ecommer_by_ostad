@@ -15,6 +15,8 @@ class Urls {
   static listProductByBrand(int brandId) => '$_baseUrl/ListProductByBrand/$brandId';
   static productDetails(int productId) => '$_baseUrl/ProductDetailsById/$productId';
   static const String createCartList = '$_baseUrl/CreateCartList';
+  static const String cartList = '$_baseUrl/CartList';
+
 
 
 

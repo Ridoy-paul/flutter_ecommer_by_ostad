@@ -1,10 +1,13 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommer_by_ostad/data/models/cart_list_item.dart';
 import 'package:item_count_number_button/item_count_number_button.dart';
 import '../utility/app_colors.dart';
 
 class CartProductItem extends StatefulWidget {
-  const CartProductItem({super.key});
+  const CartProductItem({super.key, required this.cartListItem});
+
+  final CartListItem cartListItem;
 
   @override
   State<CartProductItem> createState() => _CartProductItemState();
@@ -20,8 +23,8 @@ class _CartProductItemState extends State<CartProductItem> {
       elevation: 2,
       child: Row(
         children: [
-          Image.asset(
-            'assets/images/shoe.png',
+          Image.network(
+            widget.cartListItem.product!.image ?? '',
             width: 100,
           ),
           Expanded(
@@ -36,16 +39,16 @@ class _CartProductItemState extends State<CartProductItem> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "New Year  Shoe New Year",
+                            widget.cartListItem.product!.title ?? '',
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.w500,
                                 color: AppColors.gray,
                             ),
                           ),
-                          Text("Color: Red, Size: x"),
+                          Text("Color: ${widget.cartListItem.color ?? ''}, Size: ${widget.cartListItem.size ?? ''}"),
                         ],
                       ),
                     ),
@@ -57,7 +60,7 @@ class _CartProductItemState extends State<CartProductItem> {
                   children: [
                     Column(
                       children: [
-                        Text("\$1000", style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500, color: AppColors.primaryColor),),
+                        Text("\$${widget.cartListItem.price ?? 0}", style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500, color: AppColors.primaryColor),),
                       ],
                     ),
                     ValueListenableBuilder(
