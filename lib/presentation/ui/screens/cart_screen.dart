@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommer_by_ostad/presentation/state_holders/delete_cart_list_controller.dart';
+import '../../state_holders/delete_cart_list_controller.dart';
 import '../../../data/utility/helpers.dart';
 import '../../state_holders/cart_list_controller.dart';
 import '../utility/app_colors.dart';
@@ -16,6 +16,8 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreen> {
+
+  int totalPrice = 0;
 
   @override
   void initState() {
@@ -69,6 +71,9 @@ class _CartScreenState extends State<CartScreen> {
                                   final response = await Get.find<DeleteCartListController>().deleteCartListItem(controller.cartListModel.cartListItem![index].productId ?? 0);
                                 }
                               },
+                              cartItemSubtotal: (int itemSubtotal) {
+                                totalPrice += itemSubtotal;
+                              },
                             );
                           },
                           separatorBuilder: (_, __) =>
@@ -78,7 +83,7 @@ class _CartScreenState extends State<CartScreen> {
                         ),
                       ),
                     ),
-                    totalPriceAndCheckoutSection
+                    totalPriceAndCheckoutSection(totalPrice)
                   ],
                 ),
               ),
@@ -89,7 +94,7 @@ class _CartScreenState extends State<CartScreen> {
     );
   }
 
-  Container get totalPriceAndCheckoutSection {
+  Container totalPriceAndCheckoutSection(int totalP) {
     return Container(
       decoration: BoxDecoration(
         color: AppColors.primaryColor.withOpacity(0.16),
@@ -109,11 +114,13 @@ class _CartScreenState extends State<CartScreen> {
                   "Total Price",
                   style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
                 ),
-                Text("\$10000.00",
-                    style: TextStyle(
-                        fontSize: 22,
-                        fontWeight: FontWeight.w500,
-                        color: AppColors.primaryColor)),
+                Text("\$$totalP",
+                    style: const TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w500,
+                    color: AppColors.primaryColor,
+                  ),
+                ),
               ],
             ),
             SizedBox(

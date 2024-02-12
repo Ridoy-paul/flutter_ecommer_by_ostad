@@ -5,10 +5,11 @@ import 'package:item_count_number_button/item_count_number_button.dart';
 import '../utility/app_colors.dart';
 
 class CartProductItem extends StatefulWidget {
-  const CartProductItem({super.key, required this.cartListItem, required this.onRemoveCartItem});
+  const CartProductItem({super.key, required this.cartListItem, required this.onRemoveCartItem, required this.cartItemSubtotal});
 
   final CartListItem cartListItem;
   final Function(bool) onRemoveCartItem;
+  final Function(int) cartItemSubtotal;
 
   @override
   State<CartProductItem> createState() => _CartProductItemState();
@@ -16,6 +17,7 @@ class CartProductItem extends StatefulWidget {
 
 class _CartProductItemState extends State<CartProductItem> {
   late int cartQty;
+  late int price;
   late ValueNotifier<int> noOfItem;
 
   @override
@@ -23,6 +25,8 @@ class _CartProductItemState extends State<CartProductItem> {
     super.initState();
     cartQty = int.tryParse(widget.cartListItem.qty ?? '1') ?? 1;
     noOfItem = ValueNotifier(cartQty);
+    price = int.tryParse(widget.cartListItem.price ?? '1') ?? 1;
+    widget.cartItemSubtotal(cartQty * price);
   }
 
   @override
