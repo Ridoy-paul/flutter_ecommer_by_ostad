@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommer_by_ostad/data/models/cart_list_item.dart';
+import '../../../data/models/cart_list_item.dart';
 import 'package:item_count_number_button/item_count_number_button.dart';
 import '../utility/app_colors.dart';
 

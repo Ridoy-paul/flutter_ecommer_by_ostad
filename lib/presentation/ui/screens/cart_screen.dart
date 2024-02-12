@@ -16,7 +16,6 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreen> {
-
   int totalPrice = 0;
 
   @override
@@ -68,7 +67,7 @@ class _CartScreenState extends State<CartScreen> {
                               cartListItem: controller.cartListModel.cartListItem![index],
                               onRemoveCartItem: (bool isSuccess) async {
                                 if(isSuccess) {
-                                  final response = await Get.find<DeleteCartListController>().deleteCartListItem(controller.cartListModel.cartListItem![index].productId ?? 0);
+                                  await Get.find<DeleteCartListController>().deleteCartListItem(controller.cartListModel.cartListItem![index].productId ?? 0);
                                 }
                               },
                               cartItemSubtotal: (int itemSubtotal) {
