@@ -17,6 +17,8 @@ class Urls {
   static const String createCartList = '$_baseUrl/CreateCartList';
   static const String cartList = '$_baseUrl/CartList';
   static deleteCartList(int productId) => '$_baseUrl/DeleteCartList/$productId';
+  static listReviewByProduct(int productId) => '$_baseUrl/ListReviewByProduct/$productId';
+
 
 
 

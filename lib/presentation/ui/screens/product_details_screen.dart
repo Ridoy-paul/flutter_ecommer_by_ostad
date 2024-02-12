@@ -127,7 +127,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
               ),
             ],
           ),
-          reviewAndRating(productDetailsData.product!.star ?? 0),
+          reviewAndRating(productDetailsData.product!.id ?? 0, productDetailsData.product!.star ?? 0),
           const SizedBox(
             height: 8,
           ),
@@ -174,7 +174,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
     );
   }
 
-  Row reviewAndRating(int rating) {
+  Row reviewAndRating(int productId, int rating) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
@@ -197,7 +197,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
         ),
         TextButton(
           onPressed: () {
-            Get.to(() => const ProductReviewListsScreen());
+            Get.to(() => ProductReviewListsScreen(productId: productId,),);
           },
           child: const Text(
             "Reviews",

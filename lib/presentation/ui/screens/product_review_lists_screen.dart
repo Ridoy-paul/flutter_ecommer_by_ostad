@@ -1,18 +1,29 @@
 import 'package:flutter/material.dart';
-import '../widgets/home/circle_icon_button_widget.dart';
+import '../../../data/utility/helpers.dart';
+import '../widgets/products/product_review_item_widget.dart';
+import '../../state_holders/list_review_by_product_controller.dart';
 import 'create_product_review_screen.dart';
 import '../utility/app_colors.dart';
 import 'package:get/get.dart';
 import '../../state_holders/main_bottom_nav_controller.dart';
 
 class ProductReviewListsScreen extends StatefulWidget {
-  const ProductReviewListsScreen({super.key});
+  const ProductReviewListsScreen({super.key, required this.productId});
+
+  final int productId;
 
   @override
-  State<ProductReviewListsScreen> createState() => _ProductReviewListsScreenState();
+  State<ProductReviewListsScreen> createState() =>
+      _ProductReviewListsScreenState();
 }
 
 class _ProductReviewListsScreenState extends State<ProductReviewListsScreen> {
+
+  @override
+  void initState() {
+    super.initState();
+    Get.find<ListReviewByProductController>().getReviewList(widget.productId);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +36,7 @@ class _ProductReviewListsScreenState extends State<ProductReviewListsScreen> {
         appBar: AppBar(
           backgroundColor: Colors.white,
           leading: IconButton(
-            onPressed: ()=> Get.back(),
+            onPressed: () => Get.back(),
             icon: const Icon(Icons.arrow_back_ios),
           ),
           title: const Text(
@@ -35,49 +46,35 @@ class _ProductReviewListsScreenState extends State<ProductReviewListsScreen> {
           elevation: 4,
         ),
         body: SafeArea(
-          child: Column(
-            children: [
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8),
-                  child: ListView.separated(
-                    itemCount: 10,
-                    itemBuilder: (context, index) {
-                      return Card(
-                        color: Colors.white,
-                        elevation: 4,
-                        child: Padding(
-                          padding: EdgeInsets.all(16),
-                          child: Column(
-                            children: [
-                              Row(
-                                children: [
-                                  CircleIconButton(
-                                    onTap: () {
-                                      print("hello");
-                                    },
-                                    iconData: Icons.person_outline,
-                                  ),
-                                  const SizedBox(width: 8,),
-                                  Expanded(child: Text("Ridoy Paul", style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500,),),),
-                                ],
-                              ),
-                              const SizedBox(height: 8,),
-                              Text("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer")
-                            ],
-                          ),
+          child: GetBuilder<ListReviewByProductController>(builder: (controller) {
+            if(controller.inProgressStatus) {
+              return circleProgressIndicatorShow();
+            }
+            return Visibility(
+              visible: !controller.inProgressStatus,
+              replacement: circleProgressIndicatorShow(),
+              child: Column(
+                children: [
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 8),
+                      child: ListView.separated(
+                        itemCount: controller.listReviewByProductModel.productReviewItem!.length ?? 0,
+                        itemBuilder: (context, index) {
+                          return ProductReviewItemWidget(productReviewItem: controller.listReviewByProductModel.productReviewItem![index]);
+                        },
+                        separatorBuilder: (_, __) =>
+                        const SizedBox(
+                          height: 5,
                         ),
-                      );
-                    },
-                    separatorBuilder: (_, __) => const SizedBox(
-                      height: 5,
+                      ),
                     ),
                   ),
-                ),
+                  totalReviewAndAddReviewButtonSection
+                ],
               ),
-              totalReviewAndAddReviewButtonSection
-            ],
-          ),
+            );
+          }),
         ),
       ),
     );
