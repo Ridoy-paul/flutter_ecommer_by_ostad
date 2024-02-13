@@ -13,8 +13,7 @@ class ProductReviewListsScreen extends StatefulWidget {
   final int productId;
 
   @override
-  State<ProductReviewListsScreen> createState() =>
-      _ProductReviewListsScreenState();
+  State<ProductReviewListsScreen> createState() => _ProductReviewListsScreenState();
 }
 
 class _ProductReviewListsScreenState extends State<ProductReviewListsScreen> {
@@ -70,7 +69,7 @@ class _ProductReviewListsScreenState extends State<ProductReviewListsScreen> {
                       ),
                     ),
                   ),
-                  totalReviewAndAddReviewButtonSection
+                  totalReviewAndAddReviewButtonSection(controller.listItemQty)
                 ],
               ),
             );
@@ -80,7 +79,7 @@ class _ProductReviewListsScreenState extends State<ProductReviewListsScreen> {
     );
   }
 
-  Container get totalReviewAndAddReviewButtonSection {
+  Container totalReviewAndAddReviewButtonSection(int listItemQty) {
     return Container(
       decoration: BoxDecoration(
         color: AppColors.primaryColor.withOpacity(0.16),
@@ -96,9 +95,9 @@ class _ProductReviewListsScreenState extends State<ProductReviewListsScreen> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  "Reviews(1000)",
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
+                Text(
+                  "Reviews(${listItemQty ?? 0})",
+                  style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w500),
                 ),
               ],
             ),
