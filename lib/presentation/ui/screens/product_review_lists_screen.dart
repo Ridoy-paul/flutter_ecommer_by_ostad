@@ -109,7 +109,7 @@ class _ProductReviewListsScreenState extends State<ProductReviewListsScreen> {
               child: IconButton(
                 color: Colors.white,
                 onPressed: () {
-                  Get.to(() => CreateProductReviewScreen());
+                  Get.to(() => CreateProductReviewScreen(productId: widget.productId,));
                 },
                 icon: const Icon(Icons.add),
               ),
