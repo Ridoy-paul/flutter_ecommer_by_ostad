@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommer_by_ostad/presentation/state_holders/wishlist/create_wishlist_controller.dart';
+import '../../state_holders/wishlist/create_wishlist_controller.dart';
 import '../../../data/models/product_details_data.dart';
 import '../../../data/utility/helpers.dart';
 import '../../state_holders/add_to_cart_controller.dart';
