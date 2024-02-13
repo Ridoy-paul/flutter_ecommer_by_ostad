@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommer_by_ostad/presentation/state_holders/wishlist/create_wishlist_controller.dart';
 import '../../../data/models/product_details_data.dart';
 import '../../../data/utility/helpers.dart';
 import '../../state_holders/add_to_cart_controller.dart';
@@ -25,6 +26,7 @@ class ProductDetailsScreen extends StatefulWidget {
 }
 
 class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
+  final CreateWishListController _createWishListController = CreateWishListController();
 
   ValueNotifier<int> noOfItem = ValueNotifier(1);
 
@@ -208,17 +210,33 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
             ),
           ),
         ),
-        Card(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(5),
-          ),
-          color: AppColors.primaryColor,
-          child: const Padding(
-            padding: EdgeInsets.all(6.0),
-            child: Icon(
-              Icons.favorite_outline,
-              size: 16,
-              color: Colors.white,
+        InkWell(
+          onTap: () async {
+            final bool response = await _createWishListController.addToWishlist(productId);
+            if (response) {
+              if(_createWishListController.isSuccess) {
+                showSnackMessage("Added To Wishlist.");
+              }
+              else {
+                showSnackMessage("Something is Error!.", false);
+              }
+            } else {
+              showSnackMessage(_createWishListController.message, false);
+            }
+
+          },
+          child: Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(5),
+            ),
+            color: AppColors.primaryColor,
+            child: const Padding(
+              padding: EdgeInsets.all(6.0),
+              child: Icon(
+                Icons.favorite_outline,
+                size: 16,
+                color: Colors.white,
+              ),
             ),
           ),
         ),
