@@ -19,6 +19,7 @@ class Urls {
   static deleteCartList(int productId) => '$_baseUrl/DeleteCartList/$productId';
   static listReviewByProduct(int productId) => '$_baseUrl/ListReviewByProduct/$productId';
   static const String createProductReview = '$_baseUrl/CreateProductReview';
+  static createWishList(int productId) => '$_baseUrl/CreateWishList/$productId';
 
 
 

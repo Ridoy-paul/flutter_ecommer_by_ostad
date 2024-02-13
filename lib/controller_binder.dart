@@ -1,3 +1,4 @@
+import 'presentation/state_holders/wishlist/create_wishlist_controller.dart';
 import 'presentation/state_holders/create_product_review_controller.dart';
 import 'presentation/state_holders/list_review_by_product_controller.dart';
 import 'presentation/state_holders/delete_cart_list_controller.dart';
@@ -51,6 +52,8 @@ class ControllerBinder extends Bindings {
     Get.put(DeleteCartListController());
     Get.put(ListReviewByProductController());
     Get.put(CreateProductReviewController());
+    Get.put(CreateWishListController());
+
 
 
 
