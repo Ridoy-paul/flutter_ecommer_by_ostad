@@ -32,8 +32,10 @@ class CreateProductReviewController extends GetxController  {
 
     _inProgress = false;
     if(response.isSuccess) {
-      // _profile = UserProfileModel.fromJson(response.responseData['data']);
-
+      _createProductReviewModel = CreateProductReviewModel.fromJson(response.responseData['data']);
+      if(_createProductReviewModel == []) {
+        _isSuccess = false;
+      }
       update();
       return true;
     }

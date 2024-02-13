@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommer_by_ostad/presentation/state_holders/create_product_review_controller.dart';
+import '../../state_holders/create_product_review_controller.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import '../../../data/utility/helpers.dart';
 import '../utility/show_snack_message.dart';
-import 'main_bottom_nav_screen.dart';
 import 'package:get/get.dart';
 
 class CreateProductReviewScreen extends StatefulWidget {
@@ -76,8 +75,7 @@ class _CreateProductReviewScreenState extends State<CreateProductReviewScreen> {
                     const SizedBox(height: 20,),
                     TextFormField(
                       controller: _reviewDetailsTEController,
-                      validator: (value) =>
-                          inputValidate(value, "Enter Review Description!"),
+                      validator: (value) => inputValidate(value, "Enter Review Description!"),
                       decoration: const InputDecoration(
                         hintText: 'Write Review',
                       ),
@@ -92,7 +90,7 @@ class _CreateProductReviewScreenState extends State<CreateProductReviewScreen> {
                           visible: !controller.inProgressStatus,
                           replacement: circleProgressIndicatorShow(),
                           child: ElevatedButton(
-                            onPressed: () => _confirmReviewSubmit,
+                            onPressed: () => _confirmReviewSubmit(),
                             child: const Text("Next"),
                           ),
                         );
@@ -117,9 +115,16 @@ class _CreateProductReviewScreenState extends State<CreateProductReviewScreen> {
         _reviewDetailsTEController.text.trim(), widget.productId, _rating);
 
     if (response) {
-      //Get.offAll(() => const MainBottomNavScreen());
-      showSnackMessage("Review Saved!");
-    } else {
+
+      if(_createProductReviewController.isSuccess) {
+        showSnackMessage("Review Saved!");
+        //Get.to(() => ProductReviewListsScreen(productId: widget.productId,),);
+      }
+      else {
+        showSnackMessage("something is Error!", false);
+      }
+    }
+    else {
       showSnackMessage(_createProductReviewController.message, false);
     }
   }
