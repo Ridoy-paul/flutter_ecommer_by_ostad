@@ -16,7 +16,7 @@ class NoResultFoundWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Image.asset(Assets.noResultFound),
+            Image.asset('assets/images/no-result-found.png'),
             const Text("Sorry, No Result Found!", style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold, color: AppColors.primaryColor),)
           ],
         ),
