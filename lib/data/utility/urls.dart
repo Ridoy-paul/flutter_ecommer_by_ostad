@@ -20,15 +20,8 @@ class Urls {
   static listReviewByProduct(int productId) => '$_baseUrl/ListReviewByProduct/$productId';
   static const String createProductReview = '$_baseUrl/CreateProductReview';
   static createWishList(int productId) => '$_baseUrl/CreateWishList/$productId';
-
-
-
-
-
-
-
-
-
+  static const String productWishList = '$_baseUrl/ProductWishList';
+  static removeWishList(int productId) => '$_baseUrl/RemoveWishList/$productId';
 
 
 

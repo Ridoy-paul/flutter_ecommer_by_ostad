@@ -1,23 +1,26 @@
 
 import 'package:flutter/material.dart';
-import '../../../../data/models/product_item.dart';
+import '../../../../data/models/product_wishlist/product_wishlist_item_model.dart';
 import '../../screens/product_details_screen.dart';
 import 'package:get/get.dart';
 import '../../utility/app_colors.dart';
 
-class ProductCardItem extends StatelessWidget {
-  ProductCardItem({
+class ProductWishlistItemScreen extends StatelessWidget {
+  const ProductWishlistItemScreen({
     super.key,
-    required this.productItem,
+    required this.productWishlistItem,
+    required this.onDeletePressed,
   });
 
-  ProductItem productItem;
+  final ProductWishlistItem productWishlistItem;
+
+  final Function(bool) onDeletePressed;
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.to(() => ProductDetailsScreen(productId: productItem.id!));
+        Get.to(() => ProductDetailsScreen(productId: productWishlistItem.productId!));
       },
       borderRadius: BorderRadius.circular(16),
       child: SizedBox(
@@ -35,7 +38,7 @@ class ProductCardItem extends StatelessWidget {
                   topRight: Radius.circular(16),
                 ),
                 child: Image.network(
-                  productItem.image ?? '',
+                  productWishlistItem.product?.image ?? '',
                   width: Get.width * .3,
                   height: 120,
                   fit: BoxFit.scaleDown,
@@ -47,7 +50,7 @@ class ProductCardItem extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      productItem.title.toString(),
+                      productWishlistItem.product!.title.toString(),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
@@ -57,7 +60,7 @@ class ProductCardItem extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "\$${productItem.price.toString()}",
+                          "\$${productWishlistItem.product!.price.toString()}",
                           style: const TextStyle(
                             fontSize: 12,
                             color: AppColors.primaryColor,
@@ -70,7 +73,7 @@ class ProductCardItem extends StatelessWidget {
                           children: [
                             const Icon(Icons.star, size: 12, color: Colors.amber,),
                             Text(
-                              productItem.star.toString(),
+                              productWishlistItem.product!.star.toString(),
                               style: const TextStyle(
                                 fontSize: 12,
                                 fontWeight: FontWeight.w600,
@@ -78,14 +81,20 @@ class ProductCardItem extends StatelessWidget {
                             )
                           ],
                         ),
-                        Card(
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          color: AppColors.primaryColor,
-                          child: const Padding(
-                            padding: EdgeInsets.all(4.0),
-                            child: Icon(Icons.favorite_outline, size: 12, color: Colors.white,),
+                        InkWell(
+                          onTap: () {
+                            onDeletePressed(true);
+                          },
+                          borderRadius: BorderRadius.circular(10),
+                          child: Card(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(5),
+                            ),
+                            color: Colors.red,
+                            child: const Padding(
+                              padding: EdgeInsets.all(4.0),
+                              child: Icon(Icons.delete_outlined, size: 12, color: Colors.white,),
+                            ),
                           ),
                         ),
                         const SizedBox(width: 5,),
