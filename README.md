@@ -4,6 +4,7 @@
   <img src="assets/images/output/splash_page.png" alt="splash Screen" width="300"/>
   <img src="assets/images/output/email_verify.png" alt="splash Screen" width="300"/>
   <img src="assets/images/output/email_verify.png" alt="splash Screen" width="300"/>
+  <img src="assets/images/output/email_verify.png" alt="splash Screen" width="300"/>
 
 </div>
 
