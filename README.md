@@ -1,8 +1,8 @@
 # Flutter E-commerce App With API Using Getx.
 
 <div style="display: inline-block;">
-  <img src="assets/images/output/splash_page.png" alt="splash Screen" width="200"/>
-  <img src="assets/images/output/email_verify.png" alt="splash Screen" width="200"/>
+![splash Screen](assets/images/output/splash_page.png)
+![splash Screen](assets/images/output/email_verify.png)
 </div>
 
 
