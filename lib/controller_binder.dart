@@ -1,3 +1,4 @@
+import 'presentation/state_holders/invoice/create_invoice_controller.dart';
 import 'presentation/state_holders/wishlist/remove_product_wishlist_item_controller.dart';
 import 'presentation/state_holders/wishlist/product_wishlist_controller.dart';
 import 'presentation/state_holders/wishlist/create_wishlist_controller.dart';
@@ -57,6 +58,8 @@ class ControllerBinder extends Bindings {
     Get.put(CreateWishListController());
     Get.put(ProductWishlistController());
     Get.put(RemoveProductWishlistItemController());
+    Get.put(CreateInvoiceController());
+
 
 
 

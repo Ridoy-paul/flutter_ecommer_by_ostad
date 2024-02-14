@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommer_by_ostad/presentation/ui/screens/checkout_screen.dart';
 import '../../state_holders/delete_cart_list_controller.dart';
 import '../../../data/utility/helpers.dart';
 import '../../state_holders/cart_list_controller.dart';
@@ -125,7 +126,9 @@ class _CartScreenState extends State<CartScreen> {
             SizedBox(
               width: 120,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Get.to(() => const CheckoutScreen());
+                },
                 child: const Text("Checkout"),
               ),
             ),

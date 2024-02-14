@@ -6,7 +6,24 @@ class Assets {
   static const String imagesLogoNav = 'assets/images/logo_nav.png';
   static const String imagesNoResultFound = 'assets/images/no-result-found.png';
   static const String imagesShoe = 'assets/images/shoe.png';
-  static const String noResultFound = 'assets/images/no-result-found.png';
-
+  static const String outputAllBrandsPage = 'assets/images/output/all_brands_page.png';
+  static const String outputAllCategories = 'assets/images/output/all_categories.png';
+  static const String outputCartPage = 'assets/images/output/cart_page.png';
+  static const String outputCheckoutPage = 'assets/images/output/checkout_page.png';
+  static const String outputCompleteProfile = 'assets/images/output/complete_profile.png';
+  static const String outputEmailLogin = 'assets/images/output/email_login.png';
+  static const String outputHomePage = 'assets/images/output/home_page.png';
+  static const String outputHomePage2 = 'assets/images/output/home_page_2.png';
+  static const String outputImg = 'assets/images/output/img.png';
+  static const String outputLogoutPage = 'assets/images/output/logout_page.png';
+  static const String outputOtpverify = 'assets/images/output/otpverify.png';
+  static const String outputPaymentPage = 'assets/images/output/payment_page.png';
+  static const String outputPopularProducts = 'assets/images/output/popular_products.png';
+  static const String outputProductAddReview = 'assets/images/output/product_add_review.png';
+  static const String outputProductDetails = 'assets/images/output/product_details.png';
+  static const String outputProductReviews = 'assets/images/output/product_reviews.png';
+  static const String outputSingleBrandProductsPage = 'assets/images/output/single_brand_products_page.png';
+  static const String outputSplashPage = 'assets/images/output/splash_page.png';
+  static const String outputWishlistPage = 'assets/images/output/wishlist_page.png';
 
 }
