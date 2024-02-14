@@ -223,8 +223,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
             } else {
               showSnackMessage(_createWishListController.message, false);
             }
-
           },
+          borderRadius: BorderRadius.circular(10),
           child: Card(
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(5),
