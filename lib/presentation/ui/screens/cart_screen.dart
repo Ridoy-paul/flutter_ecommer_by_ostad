@@ -71,9 +71,6 @@ class _CartScreenState extends State<CartScreen> {
                                   await Get.find<DeleteCartListController>().deleteCartListItem(controller.cartListModel.cartListItem![index].productId ?? 0);
                                 }
                               },
-                              cartItemSubtotal: (int itemSubtotal) {
-                                totalPrice += itemSubtotal;
-                              },
                             );
                           },
                           separatorBuilder: (_, __) =>

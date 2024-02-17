@@ -1,4 +1,6 @@
-import 'package:flutter_ecommer_by_ostad/data/models/cart_list_item.dart';
+import 'dart:ffi';
+
+import '../../data/models/cart_list_item.dart';
 import 'package:get/get.dart';
 import '../../data/models/cart_list_model.dart';
 import '../../data/services/network_caller.dart';
@@ -42,16 +44,20 @@ class CartListController extends GetxController {
     return _isSuccess;
   }
 
+  void updateCartQuantity(int id, int quantity) {
+    print("hello");
+    _cartListModel.cartListItem?.firstWhere((element) => element.id == id).qty = quantity as String?;
+    _cartTotal.value = _calculateCartTotal;
+  }
+
   double get _calculateCartTotal {
     double total = 0;
     for(CartListItem item in _cartListModel.cartListItem ?? []) {
       double price = double.tryParse(item.product?.price ?? '0') ?? 0;
-      double quantity = double.tryParse(item.qty ?? '0') ?? 0;
+      num quantity = int.tryParse((item.qty ?? 0.0) as String) ?? 0;
       total += price * quantity;
     }
     return total;
   }
-
-
 
 }

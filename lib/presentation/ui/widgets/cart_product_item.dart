@@ -1,15 +1,16 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_ecommer_by_ostad/presentation/state_holders/cart_list_controller.dart';
+import 'package:get/get.dart';
 import '../../../data/models/cart_list_item.dart';
 import 'package:item_count_number_button/item_count_number_button.dart';
 import '../utility/app_colors.dart';
 
 class CartProductItem extends StatefulWidget {
-  const CartProductItem({super.key, required this.cartListItem, required this.onRemoveCartItem, required this.cartItemSubtotal});
+  const CartProductItem({super.key, required this.cartListItem, required this.onRemoveCartItem});
 
   final CartListItem cartListItem;
   final Function(bool) onRemoveCartItem;
-  final Function(int) cartItemSubtotal;
 
   @override
   State<CartProductItem> createState() => _CartProductItemState();
@@ -17,16 +18,13 @@ class CartProductItem extends StatefulWidget {
 
 class _CartProductItemState extends State<CartProductItem> {
   late int cartQty;
-  late int price;
   late ValueNotifier<int> noOfItem;
 
   @override
   void initState() {
     super.initState();
-    cartQty = int.tryParse(widget.cartListItem.qty ?? '1') ?? 1;
+    cartQty = int.tryParse((widget.cartListItem.qty ?? 1) as String) ?? 1;
     noOfItem = ValueNotifier(cartQty);
-    price = int.tryParse(widget.cartListItem.price ?? '1') ?? 1;
-    widget.cartItemSubtotal(cartQty * price);
   }
 
   @override
@@ -95,6 +93,7 @@ class _CartProductItemState extends State<CartProductItem> {
                             decimalPlaces: 0,
                             onChanged: (v) {
                               noOfItem.value = v.toInt();
+                              Get.find<CartListController>().updateCartQuantity(widget.cartListItem.id!, v.toInt());
                             },
                           );
                         }
