@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommer_by_ostad/presentation/ui/screens/checkout_screen.dart';
+import 'checkout_screen.dart';
 import '../../state_holders/delete_cart_list_controller.dart';
 import '../../../data/utility/helpers.dart';
 import '../../state_holders/cart_list_controller.dart';
@@ -83,7 +83,7 @@ class _CartScreenState extends State<CartScreen> {
                         ),
                       ),
                     ),
-                    totalPriceAndCheckoutSection(totalPrice)
+                    totalPriceAndCheckoutSection(controller.cartTotal)
                   ],
                 ),
               ),
@@ -94,7 +94,7 @@ class _CartScreenState extends State<CartScreen> {
     );
   }
 
-  Container totalPriceAndCheckoutSection(int totalP) {
+  Container totalPriceAndCheckoutSection(RxDouble totalP) {
     return Container(
       decoration: BoxDecoration(
         color: AppColors.primaryColor.withOpacity(0.16),
