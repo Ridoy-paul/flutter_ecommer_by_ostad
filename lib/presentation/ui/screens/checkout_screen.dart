@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ecommer_by_ostad/presentation/ui/screens/payment_webview_screen.dart';
+import 'payment_webview_screen.dart';
 import '../../state_holders/invoice/create_invoice_controller.dart';
 import '../../../data/utility/helpers.dart';
 import '../utility/app_colors.dart';
