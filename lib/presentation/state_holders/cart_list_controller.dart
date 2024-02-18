@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import '../../data/models/cart_list_item.dart';
 import 'package:get/get.dart';
 import '../../data/models/cart_list_model.dart';
@@ -45,7 +43,6 @@ class CartListController extends GetxController {
   }
 
   void updateCartQuantity(int id, int quantity) {
-    print("hello");
     _cartListModel.cartListItem?.firstWhere((element) => element.id == id).qty = quantity as String?;
     _cartTotal.value = _calculateCartTotal;
   }
